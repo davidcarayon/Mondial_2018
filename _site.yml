@@ -16,7 +16,7 @@ navbar:
       href: mailto:sebastien.boutry@irstea.fr?&cc=david.carayon@irstea.fr&cc=thibault.leboucher@irstea.fr&cc=marie.wach@irstea.fr&cc=olivier.joalland@irstea.fr&subject=Inscription%20Zabivaka%20pronostics
     - text: "Code source"
       icon: fa-github
-      href: https://github.com/davidcarayon       
+      href: https://github.com/davidcarayon/Mondial_2018       
     - text: "Site de la FIFA"
       icon: fa-sitemap
       href: https://www.fifa.com/worldcup/
