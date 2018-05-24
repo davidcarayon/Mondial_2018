@@ -6,13 +6,16 @@ title: ""
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<br>
+
+<img src="img/Dessin_site.png" width="400" class="center">
+
+<br>
+
 # Présentation
 
 [En construction]
 
-# Règles du jeu
-
-[En construction]
 
 
 

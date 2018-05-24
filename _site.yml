@@ -1,13 +1,16 @@
-name: "Zabivaka pronostics"                               
+name: "Zabivaka challenge"                               
 output_dir: "docs"
 navbar:
-  title: "Zabivaka pronostics"                             
+  title: "Zabivaka challenge"                             
   type: inverse
   left:
     - text: "Présentation"
       icon: fa-home
       href: index.html
-    - text: "Pronostics & Résultats"
+    - text: "Règlement"
+      icon: fa-book
+      href: rules.html
+    - text: "Pronos & Résultats"
       icon: fa-trophy
       href: results.html
   right:
@@ -24,6 +27,7 @@ output:
   html_document:
     theme: readable
     highlight: haddock
+    css: styles.css
     toc: true
     toc_float: true
     include:
