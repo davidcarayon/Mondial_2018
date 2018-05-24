@@ -1,10 +1,12 @@
 ---
-title: "Présentation jeu de pronostics 2018"
+title: ""
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# Présentation
 
 [En construction]
 

@@ -1,5 +1,7 @@
 ---
 title: "Pronostics et résultats"
+toc: true
+toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -14,3 +16,11 @@ ggplot(mtcars, aes(wt,mpg)) +
   geom_point() 
 ```
 
+## Deuxième partie
+
+...
+
+
+## Troisième partie
+
+...
