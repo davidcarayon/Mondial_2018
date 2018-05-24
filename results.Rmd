@@ -1,0 +1,16 @@
+---
+title: "Pronostics et résultats"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2) ; library(ggthemes)
+```
+
+## Visualisation des résultats
+
+```{r, echo = FALSE}
+ggplot(mtcars, aes(wt,mpg)) +
+  geom_point() 
+```
+

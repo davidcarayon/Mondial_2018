@@ -1,0 +1,18 @@
+---
+title: "Présentation jeu de pronostics 2018"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+[En construction]
+
+# Règles du jeu
+
+[En construction]
+
+
+
+
+

@@ -1,0 +1,28 @@
+name: "Zabivaka pronostics"                               
+output_dir: "docs"
+navbar:
+  title: "Zabivaka pronostics"                             
+  type: inverse
+  left:
+    - text: "Présentation"
+      icon: fa-home
+      href: index.html
+    - text: "Pronostics & Résultats"
+      icon: fa-trophy
+      href: results.html
+  right:
+    - text: "Une question ?"
+      icon: fa-envelope-o
+      href: david.carayon@irstea.fr
+    - text: "Code source"
+      icon: fa-github
+      href: https://github.com/davidcarayon       
+    - text: "Site de la FIFA"
+      icon: fa-sitemap
+      href: https://www.fifa.com/worldcup/
+output:
+  html_document:
+    theme: cosmo
+    highlight: haddock
+    include:
+      after_body: footer.html
