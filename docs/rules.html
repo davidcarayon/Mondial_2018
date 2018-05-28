@@ -318,13 +318,347 @@ div.tocify {
 </div>
 
 
-<div id="partie-1" class="section level1">
-<h1>Partie 1</h1>
-<p>[En construction]</p>
+<p><br></p>
+<div id="section-1" class="section level2">
+<h2>Section 1</h2>
+<p>Le but du jeu est de pronostiquer le score de chaque match de la Coupe du Monde 2018 :</p>
+<ul>
+<li><p>48 matchs de poules, du jeudi 14 juin au jeudi 28 juin ;</p></li>
+<li><p>16 matchs à élimination directe (huitièmes de finale, quarts de finale, demi-finales, match pour la 3e place, finale), du samedi 30 juin au dimanche 15 juillet.</p></li>
+</ul>
+<p>Chaque participant indique ses pronostics dans le fichier Excel créé à son nom dans le répertoire commun (insérer lien).</p>
+<p>Pour qu’un pronostic soit valable, celui-ci doit avoir été sauvegardé avant le coup d’envoi du match concerné (les dates et horaires des matchs sont inscrits dans le fichier Excel).</p>
+<p>De plus, lors de son inscription, chaque participant pronostique le nom du pays qui selon lui remportera la compétition (<strong>voir section 4</strong>).</p>
+</div>
+<div id="section-2" class="section level2">
+<h2>Section 2</h2>
+<p>Le nombre de points que rapporte un pronostic dépend :</p>
+<ul>
+<li><p>Du niveau de la compétition auquel appartient le match : match de poule, huitièmes de finale, quart de finale, etc.</p></li>
+<li><p>De l’exactitude du pronostic : bon vainqueur, bon vainqueur et bonne différence de buts, bon vainqueur et score exact.</p></li>
+</ul>
+</div>
+<div id="section-3" class="section level2">
+<h2>Section 3</h2>
+<p>Les points seront attribués de la manière suivante :</p>
+<div id="pour-les-matchs-de-poules" class="section level3">
+<h3>Pour les matchs de poules :</h3>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="43%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><strong>Bon vainqueur uniquement</strong></th>
+<th align="center"><strong>Bon vainqueur et bonne différence de buts</strong></th>
+<th align="center"><strong>Bon vainqueur et score exact</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+<p><em>Exemple 1 : le match Maroc-Iran se termine sur le score de 2-0 pour le Maroc :</em></p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Votre pronostic</strong></th>
+<th><strong>Points attribués</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1-0 pour le Maroc</td>
+<td>1 pt (bon vainqueur uniquement)</td>
+</tr>
+<tr class="even">
+<td>3-1 pour le Maroc</td>
+<td>2 pts (bon vainqueur et bonne différence de buts)</td>
+</tr>
+<tr class="odd">
+<td>2-0 pour le Maroc</td>
+<td>3 pts (bon vainqueur et score exact)</td>
+</tr>
+<tr class="even">
+<td>0-2 pour l’Iran</td>
+<td>0 pt</td>
+</tr>
+<tr class="odd">
+<td>0-0</td>
+<td>0 pt</td>
+</tr>
+</tbody>
+</table>
+<p><em>Exemple 2 : le match Colombie-Japon se termine sur le score de 1-1 :</em></p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Votre pronostic</strong></th>
+<th><strong>Points attribués</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1-0 pour la Colombie</td>
+<td>0 pt</td>
+</tr>
+<tr class="even">
+<td>0-2 pour le Japon</td>
+<td>0 pt</td>
+</tr>
+<tr class="odd">
+<td>0-0</td>
+<td>2 pts (bonne différence de buts)</td>
+</tr>
+<tr class="even">
+<td>1-1</td>
+<td>3 pts (score exact)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="pour-les-matchs-a-elimination-directe-a-partir-des-huitiemes-de-finale" class="section level3">
+<h3>Pour les matchs à élimination directe (à partir des huitièmes de finale)</h3>
+<ul>
+<li>Il sera tenu compte du score à la fin du match, prolongations inclues le cas échéant. Si un participant pronostique un match nul, il doit indiquer le nom du pays vainqueur de la séance de tirs au but.</li>
+</ul>
+<table>
+<colgroup>
+<col width="17%" />
+<col width="21%" />
+<col width="35%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Tour</strong></th>
+<th><strong>Bon vainqueur uniquement</strong></th>
+<th><strong>Bon vainqueur et bonne différence de buts</strong></th>
+<th><strong>Bon vainqueur et score exact</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Huitièmes de finale</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>Quarts de finale</td>
+<td>3</td>
+<td>5</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>Demi-finales</td>
+<td>4</td>
+<td>6</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Troisième place</td>
+<td>5</td>
+<td>7</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td>Finale</td>
+<td>6</td>
+<td>8</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<p><em>Exemple 3 : le huitième de finale France-Croatie se termine sur le score de 2-1 pour la France :</em></p>
+<table>
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Votre pronostic</strong></th>
+<th><strong>Points attribués</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2-0 pour la France</td>
+<td>2 pts (bon vainqueur uniquement)</td>
+</tr>
+<tr class="even">
+<td>1-0 pour la France</td>
+<td>2 pts (bon vainqueur et bonne différence de buts)</td>
+</tr>
+<tr class="odd">
+<td>2-1 pour la France</td>
+<td>3 pts (bon vainqueur et score exact)</td>
+</tr>
+<tr class="even">
+<td>0-1 pour la Croatie</td>
+<td>0 pt</td>
+</tr>
+<tr class="odd">
+<td>0-0 et victoire de la France aux tirs au but</td>
+<td>2 pts (bon vainqueur uniquement)</td>
+</tr>
+<tr class="even">
+<td>2-2 et victoire de la Croatie aux tirs au but</td>
+<td>0 pt</td>
+</tr>
+</tbody>
+</table>
+<p><em>Exemple 4 : le quart de finale Mexique-Belgique se termine sur le score de 1-1 avec victoire de la Belgique aux tirs au but :</em></p>
+<table>
+<colgroup>
+<col width="48%" />
+<col width="51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Votre pronostic</strong></th>
+<th><strong>Points attribués</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1-0 pour le Mexique</td>
+<td>0 pt</td>
+</tr>
+<tr class="even">
+<td>0-2 pour la Belgique</td>
+<td>3 pts (bon vainqueur uniquement)</td>
+</tr>
+<tr class="odd">
+<td>1-1 et victoire du Mexique aux tirs au but</td>
+<td>0 pt</td>
+</tr>
+<tr class="even">
+<td>0-0 et victoire de la Belgique aux tirs au but</td>
+<td>5 pts (bon vainqueur et bonne différence de buts)</td>
+</tr>
+<tr class="odd">
+<td>1-1 et victoire de la Belgique aux tirs au but</td>
+<td>8 pts (bon vainqueur et score exact)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="section-4" class="section level2">
+<h2>Section 4</h2>
+<p>Lors de son inscription, chaque participant pronostique le nom du pays qui remportera la compétition selon lui.</p>
+<p>Un bonus de points sera attribué aux participants ayant trouvé le bon vainqueur de la Coupe du Monde 2018. Ce bonus sera équivalent à la cote attribuée au pays champion du monde par le site « Parions Sport » avant le début du mondial :</p>
+<table>
+<thead>
+<tr class="header">
+<th>Champion</th>
+<th>Bonus</th>
+<th>Champion</th>
+<th>Bonus</th>
+<th>Champion</th>
+<th>Bonus</th>
+<th>Champion</th>
+<th>Bonus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Allemagne</td>
+<td>5</td>
+<td>Uruguay</td>
+<td>28</td>
+<td>Suède</td>
+<td>100</td>
+<td>Costa Rica</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<td>Brésil</td>
+<td>5</td>
+<td>Colombie</td>
+<td>30</td>
+<td>Sénégal</td>
+<td>150</td>
+<td>Japon</td>
+<td>300</td>
+</tr>
+<tr class="odd">
+<td>Espagne</td>
+<td>6</td>
+<td>Croatie</td>
+<td>30</td>
+<td>Serbie</td>
+<td>150</td>
+<td>Maroc</td>
+<td>300</td>
+</tr>
+<tr class="even">
+<td>France</td>
+<td>6,5</td>
+<td>Russie</td>
+<td>35</td>
+<td>Egypte</td>
+<td>175</td>
+<td>Corée du Sud</td>
+<td>500</td>
+</tr>
+<tr class="odd">
+<td>Argentine</td>
+<td>9</td>
+<td>Pologne</td>
+<td>45</td>
+<td>Islande</td>
+<td>200</td>
+<td>Iran</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>Belgique</td>
+<td>11</td>
+<td>Danemark</td>
+<td>80</td>
+<td>Nigeria</td>
+<td>200</td>
+<td>Tunisie</td>
+<td>500</td>
+</tr>
+<tr class="odd">
+<td>Angleterre</td>
+<td>16</td>
+<td>Suisse</td>
+<td>80</td>
+<td>Pérou</td>
+<td>200</td>
+<td>Arabie Saoudite</td>
+<td>900</td>
+</tr>
+<tr class="even">
+<td>Portugal</td>
+<td>22</td>
+<td>Mexique</td>
+<td>90</td>
+<td>Australie</td>
+<td>300</td>
+<td>Panama</td>
+<td>900</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <hr>
-<p>Copyright &copy; 2018 David Carayon, Sébastien Boutry, Marie Wach, Thibault Leboucher & Olivier Joalland.</p>
+<p>Copyright &copy; 2018 D.Carayon, S.Boutry, M.Wach, T. Leboucher & O. Joalland.</p>
+<div align="center">
+<audio src="lib/jason.mp3" type="audio/mp3" autoplay controls></audio>
+</div>
 <hr>
 
 

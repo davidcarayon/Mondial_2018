@@ -1,10 +1,108 @@
 ---
 title: "Règlement"
 ---
+<br> 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Partie 1
-[En construction]
+## Section 1 
+
+Le but du jeu est de pronostiquer le score de chaque match de la Coupe du Monde 2018 :
+
+- 48 matchs de poules, du jeudi 14 juin au jeudi 28 juin ;
+
+- 16 matchs à élimination directe (huitièmes de finale, quarts de finale, demi-finales, match pour la 3e place, finale), du samedi 30 juin au dimanche 15 juillet.
+
+Chaque participant indique ses pronostics dans le fichier Excel créé à son nom dans le répertoire commun (insérer lien).
+
+Pour qu’un pronostic soit valable, celui-ci doit avoir été sauvegardé avant le coup d’envoi du match concerné (les dates et horaires des matchs sont inscrits dans le fichier Excel).
+
+De plus, lors de son inscription, chaque participant pronostique le nom du pays qui selon lui remportera la compétition (**voir section 4**).
+
+## Section 2 
+
+Le nombre de points que rapporte un pronostic dépend :
+
+- Du niveau de la compétition auquel appartient le match : match de poule, huitièmes de finale, quart de finale, etc.
+
+- De l'exactitude du pronostic : bon vainqueur, bon vainqueur et bonne différence de buts, bon vainqueur et score exact.
+
+## Section 3
+Les points seront attribués de la manière suivante :
+
+### Pour les matchs de poules :
+
+| **Bon vainqueur uniquement** 	| **Bon vainqueur et bonne différence de buts** 	| **Bon vainqueur et score exact** 	|
+|:------------------------:	|:-----------------------------------------:	|:----------------------------:	|
+| 1 	| 2 	| 3 	|
+
+*Exemple 1 : le match Maroc-Iran se termine sur le score de 2-0 pour le Maroc :*
+
+| **Votre pronostic** 	| **Points attribués** 	|
+|-------------------	|---------------------------------------------------	|
+| 1-0 pour le Maroc 	| 1 pt (bon vainqueur uniquement) 	|
+| 3-1 pour le Maroc 	| 2 pts (bon vainqueur et bonne différence de buts) 	|
+| 2-0 pour le Maroc 	| 3 pts (bon vainqueur et score exact) 	|
+| 0-2 pour l’Iran 	| 0 pt 	|
+| 0-0 	| 0 pt 	|
+
+*Exemple 2 : le match Colombie-Japon se termine sur le score de 1-1 :*
+
+| **Votre pronostic** 	| **Points attribués** 	|
+|----------------------	|----------------------------------	|
+| 1-0 pour la Colombie 	| 0 pt 	|
+| 0-2 pour le Japon 	| 0 pt 	|
+| 0-0 	| 2 pts (bonne différence de buts) 	|
+| 1-1 	| 3 pts (score exact) 	|
+
+### Pour les matchs à élimination directe (à partir des huitièmes de finale)
+
+- Il sera tenu compte du score à la fin du match, prolongations inclues le cas échéant. Si un participant pronostique un match nul, il doit indiquer le nom du pays vainqueur de la séance de tirs au but.
+
+| **Tour** 	| **Bon vainqueur uniquement** 	| **Bon vainqueur  et  bonne différence de buts** 	| **Bon vainqueur  et  score exact** 	|
+|---------------------	|--------------------------	|---------------------------------------------	|--------------------------------	|
+| Huitièmes de finale 	| 2 	| 4 	| 6 	|
+| Quarts de finale 	| 3 	| 5 	| 8 	|
+| Demi-finales 	| 4 	| 6 	| 10 	|
+| Troisième place 	| 5 	| 7 	| 12 	|
+| Finale 	| 6 	| 8 	| 14 	|
+
+*Exemple 3 : le huitième de finale France-Croatie se termine sur le score de 2-1 pour la France :*
+
+| **Votre pronostic** 	| **Points attribués** 	|
+|-----------------------------------------------	|---------------------------------------------------	|
+| 2-0 pour la France 	| 2 pts (bon vainqueur uniquement) 	|
+| 1-0 pour la France 	| 2 pts (bon vainqueur et bonne différence de buts) 	|
+| 2-1 pour la France 	| 3 pts (bon vainqueur et score exact) 	|
+| 0-1 pour la Croatie 	| 0 pt 	|
+| 0-0 et victoire de la France aux tirs au but 	| 2 pts (bon vainqueur uniquement) 	|
+| 2-2 et victoire de la Croatie aux tirs au but 	| 0 pt 	|
+
+*Exemple 4 : le quart de finale Mexique-Belgique se termine sur le score de 1-1 avec victoire de la Belgique aux tirs au but :*
+
+| **Votre pronostic** 	| **Points attribués** 	|
+|------------------------------------------------	|---------------------------------------------------	|
+| 1-0 pour le Mexique 	| 0 pt 	|
+| 0-2 pour la Belgique 	| 3 pts (bon vainqueur uniquement) 	|
+| 1-1 et victoire du Mexique aux tirs au but 	| 0 pt 	|
+| 0-0 et victoire de la Belgique aux tirs au but 	| 5 pts (bon vainqueur et bonne différence de buts) 	|
+| 1-1 et victoire de la Belgique aux tirs au but 	| 8 pts (bon vainqueur et score exact) 	|
+
+## Section 4
+
+Lors de son inscription, chaque participant pronostique le nom du pays qui remportera la compétition selon lui.  
+
+Un bonus de points sera attribué aux participants ayant trouvé le bon vainqueur de la Coupe du Monde 2018. Ce bonus sera équivalent à la cote attribuée au pays champion du monde par le site « Parions Sport » avant le début du mondial :
+
+| Champion 	| Bonus 	| Champion 	| Bonus 	| Champion 	| Bonus 	| Champion 	| Bonus 	|
+|------------	|-------	|----------	|-------	|-----------	|-------	|-----------------	|-------	|
+| Allemagne 	| 5 	| Uruguay 	| 28 	| Suède 	| 100 	| Costa Rica 	| 300 	|
+| Brésil 	| 5 	| Colombie 	| 30 	| Sénégal 	| 150 	| Japon 	| 300 	|
+| Espagne 	| 6 	| Croatie 	| 30 	| Serbie 	| 150 	| Maroc 	| 300 	|
+| France 	| 6,5 	| Russie 	| 35 	| Egypte 	| 175 	| Corée du Sud 	| 500 	|
+| Argentine 	| 9 	| Pologne 	| 45 	| Islande 	| 200 	| Iran 	| 500 	|
+| Belgique 	| 11 	| Danemark 	| 80 	| Nigeria 	| 200 	| Tunisie 	| 500 	|
+| Angleterre 	| 16 	| Suisse 	| 80 	| Pérou 	| 200 	| Arabie Saoudite 	| 900 	|
+| Portugal 	| 22 	| Mexique 	| 90 	| Australie 	| 300 	| Panama 	| 900 	|
