@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -23,6 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
@@ -87,34 +89,34 @@ button.code-folding-btn:focus {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 66px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 71px;
-  margin-top: -71px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 
 .section h2 {
-  padding-top: 71px;
-  margin-top: -71px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 71px;
-  margin-top: -71px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 71px;
-  margin-top: -71px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 71px;
-  margin-top: -71px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 71px;
-  margin-top: -71px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 </style>
 
@@ -284,7 +286,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="mailto:sebastien.boutry@irstea.fr?&amp;cc=david.carayon@irstea.fr&amp;cc=thibault.leboucher@irstea.fr&amp;cc=marie.wach@irstea.fr&amp;cc=olivier.joalland@irstea.fr&amp;subject=Inscription%20Zabivaka%20pronostics&amp;body=- Votre prénom :%0D%0A- Votre nom :%0D%0A- Votre mail :%0D%0A- Votre pronostic sur le pays qui remportera la coupe">
+  <a href="mailto:sebastien.boutry@irstea.fr?&amp;cc=david.carayon@irstea.fr&amp;cc=thibault.leboucher@irstea.fr&amp;cc=marie.wach@irstea.fr&amp;cc=olivier.joalland@irstea.fr&amp;subject=Inscription%20Zabivaka%20pronostics&amp;body=- Votre prénom :%0D%0A- Votre nom :%0D%0A- Votre mail :%0D%0A- Bureau n°:%0D%0A- Votre pronostic sur le pays qui remportera la coupe">
     <span class="fa fa-envelope-o"></span>
      
     Inscriptions
@@ -319,8 +321,8 @@ div.tocify {
 
 
 <p><br></p>
-<div id="section-1" class="section level2">
-<h2>Section 1</h2>
+<div id="section-1-introduction" class="section level2">
+<h2>Section 1 : Introduction</h2>
 <p>Le but du jeu est de pronostiquer le score de chaque match de la Coupe du Monde 2018 :</p>
 <ul>
 <li><p>48 matchs de poules, du jeudi 14 juin au jeudi 28 juin ;</p></li>
@@ -329,20 +331,22 @@ div.tocify {
 <p>Chaque participant indique ses pronostics dans le fichier Excel créé à son nom dans le répertoire commun (insérer lien).</p>
 <p>Pour qu’un pronostic soit valable, celui-ci doit avoir été sauvegardé avant le coup d’envoi du match concerné (les dates et horaires des matchs sont inscrits dans le fichier Excel).</p>
 <p>De plus, lors de son inscription, chaque participant pronostique le nom du pays qui selon lui remportera la compétition (<strong>voir section 4</strong>).</p>
+<hr />
 </div>
-<div id="section-2" class="section level2">
-<h2>Section 2</h2>
+<div id="section-2-principe-du-jeu" class="section level2">
+<h2>Section 2 : Principe du jeu</h2>
 <p>Le nombre de points que rapporte un pronostic dépend :</p>
 <ul>
 <li><p>Du niveau de la compétition auquel appartient le match : match de poule, huitièmes de finale, quart de finale, etc.</p></li>
 <li><p>De l’exactitude du pronostic : bon vainqueur, bon vainqueur et bonne différence de buts, bon vainqueur et score exact.</p></li>
 </ul>
+<hr />
 </div>
-<div id="section-3" class="section level2">
-<h2>Section 3</h2>
+<div id="section-3-attribution-des-points" class="section level2">
+<h2>Section 3 : Attribution des points</h2>
 <p>Les points seront attribués de la manière suivante :</p>
 <div id="pour-les-matchs-de-poules" class="section level3">
-<h3>Pour les matchs de poules :</h3>
+<h3>1. Pour les matchs de poules :</h3>
 <table>
 <colgroup>
 <col width="26%" />
@@ -424,7 +428,7 @@ div.tocify {
 </table>
 </div>
 <div id="pour-les-matchs-a-elimination-directe-a-partir-des-huitiemes-de-finale" class="section level3">
-<h3>Pour les matchs à élimination directe (à partir des huitièmes de finale)</h3>
+<h3>2. Pour les matchs à élimination directe (à partir des huitièmes de finale)</h3>
 <ul>
 <li>Il sera tenu compte du score à la fin du match, prolongations inclues le cas échéant. Si un participant pronostique un match nul, il doit indiquer le nom du pays vainqueur de la séance de tirs au but.</li>
 </ul>
@@ -550,10 +554,11 @@ div.tocify {
 </tr>
 </tbody>
 </table>
+<hr />
 </div>
 </div>
-<div id="section-4" class="section level2">
-<h2>Section 4</h2>
+<div id="section-4-bonus-vainqueur" class="section level2">
+<h2>Section 4 : Bonus vainqueur</h2>
 <p>Lors de son inscription, chaque participant pronostique le nom du pays qui remportera la compétition selon lui.</p>
 <p>Un bonus de points sera attribué aux participants ayant trouvé le bon vainqueur de la Coupe du Monde 2018. Ce bonus sera équivalent à la cote attribuée au pays champion du monde par le site « Parions Sport » avant le début du mondial :</p>
 <table>
