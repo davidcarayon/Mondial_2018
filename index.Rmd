@@ -18,6 +18,12 @@ library("markdown")
 
 [En construction]
 
+# Comment participer ?
+
+- S'inscrire (mailto ou contacter : sebastien.boutry@irstea.fr)
+- Comment envoyer le .xlsx (soit un nouveau bouton mailto, soit une adresse à envoyer)
+
+[En construction]
 
 
 

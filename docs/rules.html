@@ -163,7 +163,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -321,6 +321,7 @@ div.tocify {
 
 
 <p><br></p>
+<p><br></p>
 <div id="section-1-introduction" class="section level2">
 <h2>Section 1 : Introduction</h2>
 <p>Le but du jeu est de pronostiquer le score de chaque match de la Coupe du Monde 2018 :</p>
@@ -328,10 +329,11 @@ div.tocify {
 <li><p>48 matchs de poules, du jeudi 14 juin au jeudi 28 juin ;</p></li>
 <li><p>16 matchs à élimination directe (huitièmes de finale, quarts de finale, demi-finales, match pour la 3e place, finale), du samedi 30 juin au dimanche 15 juillet.</p></li>
 </ul>
-<p>Chaque participant indique ses pronostics dans le fichier Excel créé à son nom dans le répertoire commun (insérer lien).</p>
 <p>Pour qu’un pronostic soit valable, celui-ci doit avoir été sauvegardé avant le coup d’envoi du match concerné (les dates et horaires des matchs sont inscrits dans le fichier Excel).</p>
 <p>De plus, lors de son inscription, chaque participant pronostique le nom du pays qui selon lui remportera la compétition (<strong>voir section 4</strong>).</p>
+<p><br></p>
 <hr />
+<p><br></p>
 </div>
 <div id="section-2-principe-du-jeu" class="section level2">
 <h2>Section 2 : Principe du jeu</h2>
@@ -340,221 +342,243 @@ div.tocify {
 <li><p>Du niveau de la compétition auquel appartient le match : match de poule, huitièmes de finale, quart de finale, etc.</p></li>
 <li><p>De l’exactitude du pronostic : bon vainqueur, bon vainqueur et bonne différence de buts, bon vainqueur et score exact.</p></li>
 </ul>
+<p><br></p>
 <hr />
+<p><br></p>
 </div>
 <div id="section-3-attribution-des-points" class="section level2">
 <h2>Section 3 : Attribution des points</h2>
 <p>Les points seront attribués de la manière suivante :</p>
-<div id="pour-les-matchs-de-poules" class="section level3">
-<h3>1. Pour les matchs de poules :</h3>
-<table>
+<table style="width:100%;">
 <colgroup>
-<col width="26%" />
-<col width="43%" />
-<col width="30%" />
+<col width="18%" />
+<col width="13%" />
+<col width="39%" />
+<col width="28%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="center"><strong>Bon vainqueur uniquement</strong></th>
-<th align="center"><strong>Bon vainqueur et bonne différence de buts</strong></th>
-<th align="center"><strong>Bon vainqueur et score exact</strong></th>
+<th><strong>Tour</strong></th>
+<th><strong>Bon vainqueur</strong></th>
+<th><strong>Bon vainqueur avec bonne différence de buts</strong></th>
+<th><strong>Bon vainqueur avec score exact</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">1</td>
-<td align="center">2</td>
-<td align="center">3</td>
+<td>Matchs de poule</td>
+<td>2</td>
+<td>4</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Huitièmes de finale</td>
+<td>4</td>
+<td>6</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>Quarts de finale</td>
+<td>6</td>
+<td>8</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>Demi-finales</td>
+<td>8</td>
+<td>10</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>Troisième place</td>
+<td>10</td>
+<td>12</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>Finale</td>
+<td>12</td>
+<td>14</td>
+<td>17</td>
 </tr>
 </tbody>
 </table>
-<p><em>Exemple 1 : le match Maroc-Iran se termine sur le score de 2-0 pour le Maroc :</em></p>
+<p>A partir des huitièmes de finale :</p>
+<ul>
+<li><p>en cas de prolongations, le score qui sera pris en compte sera le score à l’issue des prolongations.</p></li>
+<li><p>lorsqu’un participant pronostique un match nul, il doit indiquer le nom du pays vainqueur de la séance de tirs au but. Il ne pourra obtenir de points que s’il choisit le bon pays vainqueur.</p></li>
+</ul>
+<p><br> <br></p>
+<div id="exemple-1---match-de-poule-maroc-2-0-iran" class="section level3">
+<h3>Exemple 1 - Match de poule : Maroc 2-0 Iran</h3>
 <table>
 <thead>
 <tr class="header">
-<th><strong>Votre pronostic</strong></th>
+<th><strong>Pronostic</strong></th>
 <th><strong>Points attribués</strong></th>
+<th><strong>Explications</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td>0-2 pour l’Iran</td>
+<td>0 pt</td>
+<td>mauvais résultat</td>
+</tr>
+<tr class="even">
+<td>0-0</td>
+<td>0 pt</td>
+<td>mauvais résultat</td>
+</tr>
+<tr class="odd">
 <td>1-0 pour le Maroc</td>
-<td>1 pt (bon vainqueur uniquement)</td>
+<td>2 pts</td>
+<td>bon vainqueur</td>
 </tr>
 <tr class="even">
 <td>3-1 pour le Maroc</td>
-<td>2 pts (bon vainqueur et bonne différence de buts)</td>
+<td>4 pts</td>
+<td>bon vainqueur avec bonne différence de buts</td>
 </tr>
 <tr class="odd">
 <td>2-0 pour le Maroc</td>
-<td>3 pts (bon vainqueur et score exact)</td>
-</tr>
-<tr class="even">
-<td>0-2 pour l’Iran</td>
-<td>0 pt</td>
-</tr>
-<tr class="odd">
-<td>0-0</td>
-<td>0 pt</td>
+<td>7 pts</td>
+<td>bon vainqueur avec score exact</td>
 </tr>
 </tbody>
 </table>
-<p><em>Exemple 2 : le match Colombie-Japon se termine sur le score de 1-1 :</em></p>
+<p><br></p>
+</div>
+<div id="exemple-2---match-de-poule-colombie-1-1-japon" class="section level3">
+<h3>Exemple 2 - Match de poule : Colombie 1-1 Japon</h3>
 <table>
 <thead>
 <tr class="header">
-<th><strong>Votre pronostic</strong></th>
+<th><strong>Pronostic</strong></th>
 <th><strong>Points attribués</strong></th>
+<th><strong>Explications</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>1-0 pour la Colombie</td>
 <td>0 pt</td>
+<td>mauvais résultat</td>
 </tr>
 <tr class="even">
 <td>0-2 pour le Japon</td>
 <td>0 pt</td>
+<td>mauvais résultat</td>
 </tr>
 <tr class="odd">
 <td>0-0</td>
-<td>2 pts (bonne différence de buts)</td>
+<td>4 pts</td>
+<td>bon vainqueur avec bonne différence de buts</td>
 </tr>
 <tr class="even">
 <td>1-1</td>
-<td>3 pts (score exact)</td>
+<td>7 pts</td>
+<td>bon vainqueur avec score exact</td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </div>
-<div id="pour-les-matchs-a-elimination-directe-a-partir-des-huitiemes-de-finale" class="section level3">
-<h3>2. Pour les matchs à élimination directe (à partir des huitièmes de finale)</h3>
-<ul>
-<li>Il sera tenu compte du score à la fin du match, prolongations inclues le cas échéant. Si un participant pronostique un match nul, il doit indiquer le nom du pays vainqueur de la séance de tirs au but.</li>
-</ul>
+<div id="exemple-3---huitieme-de-finale-france-2-1-croatie" class="section level3">
+<h3>Exemple 3 - Huitième de finale : France 2-1 Croatie</h3>
 <table>
-<colgroup>
-<col width="17%" />
-<col width="21%" />
-<col width="35%" />
-<col width="25%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th><strong>Tour</strong></th>
-<th><strong>Bon vainqueur uniquement</strong></th>
-<th><strong>Bon vainqueur et bonne différence de buts</strong></th>
-<th><strong>Bon vainqueur et score exact</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Huitièmes de finale</td>
-<td>2</td>
-<td>4</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>Quarts de finale</td>
-<td>3</td>
-<td>5</td>
-<td>8</td>
-</tr>
-<tr class="odd">
-<td>Demi-finales</td>
-<td>4</td>
-<td>6</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>Troisième place</td>
-<td>5</td>
-<td>7</td>
-<td>12</td>
-</tr>
-<tr class="odd">
-<td>Finale</td>
-<td>6</td>
-<td>8</td>
-<td>14</td>
-</tr>
-</tbody>
-</table>
-<p><em>Exemple 3 : le huitième de finale France-Croatie se termine sur le score de 2-1 pour la France :</em></p>
-<table>
-<colgroup>
-<col width="48%" />
-<col width="52%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Votre pronostic</strong></th>
+<th><strong>Pronostic</strong></th>
 <th><strong>Points attribués</strong></th>
+<th><strong>Explications</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>2-0 pour la France</td>
-<td>2 pts (bon vainqueur uniquement)</td>
-</tr>
-<tr class="even">
-<td>1-0 pour la France</td>
-<td>2 pts (bon vainqueur et bonne différence de buts)</td>
-</tr>
-<tr class="odd">
-<td>2-1 pour la France</td>
-<td>3 pts (bon vainqueur et score exact)</td>
-</tr>
-<tr class="even">
 <td>0-1 pour la Croatie</td>
 <td>0 pt</td>
-</tr>
-<tr class="odd">
-<td>0-0 et victoire de la France aux tirs au but</td>
-<td>2 pts (bon vainqueur uniquement)</td>
+<td>mauvais résultat</td>
 </tr>
 <tr class="even">
-<td>2-2 et victoire de la Croatie aux tirs au but</td>
+<td>2-2, victoire de la Croatie aux tirs au but</td>
 <td>0 pt</td>
+<td>mauvais résultat</td>
+</tr>
+<tr class="odd">
+<td>0-0, victoire de la France aux tirs au but</td>
+<td>4 pts</td>
+<td>bon vainqueur</td>
+</tr>
+<tr class="even">
+<td>2-0 pour la France</td>
+<td>4 pts</td>
+<td>bon vainqueur</td>
+</tr>
+<tr class="odd">
+<td>1-0 pour la France</td>
+<td>6 pts</td>
+<td>bon vainqueur avec bonne différence de buts</td>
+</tr>
+<tr class="even">
+<td>2-1 pour la France</td>
+<td>9 pts</td>
+<td>bon vainqueur avec score exact</td>
 </tr>
 </tbody>
 </table>
-<p><em>Exemple 4 : le quart de finale Mexique-Belgique se termine sur le score de 1-1 avec victoire de la Belgique aux tirs au but :</em></p>
+<p><br></p>
+</div>
+<div id="exemple-4---quart-de-finale-mexique-1-1-belgique-victoire-de-la-belgique-aux-tirs-au-but" class="section level3">
+<h3>Exemple 4 - Quart de finale : Mexique 1-1 Belgique, victoire de la Belgique aux tirs au but</h3>
 <table>
 <colgroup>
-<col width="48%" />
-<col width="51%" />
+<col width="55%" />
+<col width="12%" />
+<col width="31%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Votre pronostic</strong></th>
+<th><strong>Pronostic</strong></th>
 <th><strong>Points attribués</strong></th>
+<th><strong>Explications</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>1-0 pour le Mexique</td>
 <td>0 pt</td>
+<td>mauvais résultat</td>
+</tr>
+<tr class="even">
+<td>0-0, victoire du Mexique aux tirs au but</td>
+<td>0 pt</td>
+<td>mauvais résultat</td>
+</tr>
+<tr class="odd">
+<td>1-1, victoire du Mexique aux tirs au but</td>
+<td>0 pt</td>
+<td>mauvais résultat</td>
 </tr>
 <tr class="even">
 <td>0-2 pour la Belgique</td>
-<td>3 pts (bon vainqueur uniquement)</td>
+<td>6 pts</td>
+<td>bon vainqueur</td>
 </tr>
 <tr class="odd">
-<td>1-1 et victoire du Mexique aux tirs au but</td>
-<td>0 pt</td>
+<td>0-0, victoire de la Belgique aux tirs au but</td>
+<td>8 pts</td>
+<td>bon vainqueur avec bonne différence de buts</td>
 </tr>
 <tr class="even">
-<td>0-0 et victoire de la Belgique aux tirs au but</td>
-<td>5 pts (bon vainqueur et bonne différence de buts)</td>
-</tr>
-<tr class="odd">
-<td>1-1 et victoire de la Belgique aux tirs au but</td>
-<td>8 pts (bon vainqueur et score exact)</td>
+<td>1-1, victoire de la Belgique aux tirs au but</td>
+<td>11 pts</td>
+<td>bon résultat avec score exact</td>
 </tr>
 </tbody>
 </table>
-<hr />
+<p><br></p>
+<p><br></p>
 </div>
 </div>
 <div id="section-4-bonus-vainqueur" class="section level2">
@@ -660,7 +684,7 @@ div.tocify {
 </div>
 
 <hr>
-<p>Copyright &copy; 2018 D.Carayon, S.Boutry, M.Wach, T. Leboucher & O. Joalland.</p>
+<p>Copyright &copy; 2018 D.Carayon, S.Boutry, M.Wach, T.Leboucher & O.Joalland.</p>
 <div align="center">
 <audio src="lib/jason.mp3" type="audio/mp3" autoplay controls></audio>
 </div>

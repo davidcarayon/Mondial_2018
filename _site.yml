@@ -30,6 +30,7 @@ output:
     css: styles.css
     toc: true
     toc_float: true
+    toc_depth: 2
     df_print: paged
     include:
       after_body: footer.html
