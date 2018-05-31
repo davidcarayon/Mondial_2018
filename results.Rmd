@@ -11,16 +11,4 @@ library(ggplot2) ; library(ggthemes)
 
 ## Visualisation des résultats
 
-```{r, echo = FALSE}
-ggplot(mtcars, aes(wt,mpg)) +
-  geom_point() 
-```
-
-## Deuxième partie
-
-...
-
-
-## Troisième partie
-
-...
+[En construction]
