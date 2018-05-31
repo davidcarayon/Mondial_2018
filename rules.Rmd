@@ -116,15 +116,23 @@ A partir des huitièmes de finale :
 
 Lors de son inscription, chaque participant pronostique le nom du pays qui remportera la compétition selon lui.  
 
-Un bonus de points sera attribué aux participants ayant trouvé le bon vainqueur de la Coupe du Monde 2018. Ce bonus sera équivalent à la cote attribuée au pays champion du monde par le site « Parions Sport » avant le début du mondial :
+Un bonus de points sera attribué aux participants ayant trouvé le bon vainqueur de la Coupe du Monde 2018. 
 
-| Champion 	| Bonus 	| Champion 	| Bonus 	| Champion 	| Bonus 	| Champion 	| Bonus 	|
-|------------	|-------	|----------	|-------	|-----------	|-------	|-----------------	|-------	|
-| Allemagne 	| 5 	| Uruguay 	| 28 	| Suède 	| 100 	| Costa Rica 	| 300 	|
-| Brésil 	| 5 	| Colombie 	| 30 	| Sénégal 	| 150 	| Japon 	| 300 	|
-| Espagne 	| 6 	| Croatie 	| 30 	| Serbie 	| 150 	| Maroc 	| 300 	|
-| France 	| 6,5 	| Russie 	| 35 	| Egypte 	| 175 	| Corée du Sud 	| 500 	|
-| Argentine 	| 9 	| Pologne 	| 45 	| Islande 	| 200 	| Iran 	| 500 	|
-| Belgique 	| 11 	| Danemark 	| 80 	| Nigeria 	| 200 	| Tunisie 	| 500 	|
-| Angleterre 	| 16 	| Suisse 	| 80 	| Pérou 	| 200 	| Arabie Saoudite 	| 900 	|
-| Portugal 	| 22 	| Mexique 	| 90 	| Australie 	| 300 	| Panama 	| 900 	|
+| Champion 	| Bonus 	| Champion 	| Bonus 	|
+|------------	|-------	|-----------------	|-------	|
+| Allemagne 	| 10 	| Suède 	| 30 	|
+| Brésil 	| 10 	| Sénégal 	| 30 	|
+| Espagne 	| 10 	| Serbie 	| 30 	|
+| France 	| 10 	| Egypte 	| 30 	|
+| Argentine 	| 15 	| Islande 	| 35 	|
+| Belgique 	| 15 	| Nigeria 	| 35 	|
+| Angleterre 	| 15 	| Pérou 	| 35 	|
+| Portugal 	| 15 	| Australie 	| 35 	|
+| Uruguay 	| 20 	| Costa Rica 	| 40 	|
+| Colombie 	| 20 	| Japon 	| 40 	|
+| Croatie 	| 20 	| Maroc 	| 40 	|
+| Russie 	| 20 	| Corée du Sud 	| 40 	|
+| Pologne 	| 25 	| Iran 	| 45 	|
+| Danemark 	| 25 	| Tunisie 	| 45 	|
+| Suisse 	| 25 	| Arabie Saoudite 	| 45 	|
+| Mexique 	| 25 	| Panama 	| 45 	|
