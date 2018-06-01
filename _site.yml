@@ -1,36 +1,41 @@
-name: "Zabivaka challenge"                               
-output_dir: "docs"
+name: Zabivaka challenge
+output_dir: docs
 navbar:
-  title: "Zabivaka challenge"                             
+  title: Zabivaka challenge
   type: inverse
   left:
-    - text: "Présentation"
-      icon: fa-home
-      href: index.html
-    - text: "Règlement"
-      icon: fa-book
-      href: rules.html
-    - text: "Pronos & Résultats"
-      icon: fa-trophy
-      href: results.html
+  - text: Présentation
+    icon: fa-home
+    href: index.html
+  - text: Règlement
+    icon: fa-book
+    href: rules.html
+  - text: Pronos et Résultats
+    icon: fa-trophy
+    href: results.html
   right:
-    - text: "Inscriptions"
-      icon: fa-envelope-o
-      href: mailto:sebastien.boutry@irstea.fr?&cc=david.carayon@irstea.fr&cc=thibault.leboucher@irstea.fr&cc=marie.wach@irstea.fr&cc=olivier.joalland@irstea.fr&subject=Inscription%20Zabivaka%20challenge&body=- Votre prénom :%0D%0A- Votre nom :%0D%0A- Votre mail :%0D%0A- Bureau n°:%0D%0A- Votre pronostic sur le pays qui remportera la coupe 
-    - text: "Code source"
-      icon: fa-github
-      href: https://github.com/davidcarayon/Mondial_2018       
-    - text: "Site de la FIFA"
-      icon: fa-sitemap
-      href: https://www.fifa.com/worldcup/
+  - text: Inscriptions
+    icon: fa-envelope-o
+    href: mailto:sebastien.boutry@irstea.fr?&cc=david.carayon@irstea.fr&cc=thibault.leboucher@irstea.fr&cc=marie.wach@irstea.fr&cc=olivier.joalland@irstea.fr&subject=Inscription%20Zabivaka%20challenge&body=-
+      Votre prénom :%0D%0A- Votre nom :%0D%0A- Votre mail :%0D%0A- Bureau n°:%0D%0A-
+      Votre pronostic sur le pays qui remportera la coupe
+  - text: Code source
+    icon: fa-github
+    href: https://github.com/davidcarayon/Mondial_2018
+  - text: Site de la FIFA
+    icon: fa-sitemap
+    href: https://www.fifa.com/worldcup/
 output:
   html_document:
     theme: united
     highlight: haddock
     css: styles.css
-    toc: true
-    toc_float: true
+    toc: yes
+    toc_float: yes
     toc_depth: 2
     df_print: paged
     include:
       after_body: footer.html
+    lib_dir: site_libs
+    self_contained: no
+
