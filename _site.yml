@@ -16,7 +16,7 @@ navbar:
   right:
     - text: "Inscriptions"
       icon: fa-envelope-o
-      href: mailto:sebastien.boutry@irstea.fr?&cc=david.carayon@irstea.fr&cc=thibault.leboucher@irstea.fr&cc=marie.wach@irstea.fr&cc=olivier.joalland@irstea.fr&subject=Inscription%20Zabivaka%20pronostics&body=- Votre prénom :%0D%0A- Votre nom :%0D%0A- Votre mail :%0D%0A- Bureau n°:%0D%0A- Votre pronostic sur le pays qui remportera la coupe 
+      href: mailto:sebastien.boutry@irstea.fr?&cc=david.carayon@irstea.fr&cc=thibault.leboucher@irstea.fr&cc=marie.wach@irstea.fr&cc=olivier.joalland@irstea.fr&subject=Inscription%20Zabivaka%challenge&body=- Votre prénom :%0D%0A- Votre nom :%0D%0A- Votre mail :%0D%0A- Bureau n°:%0D%0A- Votre pronostic sur le pays qui remportera la coupe 
     - text: "Code source"
       icon: fa-github
       href: https://github.com/davidcarayon/Mondial_2018       

@@ -29,7 +29,7 @@ Pour s’inscrire, il suffit d’utiliser le bouton `Inscription` présent sur l
 ## Précisions
 
 
-Le jeu sera anonyme et **le nom d’un des joueurs de votre équipe favorite** vous sera attribué après votre inscription afin que vous puissiez suivre votre progression dans le classement ! Tous les détails du règlement et du calcul des points sont précisés sur le site, sous l’onglet `Règlement`.
+Le jeu sera anonyme et le nom d’un des joueurs de votre équipe favorite vous sera attribué après votre inscription afin que vous puissiez suivre votre progression dans le classement ! Tous les détails du règlement et du calcul des points sont précisés sur le site, sous l’onglet `Règlement`.
 
 
 
