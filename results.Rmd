@@ -11,4 +11,34 @@ library(ggplot2) ; library(ggthemes)
 
 ## Visualisation des résultats
 
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+
+library(circlepackeR)
+library(ggplot2)
+library(data.tree)
+library(magrittr)
+library(Hmisc)
+library(tidyverse)
+
+
+#######################################
+## graphique inscription
+# We need to convert it to a nested data frame. the data.tree library is our best friend for that:
+
+
+table_participants<-read.csv2(paste0("//filer3/pccommun/EABX/Marie Wach/Mondial_2018/data/table_partipants.csv"),stringsAsFactors = FALSE)
+
+table_participants<-table_participants %>% 
+  mutate(value=1, 
+         equipe_irstea=toupper(equipe_irstea),
+         sexe=toupper(sexe)
+         )
+table_participants$pathString <- paste("Zabivaka Challenge",table_participants$equipe_irstea,table_participants$prenom, sep = "/")
+population <- as.Node(table_participants)
+
+# Make the plot
+circlepackeR(population, size = "value")
+```
+
 [En construction]
