@@ -3,16 +3,19 @@ title: "Pronostics et résultats"
 toc: true
 toc_float: true
 ---
+<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2) ; library(ggthemes)
 ```
 
+<br>
+
 ## État des inscriptions
 
 
-### We want you for Zabivaka Challenge !!!
+### We want you for Zabivaka Challenge...
 
 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE}
@@ -43,7 +46,27 @@ population <- as.Node(table_participants)
 circlepackeR(population, size = "value")
 ```
 <br>
-<center>*Cliquer sur les équipes pour voir les participants !*</center>
+*Cliquer sur les équipes pour voir les participants !*
+<br>
+<br>
+
+### ...mais n'oubliez pas le chapeau !!
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+# devtools::install_github("JohnCoene/echarts4r")
+library(echarts4r)
+table_participants %>%  
+  group_by(cotisation) %>% 
+  summarise(n=n())->Cotisation
+Val=round(Cotisation$n[Cotisation$cotisation==TRUE]/sum(Cotisation$n),2)
+liquid <- data.frame(val = c(Val,Val-0.01,Val-0.02))
+
+liquid %>% 
+  e_charts() %>% 
+  e_liquid(val) 
+
+```
+<br>
+*Pourcentage des cotisations collectées*
 
 
-[En construction]
