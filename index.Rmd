@@ -2,10 +2,22 @@
 title: ""
 ---
 
+
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+</style>
+
+
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 # library("tuneR")
 # library("markdown")
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard)
 ```
 
 <br>
@@ -29,8 +41,49 @@ Pour s’inscrire, il suffit d’utiliser le bouton `Inscription` présent sur l
 ## Précisions
 
 
-Le jeu sera anonyme et le nom d’un des joueurs de votre équipe favorite vous sera attribué après votre inscription afin que vous puissiez suivre votre progression dans le classement ! Tous les détails du règlement et du calcul des points sont précisés sur le site, sous l’onglet `Règlement`.
+Le jeu sera anonyme dès le début des pronostics : le nom d’un des joueurs de votre équipe favorite vous sera attribué après votre inscription afin que vous puissiez suivre votre progression dans le classement ! Tous les détails du règlement et du calcul des points sont précisés sur le site, sous l’onglet `Règlement`.
+
+<br>
 
 
+## Participations
+ <br>
+ 
+### We want you... mais n'oubliez pas le chapeau !
 
+<br>
+```{r}
+table_participants<-read.csv2(paste0("data/table_partipants.csv"),stringsAsFactors = FALSE)
+
+table_participants<-table_participants %>% 
+  mutate(value=1, 
+         equipe_irstea=toupper(equipe_irstea),
+         sexe=toupper(sexe)
+         )
+table_participants$pathString <- paste("Zabivaka Challenge",table_participants$equipe_irstea,table_participants$prenom, sep = "/")
+population <- as.Node(table_participants)
+
+
+table_participants %>%  
+  group_by(cotisation) %>% 
+  summarise(n=n())->Cotisation
+Val=round(Cotisation$n[Cotisation$cotisation==TRUE]/sum(Cotisation$n),2)
+liquid <- data.frame(val = c(Val,Val-0.01,Val-0.02))
+```
+
+<font size="3"> 
+<table border="0" cellpadding="0" cellspacing="0" width="100%" valign="middle" align="center"><tr><th width="55%" align="center">
+```{r, graphique inscriptions, echo=FALSE,warning=FALSE,message=FALSE, out.width="380px"}
+circlepackeR(population, size = "value")
+``` 
+</th><th width="45%" align="center" valign="middle">
+```{r, graphique, echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+liquid %>%
+  e_charts() %>%
+  e_liquid(val)
+```
+</th></tr><tr align="center"><td>Cliquer sur les équipes pour voir les participants !</td><td>Pourcentage des cotisations collectées</td></tr></table></font> 
+
+<br>
+<br>
 

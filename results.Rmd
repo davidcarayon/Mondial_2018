@@ -1,72 +1,17 @@
 ---
 title: "Pronostics et résultats"
-toc: true
-toc_float: true
+toc: false
+toc_float: false
 ---
-<br>
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(ggplot2) ; library(ggthemes)
+```{r setup, include=FALSE,message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE)
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard)
 ```
 
 <br>
 
-## État des inscriptions
 
 
-### We want you for Zabivaka Challenge...
-
-
-```{r,echo=FALSE,warning=FALSE,message=FALSE}
-library(circlepackeR)
-library(ggplot2)
-library(data.tree)
-library(magrittr)
-library(Hmisc)
-library(tidyverse)
-
-
-#######################################
-## graphique inscription
-# We need to convert it to a nested data frame. the data.tree library is our best friend for that:
-
-
-table_participants<-read.csv2(paste0("//filer3/pccommun/EABX/Marie Wach/Mondial_2018/data/table_partipants.csv"),stringsAsFactors = FALSE)
-
-table_participants<-table_participants %>% 
-  mutate(value=1, 
-         equipe_irstea=toupper(equipe_irstea),
-         sexe=toupper(sexe)
-         )
-table_participants$pathString <- paste("Zabivaka Challenge",table_participants$equipe_irstea,table_participants$prenom, sep = "/")
-population <- as.Node(table_participants)
-
-# Make the plot
-circlepackeR(population, size = "value")
-```
-<br>
-*Cliquer sur les équipes pour voir les participants !*
-<br>
-<br>
-
-### ...mais n'oubliez pas le chapeau !!
-
-```{r,echo=FALSE,warning=FALSE,message=FALSE}
-# devtools::install_github("JohnCoene/echarts4r")
-library(echarts4r)
-table_participants %>%  
-  group_by(cotisation) %>% 
-  summarise(n=n())->Cotisation
-Val=round(Cotisation$n[Cotisation$cotisation==TRUE]/sum(Cotisation$n),2)
-liquid <- data.frame(val = c(Val,Val-0.01,Val-0.02))
-
-liquid %>% 
-  e_charts() %>% 
-  e_liquid(val) 
-
-```
-<br>
-*Pourcentage des cotisations collectées*
 
 
