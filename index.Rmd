@@ -47,14 +47,9 @@ Le jeu sera anonyme dès le début des pronostics : le nom d’un des joueurs de
 
 
 ## Participations
- <br>
- 
-### We want you... mais n'oubliez pas le chapeau !
-
-<br>
+Mise à jour du site : `r Sys.Date()`
 ```{r}
-table_participants<-read.csv2(paste0("data/table_partipants.csv"),stringsAsFactors = FALSE)
-
+table_participants<-read.csv2(paste0("data/table_partipants.csv"),stringsAsFactors = FALSE,fileEncoding = "utf-8")
 table_participants<-table_participants %>% 
   mutate(value=1, 
          equipe_irstea=toupper(equipe_irstea),
@@ -70,6 +65,12 @@ table_participants %>%
 Val=round(Cotisation$n[Cotisation$cotisation==TRUE]/sum(Cotisation$n),2)
 liquid <- data.frame(val = c(Val,Val-0.01,Val-0.02))
 ```
+ <br>
+
+### We want you... mais n'oubliez pas le chapeau !
+
+Pour le moment, nous avons `r nrow(table_participants)` inscris répartis selon les différentes équipes du centre.
+<br>
 
 <font size="3"> 
 <table border="0" cellpadding="0" cellspacing="0" width="100%" valign="middle" align="center"><tr><th width="55%" align="center">
