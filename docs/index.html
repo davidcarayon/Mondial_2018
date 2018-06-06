@@ -29,6 +29,7 @@
 <script src="site_libs/d3-3.5.6/./d3.min.js"></script>
 <link href="site_libs/circlepackeR-0.1/./style.css" rel="stylesheet" />
 <script src="site_libs/circlepackeR-binding-0.0.0.9000/circlepackeR.js"></script>
+<link href="site_libs/echarts4r-4.0.4//plugins/leaflet/leaflet.css" rel="stylesheet" />
 <script src="site_libs/echarts4r-4.0.4/echarts.min.js"></script>
 <script src="site_libs/echarts4r-4.0.4/echarts-gl.min.js"></script>
 <script src="site_libs/echarts4r-4.0.4/ecStat.min.js"></script>
@@ -36,6 +37,9 @@
 <script src="site_libs/echarts4r-4.0.4/world.js"></script>
 <script src="site_libs/echarts4r-4.0.4//plugins/echarts-wordcloud.min.js"></script>
 <script src="site_libs/echarts4r-4.0.4//plugins/echarts-liquidfill.min.js"></script>
+<script src="site_libs/echarts4r-4.0.4//plugins/echarts-graph-modularity.min.js"></script>
+<script src="site_libs/echarts4r-4.0.4//plugins/leaflet/leaflet.js"></script>
+<script src="site_libs/echarts4r-4.0.4//plugins/leaflet/echarts-leaflet.js"></script>
 <script src="site_libs/echarts4r-4.0.4//themes/dark.js"></script>
 <script src="site_libs/echarts4r-4.0.4//themes/vintage.js"></script>
 <script src="site_libs/echarts4r-4.0.4//themes/westeros.js"></script>
@@ -49,7 +53,7 @@
 <script src="site_libs/echarts4r-4.0.4//themes/shine.js"></script>
 <script src="site_libs/echarts4r-4.0.4//themes/purple-passion.js"></script>
 <script src="site_libs/echarts4r-4.0.4//themes/halloween.js"></script>
-<script src="site_libs/echarts4r-binding-0.0.1.9000/echarts4r.js"></script>
+<script src="site_libs/echarts4r-binding-0.0.2/echarts4r.js"></script>
 <link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -354,6 +358,11 @@ div.tocify {
   }
 </style>
 <p><br></p>
+<div align="center">
+<iframe src="http://free.timeanddate.com/countdown/i69tenl8/n1288/cf113/cm0/cu4/ct0/cs0/ca0/co1/cr0/ss0/cac000/cpc000/pct/tc000/fs150/szw600/szh253/tatIl%20est%20encore%20temps%20!%20Il%20vous%20reste%20%3A/tac000/tptTime%20since%20Event%20started%20in/tpc000/iso2018-06-12T00:00:00/bo2" allowTransparency="true" frameborder="0" width="602" height="255">
+</iframe>
+</div>
+<p><br></p>
 <p><img src="img/Dessin_site.png" width="400" class="center"></p>
 <p><br></p>
 <div id="presentation" class="section level2">
@@ -373,21 +382,21 @@ div.tocify {
 </div>
 <div id="participations" class="section level2">
 <h2>Participations</h2>
-<p>Mise à jour du site : 2018-06-04</p>
+<p>Mise à jour du site : 2018-06-06</p>
 <p><br></p>
 <div id="we-want-you-mais-noubliez-pas-le-chapeau" class="section level3">
 <h3>We want you… mais n’oubliez pas le chapeau !</h3>
-<p>Pour le moment, nous avons 9 inscris répartis selon les différentes équipes du centre. <br></p>
+<p>Pour le moment, nous avons 7 inscris répartis selon les différentes équipes du centre. <br></p>
 <font size="3">
 <table border="0" cellpadding="0" cellspacing="0" width="100%" valign="middle" align="center">
 <tr>
 <th width="55%" align="center">
-<div id="htmlwidget-68d45f9e5d023f7589e8" style="width:380px;height:480px;" class="circlepackeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-68d45f9e5d023f7589e8">{"x":{"data":{"name":"Zabivaka Challenge","children":[{"name":"FREEMA","children":[{"name":"David Jose","champion":"Espagne","cotisation":false,"date_inscription":"31/05/2018","equipe_irstea":"FREEMA","prenom":"David Jose","sexe":"M","unite":"EABX","value":1},{"name":"Stéphane","champion":"Argentine","cotisation":false,"date_inscription":"01/06/2018","equipe_irstea":"FREEMA","prenom":"Stéphane","sexe":"M","unite":"EABX","value":1}]},{"name":"ECOVEA","children":[{"name":"Sébastien","champion":"Belgique","cotisation":true,"date_inscription":"01/06/2018","equipe_irstea":"ECOVEA","prenom":"Sébastien","sexe":"M","unite":"EABX","value":1},{"name":"Aurélien","champion":"France","cotisation":true,"date_inscription":"01/06/2018","equipe_irstea":"ECOVEA","prenom":"Aurélien","sexe":"M","unite":"EABX","value":1},{"name":"Lucas","champion":"Allemagne","cotisation":false,"date_inscription":"01/06/2018","equipe_irstea":"ECOVEA","prenom":"Lucas","sexe":"M","unite":"EABX","value":1},{"name":"Thibault","champion":"France","cotisation":true,"date_inscription":"01/06/2018","equipe_irstea":"ECOVEA","prenom":"Thibault","sexe":"M","unite":"EABX","value":1},{"name":"David","champion":"Angleterre","cotisation":true,"date_inscription":"04/06/2018","equipe_irstea":"ECOVEA","prenom":"David","sexe":"M","unite":"EABX","value":1}]},{"name":"S.GENERAUX","children":[{"name":"Gabrielle","champion":"Portugal","cotisation":false,"date_inscription":"01/06/2018","equipe_irstea":"S.GENERAUX","prenom":"Gabrielle","sexe":"F","unite":"S.GENERAUX","value":1}]},{"name":"EADT","children":[{"name":"Zoé","champion":"Brésil","cotisation":false,"date_inscription":"04/06/2018","equipe_irstea":"EADT","prenom":"Zoé","sexe":"F","unite":"ETBX","value":1}]}]},"options":{"size":"value","color_min":"hsl(152,80%,80%)","color_max":"hsl(228,30%,40%)"}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-cb47407ec45d2d8f1a53" style="width:380px;height:480px;" class="circlepackeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cb47407ec45d2d8f1a53">{"x":{"data":{"name":"Zabivaka Challenge","children":[{"name":"FREEMA","children":[{"name":"David Jose","cotisation":false,"equipe_irstea":"FREEMA","prenom":"David Jose","sexe":"M","value":1},{"name":"Stéphane","cotisation":false,"equipe_irstea":"FREEMA","prenom":"Stéphane","sexe":"M","value":1}]},{"name":"ECOVEA","children":[{"name":"Sébastien","cotisation":true,"equipe_irstea":"ECOVEA","prenom":"Sébastien","sexe":"M","value":1},{"name":"Aurélien","cotisation":false,"equipe_irstea":"ECOVEA","prenom":"Aurélien","sexe":"M","value":1},{"name":"Lucas","cotisation":false,"equipe_irstea":"ECOVEA","prenom":"Lucas","sexe":"M","value":1},{"name":"Thibault","cotisation":true,"equipe_irstea":"ECOVEA","prenom":"Thibault","sexe":"M","value":1}]},{"name":"S.GENERAUX","children":[{"name":"Gabrielle","cotisation":false,"equipe_irstea":"S.GENERAUX","prenom":"Gabrielle","sexe":"F","value":1}]}]},"options":{"size":"value","color_min":"hsl(152,80%,80%)","color_max":"hsl(228,30%,40%)"}},"evals":[],"jsHooks":[]}</script>
 </th>
 <th width="45%" align="center" valign="middle">
-<div id="htmlwidget-25ded1d285590692e39a" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-25ded1d285590692e39a">{"x":{"theme":"","mapping":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"type":"liquidFill","data":[0.44,0.43,0.42]}]},"data":{"val":[0.44,0.43,0.42]},"dispose":true},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-82e20654b9603bc01c12" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-82e20654b9603bc01c12">{"x":{"theme":"","mapping":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"type":"liquidFill","data":[0.29,0.28,0.27]}]},"data":{"val":[0.29,0.28,0.27]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 </th>
 </tr>
 <tr align="center">
