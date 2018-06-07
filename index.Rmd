@@ -17,7 +17,7 @@ title: ""
 knitr::opts_chunk$set(echo = FALSE)
 # library("tuneR")
 # library("markdown")
-library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard)
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard);  library(svglite) ;  library(lattice);  library(ggplot2) ;  library(rvest) ;  library(reshape2) ;  library(dplyr) ;  library(htmlwidgets) ; library(slickR) ;  library(xml2) ;  library(tidyverse)
 ```
 
 <br>
@@ -50,7 +50,25 @@ Pour s’inscrire, il suffit d’utiliser le bouton `Inscription` présent sur l
 Le jeu sera anonyme dès le début des pronostics : le nom d’un des joueurs de votre équipe favorite vous sera attribué après votre inscription afin que vous puissiez suivre votre progression dans le classement ! Tous les détails du règlement et du calcul des points sont précisés sur le site, sous l’onglet `Règlement`.
 
 <br>
-
+```{r,carroussel avatars,echo=FALSE,warning=FALSE,message=FALSE}
+##############################################
+# dir("img/avatars/")
+slickR(
+  obj = paste0("img/avatars/",dir("img/avatars/")),
+  slideId = c('ex2'),
+  slickOpts = list(
+    initialSlide = 1,
+    slidesToShow = 4,
+    slidesToScroll = 4,
+    focusOnSelect = T,
+    dots = T
+  ),
+  height=150
+)
+```
+<br>
+Pré-sélection des joueurs (*provenance des photos site internet : L'équipe*)
+<br>
 
 ## Participations
 Mise à jour du site : `r Sys.Date()`
