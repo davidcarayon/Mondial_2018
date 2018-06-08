@@ -6,12 +6,85 @@ toc_float: false
 
 ```{r setup, include=FALSE,message=FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE)
-library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard)
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(ggplot2)
+library(ggflags) ; library(ggthemes) ; library(scales) ; library(formattable) ; library(kableExtra) ; library(lubridate) ; library(timevis)
+load("data/Database_Mondial_2018.Rdata")
 ```
 
-<br>
+<!-- <br> -->
 
+<!-- ## Matchs du jour -->
 
+<!-- ```{r,table matchs du jour} -->
+<!-- today<-as.character("2018-06-15") #today() -->
+<!-- table_matchs_jour<-table_evenements[table_evenements$cd_date==today,] -->
+<!-- table_matchs_jour %>% -->
+<!--   unite(Date_Heure,c("cd_date","Heure")) %>% -->
+<!--   mutate(start=as_datetime(Date_Heure), -->
+<!--          end=as_datetime(Date_Heure)+hours(1)+minutes(30)) %>% -->
+<!--   unite(content,c("Equipe.A","Equipe.B"),sep=" - ")->data -->
+<!-- ########################## -->
+<!-- ############################################# -->
+<!-- timevis(data,showZoom = FALSE, -->
+<!--   options = list(editable = FALSE), -->
+<!--   height = 100 -->
+<!--    # style = c(NA, "color: red;") -->
+<!--   ) -->
+<!-- ``` -->
 
+<!-- <br> -->
 
+<!-- ## Classement des poules -->
+
+<!-- <br> -->
+
+<!-- ```{r,graph poules ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"} -->
+<!-- ggplot(table_resultats_poules, aes(x=toupper(cd_flag), y=Pts, country=cd_flag)) + -->
+<!--   geom_bar(stat = "Identity", position = "identity",fill="white",width=0.02)+ -->
+<!--   geom_flag(size=I(10))+ -->
+<!--   facet_wrap(~Groupe,scales="free_x",ncol=4)+ -->
+<!--   scale_y_continuous("Points",limits=c(0,10),breaks= pretty_breaks())+ #limits=c(0,10) -->
+<!--   xlab(label="")+ -->
+<!--   theme_dark()+ -->
+<!--   theme(strip.text.x = element_text(face="bold",size=12), -->
+<!--         strip.background = element_rect(colour="white")) -->
+<!-- ``` -->
+
+<!-- <br> -->
+
+<!-- ```{r,table poules ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"} -->
+<!-- table_resultats_poules_table<-table_resultats_poules %>% -->
+<!--   rename("bp."="buts_mis","bc."="buts_pris","diff"="diff_buts") -->
+
+<!-- ########################################## -->
+
+<!-- table_resultats_poules_table %>% -->
+<!--   mutate( -->
+<!--     Pts = color_tile("white", "orange")(Pts), -->
+<!--     diff = ifelse(diff <= 0, -->
+<!--                   cell_spec(diff, color = "red", bold = T), -->
+<!--                   cell_spec(diff, color = "green", italic = T)), -->
+<!--     bp. = color_bar("lightgreen")(bp.), -->
+<!--     bc.= color_bar("red")(bc.) -->
+<!--   ) %>% -->
+<!--   select(pays, everything()) %>% -->
+<!--   select(-Groupe) %>% -->
+<!--   mutate(cd_flag=toupper(cd_flag)) %>% -->
+<!--   kable(escape = F) %>% -->
+<!--   kable_styling("striped", full_width = F) %>% -->
+<!--   group_rows("Poule A", 1, 4, label_row_css = "background-color: #666; color: #fff;") %>% -->
+<!--   group_rows("Poule B", 5, 8, label_row_css = "background-color: #666; color: #fff;") %>% -->
+<!--   group_rows("Poule C", 9, 12, label_row_css = "background-color: #666; color: #fff;") %>% -->
+<!--   group_rows("Poule D", 13, 16, label_row_css = "background-color: #666; color: #fff;") %>% -->
+<!--   group_rows("Poule E", 17, 20, label_row_css = "background-color: #666; color: #fff;") %>% -->
+<!--   group_rows("Poule F", 21, 24, label_row_css = "background-color: #666; color: #fff;") %>% -->
+<!--   group_rows("Poule G", 25, 28, label_row_css = "background-color: #666; color: #fff;") %>% -->
+<!--   group_rows("Poule H", 29, 32, label_row_css = "background-color: #666; color: #fff;") %>% -->
+<!--   kable_styling("hover", full_width = F) %>% -->
+<!--   column_spec(1, width = "4cm") %>% -->
+<!--   column_spec(c(8,9), width = "2cm") %>% -->
+<!--   row_spec(1:nrow(table_resultats_poules_table), bold = F, color = "black",font_size = 15) -->
+<!-- ``` -->
+
+<!-- <br> -->
 

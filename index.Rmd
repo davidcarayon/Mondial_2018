@@ -54,7 +54,7 @@ Le jeu sera anonyme dès le début des pronostics : le nom d’un des joueurs de
 ##############################################
 # dir("img/avatars/")
 slickR(
-  obj = paste0("img/avatars/",dir("img/avatars/")),
+  obj = paste0("img/avatars/",dir("img/avatars/")[stringr::str_detect(dir("img/avatars/"),".jpg")]),
   slideId = c('ex2'),
   slickOpts = list(
     initialSlide = 1,
