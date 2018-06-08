@@ -10,7 +10,12 @@ navbar:
   - text: Règlement
     icon: fa-book
     href: rules.html
-  - text: Pronos et Résultats
+  - text: Résultats
+    menu:
+      - text: "Résultats du mondial"
+        href: results_mondial.html
+      - text: "Résultats des pronostics"
+        href: results_pronostics.html
     icon: fa-trophy
     href: results.html
   right:
