@@ -67,7 +67,7 @@ slickR(
 )
 ```
 <br>
-Pré-sélection des joueurs (*provenance des photos site internet : L'équipe*)
+Pré-sélection des joueurs (*crédit photos L'équipe*)
 <br>
 
 ## Participations
