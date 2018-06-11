@@ -25,7 +25,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 
 
@@ -79,6 +81,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -331,35 +336,6 @@ div.tocify {
 
 
 <p><br></p>
-<!-- ## Suivez votre parcours jour par jour -->
-<!-- <br> -->
-<!-- ```{r,graph pronostics,warning=FALSE, echo=FALSE, message=FALSE, results='asis', tidy=FALSE,fig.align = "center"} -->
-<!-- ###################################################### -->
-<!-- table_resultats_pronostics %>%  -->
-<!--   separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%  -->
-<!--   left_join(table_evenements %>%  -->
-<!--               mutate(cd_date=as.character(cd_date), -->
-<!--                      Heure=as.character(Heure)) %>%  -->
-<!--               select(id_match,cd_date,Heure),by="id_match") %>%  -->
-<!--   # unite(datetime,c("cd_date","Heure")) %>% -->
-<!--   mutate(datetime=ymd(cd_date)) %>%  -->
-<!--    mutate(datetime=ymd(cd_date)) %>%  -->
-<!--   arrange(datetime) %>%  -->
-<!--   select(pseudo,datetime,points) %>%  -->
-<!--   group_by(pseudo,datetime) %>%  -->
-<!--   mutate(points=sum(points)) %>%  -->
-<!--   ungroup() %>%   distinct() %>%  -->
-<!--   arrange(pseudo) %>%  -->
-<!--   group_by(pseudo) %>%  -->
-<!--   mutate(PtsCum = cumsum(points)) %>%  -->
-<!--   arrange(pseudo) %>%  -->
-<!--   select(pseudo,datetime,PtsCum) %>%   -->
-<!--   ungroup() %>%   -->
-<!--   as.data.frame() %>%  -->
-<!--   distinct() ->pronostics -->
-<!-- # M<-(gvisMotionChart(pronostics,idvar='pseudo',timevar='datetime',options=list(showYMetricPicker=F,showXMetricPicker=F,showAdvancedPanel=F))  ) -->
-<!-- # M -->
-<!-- ``` -->
 
 <hr>
 <p>Copyright &copy; 2018 D.Carayon, S.Boutry, M.Wach, T.Leboucher & O.Joalland.</p>
