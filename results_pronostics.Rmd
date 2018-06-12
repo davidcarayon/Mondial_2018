@@ -6,19 +6,17 @@ toc_float: false
 
 ```{r setup, include=FALSE,message=FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE)
-library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(googleVis) ; library(lubridate);
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(lubridate); suppressPackageStartupMessages(library(googleVis)) ; library(ggpubr)
 load("data/sortie.Rdata")
-op <- options(gvis.plot.tag='chart')
 ```
 
 <br>
 
-
-<!-- ## Suivez votre parcours jour par jour -->
+<!-- ## Jeu des pronostics -->
 
 <!-- <br> -->
 
-<!-- ```{r,graph pronostics,warning=FALSE, echo=FALSE, message=FALSE, results='asis', tidy=FALSE,fig.align = "center"} -->
+<!-- ```{r,graph pronostics,results='asis', cache=TRUE, warning=FALSE,message=FALSE}  -->
 <!-- ###################################################### -->
 <!-- table_resultats_pronostics %>%  -->
 <!--   separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%  -->
@@ -29,7 +27,9 @@ op <- options(gvis.plot.tag='chart')
 <!--   # unite(datetime,c("cd_date","Heure")) %>% -->
 <!--   mutate(datetime=ymd(cd_date)) %>%  -->
 <!--    mutate(datetime=ymd(cd_date)) %>%  -->
-<!--   arrange(datetime) %>%  -->
+<!--   arrange(datetime)->pronostics -->
+
+<!-- pronostics %>%  -->
 <!--   select(pseudo,datetime,points) %>%  -->
 <!--   group_by(pseudo,datetime) %>%  -->
 <!--   mutate(points=sum(points)) %>%  -->
@@ -43,9 +43,10 @@ op <- options(gvis.plot.tag='chart')
 <!--   as.data.frame() %>%  -->
 <!--   distinct() ->pronostics -->
 
-<!-- # M<-(gvisMotionChart(pronostics,idvar='pseudo',timevar='datetime',options=list(showYMetricPicker=F,showXMetricPicker=F,showAdvancedPanel=F))  ) -->
-<!-- # M -->
+<!-- M<-gvisMotionChart(pronostics, idvar='pseudo', timevar='datetime',options=list(showYMetricPicker=F,showXMetricPicker=F,showAdvancedPanel=F))   -->
+<!-- print(M,"chart") -->
 <!-- ``` -->
 
+<!-- <br> -->
 
 
