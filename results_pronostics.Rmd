@@ -25,9 +25,7 @@ Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera cham
 On vous dévoile les premiers résultats de l'enquête.  
 
 * Sur le camembert, vous pouvez voir la répartition des pays que vous avez choisis comme gagnant pour le mondial.  
-* Le diagramme en barre représente selon les tournois précedents le classement des équipes pré-sélectionnées.  
-
-<br>
+* Le diagramme en barre représente selon les tournois précédents le classement des équipes pré-sélectionnées.  
 
 L'équipe de France a été citée 13 fois. Y-a-t-il du chauvinisme ?  
 Depuis 1978, on peut voir que le Pérou n'a jamais atteint le dernier carré final de la compétition, tandis que l'Allemagne reste une valeur sûre.
