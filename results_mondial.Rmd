@@ -11,28 +11,31 @@ library(ggflags) ; library(ggthemes) ; library(scales) ; library(formattable) ; 
 load("data/Database_Mondial_2018.Rdata")
 ```
 
-<!-- <br> -->
+<br>
 
-<!-- ## Matchs du jour -->
+## Matchs du jour
 
-<!-- ```{r,table matchs du jour} -->
-<!-- today<-as.character("2018-06-15") #today() -->
-<!-- table_matchs_jour<-table_evenements[table_evenements$cd_date==today,] -->
-<!-- table_matchs_jour %>% -->
-<!--   unite(Date_Heure,c("cd_date","Heure")) %>% -->
-<!--   mutate(start=as_datetime(Date_Heure), -->
-<!--          end=as_datetime(Date_Heure)+hours(1)+minutes(30)) %>% -->
-<!--   unite(content,c("Equipe.A","Equipe.B"),sep=" - ")->data -->
-<!-- ########################## -->
-<!-- ############################################# -->
-<!-- timevis(data,showZoom = FALSE, -->
-<!--   options = list(editable = FALSE), -->
-<!--   height = 100 -->
-<!--    # style = c(NA, "color: red;") -->
-<!--   ) -->
-<!-- ``` -->
+```{r,table matchs du jour}
+today<-today()
+table_matchs_jour<-table_evenements[table_evenements$cd_date==today,]
+if(nrow(table_matchs_jour)>0){
+table_matchs_jour %>%
+  unite(Date_Heure,c("cd_date","Heure")) %>%
+  mutate(start=as_datetime(Date_Heure),
+         end=as_datetime(Date_Heure)+hours(1)+minutes(30)) %>%
+  unite(content,c("Equipe.A","Equipe.B"),sep=" - ")->data
+##########################
+#############################################
+timevis(data,showZoom = FALSE,
+  options = list(editable = FALSE),
+  height = 100
+   # style = c(NA, "color: red;")
+)}else{
+    knitr::include_graphics("img/refus.jpg")
+  }
+```
 
-<!-- <br> -->
+<br>
 
 <!-- ## Classement des poules -->
 

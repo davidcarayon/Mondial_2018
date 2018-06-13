@@ -6,11 +6,75 @@ toc_float: false
 
 ```{r setup, include=FALSE,message=FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE)
-library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(lubridate); suppressPackageStartupMessages(library(googleVis)) ; library(ggpubr)
-load("data/sortie.Rdata")
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(lubridate); suppressPackageStartupMessages(library(googleVis)) ; library(ggpubr) ; library(echarts4r) ;
+load("data/Database_Mondial_2018.Rdata")
+classement_fifa<-read.csv2("data/ClassementFifa.csv")
 ```
 
 <br>
+
+
+## Equipes candidates au titre de Championne du monde
+
+<br>
+
+Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera championne du monde. On vous dévoile les prémiers résultats de l'enquête.  
+
+* Le camenbert répresente l'occurence des équipes candidates au titre de Championne du monde.  
+* Le diagramme en barre représente selon les tournois précedents le classement des équipes pré-sélectionnées.  
+
+<br>
+La France a été citée 13 fois. Y-a-t-il du chauvinisme ?  
+Depuis 1978, on peut voir que le Pérou n'a jamais atteint le dernier carré final de la compétition, tandis que l'Allemagne reste une valeur sûre.
+
+<br>
+
+```{r,graph retro,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+
+##################################################
+
+table_participants %>% group_by(champion) %>% summarise(Nbr=n()) %>% ungroup()->data_pie
+classement_fifa<-classement_fifa %>%  
+  rename("2022"="X2022",
+         "2018"="X2018",
+         "2014"="X2014",
+         "2010"="X2010" ,
+         "2006"="X2006","2002"="X2002",
+         "1998"="X1998","1994"="X1994","1990"="X1990","1986"="X1986","1982"="X1982",
+         "1978"="X1978")
+classement_fifa$Equipe<-as.character(classement_fifa$Equipe)
+
+table_participants %>%   
+  group_by(champion) %>% 
+  summarise(Nbr=n()) %>% 
+  ungroup() %>% 
+  left_join(table_pays,by=c("champion"="pays")) %>% 
+  left_join(classement_fifa,"Classement") %>% 
+  select(Equipe,Classement,Nbr,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% gather(Year,Value,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% 
+  mutate(Value=factor(ifelse(Value>0,5-Value,0),ordered = TRUE)) %>% 
+  spread(Equipe,Value) %>%
+  mutate(Year=factor(Year,levels=seq(1978,2022,4))) %>% 
+  arrange(Year) %>% 
+  e_charts(Year,width="100%") %>% 
+  e_bar(Allemagne) %>% 
+  e_bar(Angleterre) %>% 
+  e_bar(Argentine) %>% 
+  e_bar(Belgique) %>% 
+  e_bar(Brésil) %>% 
+  e_bar(Espagne) %>% 
+  e_bar(France) %>% 
+  e_bar(Pérou) %>% 
+  e_bar(Portugal) %>% 
+  e_data(data_pie, champion) %>% 
+  e_pie(Nbr, rm.x = FALSE, rm.y = FALSE, center = c("85%", "50%"), radius = c(0, 40)) %>% 
+  e_tooltip(trigger = "item") %>% 
+  e_title("Rétrospective selon les Mondiaux","équipes sélectionnés par les pronostiqueurs\n et occurences",right="right") %>% 
+  e_theme("infographic") %>% 
+  e_legend(bottom = 0) %>% # move legend to the bottom
+  e_x_axis(name="Année de\ncoupe\ndu monde",axisLabel = list(interval = 0, rotate = 45)) %>% 
+  e_y_axis(name="Classement dans\n le dernier carré\n(4=Champion, ..., 1=4eme)",show=TRUE,axisLabel = list(interval = 0)) 
+```
+
 
 <!-- ## Jeu des pronostics -->
 

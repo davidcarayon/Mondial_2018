@@ -328,25 +328,11 @@ div.tocify {
 </div>
 
 
-<!-- <br> -->
-<!-- ## Matchs du jour -->
-<!-- ```{r,table matchs du jour} -->
-<!-- today<-as.character("2018-06-15") #today() -->
-<!-- table_matchs_jour<-table_evenements[table_evenements$cd_date==today,] -->
-<!-- table_matchs_jour %>% -->
-<!--   unite(Date_Heure,c("cd_date","Heure")) %>% -->
-<!--   mutate(start=as_datetime(Date_Heure), -->
-<!--          end=as_datetime(Date_Heure)+hours(1)+minutes(30)) %>% -->
-<!--   unite(content,c("Equipe.A","Equipe.B"),sep=" - ")->data -->
-<!-- ########################## -->
-<!-- ############################################# -->
-<!-- timevis(data,showZoom = FALSE, -->
-<!--   options = list(editable = FALSE), -->
-<!--   height = 100 -->
-<!--    # style = c(NA, "color: red;") -->
-<!--   ) -->
-<!-- ``` -->
-<!-- <br> -->
+<p><br></p>
+<div id="matchs-du-jour" class="section level2">
+<h2>Matchs du jour</h2>
+<p><img src="img/refus.jpg" width="112" /></p>
+<p><br></p>
 <!-- ## Classement des poules -->
 <!-- <br> -->
 <!-- ```{r,graph poules ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"} -->
@@ -401,6 +387,7 @@ div.tocify {
 <!-- # plot(Org) -->
 <!-- print(Org,"chart") -->
 <!-- ``` -->
+</div>
 
 <hr>
 <p>Copyright &copy; 2018 D.Carayon, S.Boutry, M.Wach, T.Leboucher & O.Joalland.</p>
