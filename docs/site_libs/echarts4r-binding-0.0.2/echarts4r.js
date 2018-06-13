@@ -33,18 +33,6 @@ HTMLWidgets.widget({
         
         chart = echarts.init(document.getElementById(el.id), x.theme);
         chart.setOption(x.opts);
-
-        $(document).on('shiny:recalculating', function() {
-          if(x.loading === true){
-            chart.showLoading('default', x.loadingOpts);
-          } else if(x.loading === false) {
-            chart.hideLoading();
-          }
-        });
-        
-        $(document).on('shiny:value', function() {
-          chart.hideLoading();
-        });
         
         if (HTMLWidgets.shinyMode) {
           chart.on("brushselected", function(e){
@@ -56,12 +44,47 @@ HTMLWidgets.widget({
           });
           
           chart.on("click", function(e){
-            console.log(e);
-            Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data.value);
+            Shiny.onInputChange(el.id + '_clicked_data' + ":echarts4rParse", e.data);
+            Shiny.onInputChange(el.id + '_clicked_data_value' + ":echarts4rParse", e.data.value);
             Shiny.onInputChange(el.id + '_clicked_row' + ":echarts4rParse", e.dataIndex + 1);
             Shiny.onInputChange(el.id + '_clicked_serie' + ":echarts4rParse", e.seriesName);
           });
+          
+          chart.on("mouseover", function(e){
+            Shiny.onInputChange(el.id + '_mouseover_data' + ":echarts4rParse", e.data);
+            Shiny.onInputChange(el.id + '_mouseover_data_value' + ":echarts4rParse", e.data.value);
+            Shiny.onInputChange(el.id + '_mouseover_row' + ":echarts4rParse", e.dataIndex + 1);
+            Shiny.onInputChange(el.id + '_mouseover_serie' + ":echarts4rParse", e.seriesName);
+          });
         }
+
+        $(document).on('shiny:recalculating', function() {
+          
+          if(x.hideWhite === true){
+            var css = '.recalculating {opacity: 1.0 !important; }',
+                head = document.head || document.getElementsByTagName('head')[0],
+                style = document.createElement('style');
+            
+            style.type = 'text/css';
+            if (style.styleSheet){
+              style.styleSheet.cssText = css;
+            } else {
+              style.appendChild(document.createTextNode(css));
+            }
+            head.appendChild(style);
+          }
+          
+          if(x.loading === true){
+            chart.showLoading('default', x.loadingOpts);
+          } else if(x.loading === false) {
+            chart.hideLoading();
+          }
+          
+        });
+        
+        $(document).on('shiny:value', function() {
+          chart.hideLoading();
+        });
 
       },
       

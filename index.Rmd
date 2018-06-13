@@ -19,13 +19,6 @@ knitr::opts_chunk$set(echo = FALSE)
 # library("markdown")
 library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard);  library(svglite) ;  library(lattice);  library(ggplot2) ;  library(rvest) ;  library(reshape2) ;  library(dplyr) ;  library(htmlwidgets) ; library(slickR) ;  library(xml2) ;  library(tidyverse)
 ```
-
-<br>
-  
-<div align="center">
-<iframe src="https://free.timeanddate.com/countdown/i69tenl8/n1288/cf113/cm0/cu4/ct0/cs0/ca0/cr0/ss0/cac000/cpc000/pct/tc000/fs150/szw602/szh253/tatIl%20est%20encore%20temps%20de%20vous%20inscrire%20!/tac000/tpc000/matIl%20vous%20reste%20%3A%20/mac000/mpc000/iso2018-06-13T00:00:00/bo2" allowTransparency="true" frameborder="0" width="604" height="255"></iframe>
-</div>
-      
 <br>
 
 <img src="img/Dessin_site.png" width="400" class="center">
@@ -34,18 +27,13 @@ library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(echarts4r) 
 
 ## Présentation
 
-Bienvenue sur **Zabivaka Challenge**, le jeu de pronostics dédié au Mondial de Football 2018 ! Il s’agit d’un jeu proposé en interne à tous les agents Irstea du site de Bordeaux.
+Bienvenue sur **Zabivaka Challenge**, le jeu de pronostics dédié au Mondial de Football 2018 ! Il s’agit d’un jeu proposé en interne à tous les agents Irstea du site de Bordeaux.  
 
-<br>
-
-## Comment participer ?
-
-Pour s’inscrire, il suffit d’utiliser le bouton `Inscription` présent sur le site ou d’envoyer un e-mail à Sébastien (sebastien.boutry@irstea.fr) en précisant votre prénom, nom, e-mail, numéro de bureau, ainsi que votre pronostic sur le pays qui remportera la Coupe du Monde ! Une cotisation de 3 euros vous sera demandée afin de financer un petit pot à la fin du jeu, et d’offrir quelques petits lots symboliques aux meilleurs pronostiqueurs ! Les inscriptions sont dès à présent ouvertes et le resteront jusqu’au début du Mondial, le 12 juin prochain.
+**Les inscriptions sont maintenant terminées.**
 
 <br>
 
 ## Précisions
-
 
 Le jeu sera anonyme dès le début des pronostics : le nom d’un des joueurs de votre équipe favorite vous sera attribué après votre inscription afin que vous puissiez suivre votre progression dans le classement ! Tous les détails du règlement et du calcul des points sont précisés sur le site, sous l’onglet `Règlement`.
 
@@ -70,8 +58,6 @@ slickR(
 Pré-sélection des joueurs (*provenance des photos site internet : L'équipe*)
 <br>
 
-## Participations
-Mise à jour du site : `r Sys.Date()`
 ```{r}
 load("data/Database_Mondial_2018.Rdata")
 # table_participants<-read.csv2(paste0("data/table_partipants.csv"),stringsAsFactors = FALSE,fileEncoding = "utf-8")
@@ -92,9 +78,9 @@ liquid <- data.frame(val = c(Val,Val-0.01,Val-0.02))
 ```
  <br>
 
-### We want you... mais n'oubliez pas le chapeau !
+### Nous avons `r nrow(table_participants)` inscris répartis selon les différentes équipes du centre. N'oubliez pas le chapeau ! 
 
-Pour le moment, nous avons `r nrow(table_participants)` inscris répartis selon les différentes équipes du centre.
+
 <br>
 
 <font size="3"> 
@@ -113,3 +99,4 @@ liquid %>%
 <br>
 <br>
 
+Mise à jour : `r Sys.Date()`
