@@ -13,14 +13,18 @@ classement_fifa<-read.csv2("data/ClassementFifa.csv")
 
 <br>
 
+## Avez-vous fait le bon choix ?
 
-## Equipes candidates au titre de Championne du monde
 
+Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera championne du monde.
 <br>
 
-Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera championne du monde. On vous dévoile les prémiers résultats de l'enquête.  
+### Equipes candidates au titre de Championne du monde
 
-* Le camenbert répresente l'occurence des équipes candidates au titre de Championne du monde.  
+
+On vous dévoile les premiers résultats de l'enquête.  
+
+* Sur le camembert, vous pouvez voir la répartition des pays que vous avez choisis comme gagnant pour le mondial.  
 * Le diagramme en barre représente selon les tournois précedents le classement des équipes pré-sélectionnées.  
 
 <br>
@@ -73,9 +77,9 @@ table_participants %>%
   e_bar(Perou) %>% 
   e_bar(Portugal) %>% 
   e_data(data_pie, champion) %>% 
-  e_pie(Nbr, rm.x = FALSE, rm.y = FALSE, center = c("85%", "50%"), radius = c(0, 40)) %>% 
+  e_pie(Nbr, rm.x = FALSE, rm.y = FALSE, center = c("85%", "50%"), radius = c(0, 30)) %>% 
   e_tooltip(trigger = "item") %>% 
-  e_title("Rétrospective selon les Mondiaux","équipes sélectionnés par les pronostiqueurs\n et occurences",right="right") %>% 
+  e_title("Rétrospective selon les Mondiaux","des équipes sélectionnées par les pronostiqueurs\n et occurences",right="right") %>% 
   e_theme("infographic") %>% 
   e_legend(bottom = 0) %>% # move legend to the bottom
   e_x_axis(name="Année de\ncoupe\ndu monde",axisLabel = list(interval = 0, rotate = 45)) %>% 

@@ -17,7 +17,8 @@ title: ""
 knitr::opts_chunk$set(echo = FALSE)
 # library("tuneR")
 # library("markdown")
-library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard);  library(svglite) ;  library(lattice);  library(ggplot2) ;  library(rvest) ;  library(reshape2) ;  library(dplyr) ;  library(htmlwidgets) ; library(slickR) ;  library(xml2) ;  library(tidyverse)
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard);  library(svglite) ;  library(lattice);  library(ggplot2) ;  library(rvest) ;  library(reshape2) ;  library(dplyr) ;  library(htmlwidgets) ; library(slickR) ;  library(xml2) ;  library(tidyverse);
+load("data/Database_Mondial_2018.Rdata")
 ```
 <br>
 
@@ -59,10 +60,10 @@ Pré-sélection des joueurs (*provenance des photos site internet : L'équipe*)
 <br>
 
 ```{r}
-load("data/Database_Mondial_2018.Rdata")
+# load("data/Database_Mondial_2018.Rdata")
 # table_participants<-read.csv2(paste0("data/table_partipants.csv"),stringsAsFactors = FALSE,fileEncoding = "utf-8")
-table_participants<-table_participants %>% 
-  mutate(value=1, 
+table_participants<-table_participants %>%
+  mutate(value=1,
          equipe_irstea=toupper(equipe_irstea),
          sexe=toupper(sexe)
          )
