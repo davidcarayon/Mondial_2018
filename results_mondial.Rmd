@@ -14,6 +14,20 @@ load("data/sorties_tables/sortie.Rdata")
 
 <br>
 
+## Résultats de la veille
+
+```{r,tableau resultat score,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+today<-today()
+if(sum(table_evenements$cd_date %in% (today-1))>0){
+  
+}else{
+  knitr::include_graphics("img/refus.jpg")
+}
+```
+
+
+<br>
+
 ## Matchs du jour
 
 ```{r,table matchs du jour}
