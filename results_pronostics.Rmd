@@ -153,23 +153,23 @@ if(nrow(table_matchs)>0){
         scale_x_continuous(breaks=breaks)+
         facet_wrap(~titre)+
         theme_pubclean()+
-        theme(axis.text=element_text(face="bold"),
+        theme(axis.text=element_text(face="bold",size=15),
               strip.background = element_rect(fill="gray88", colour="indianred3",size=1),
               legend.position='none',
-              strip.text=element_text(size=12,face="bold.italic",colour = "blue4"),
+              strip.text=element_text(size=20,face="bold.italic",colour = "blue4"),
               axis.ticks.y=element_blank(),
               axis.title.y = element_text(size=20,face="bold"))
       
       print(barplot2[[i]])
       
       
-      ggsave(file=paste(rep_fig,i,".svg",sep=""),plot=barplot2[[i]],height =10,width=10)
+      ggsave(file=paste(rep_fig,i,".png",sep=""),plot=barplot2[[i]],height =10,width=10)
     }
     
   }
   
   b=unique(table_resultats_pronostics_podium$id_match)
-  z=sprintf("%s.svg",b)
+  z=sprintf("%s.png",b)
   # s2<-if(interactive()) slickR(obj=paste(rep_fig,z,sep=""), width = '70%')
   slickR(
     obj = paste(rep_fig,z,sep=""),
