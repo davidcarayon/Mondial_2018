@@ -95,99 +95,100 @@ table_participants %>%
 ```{r,carrousel pronstics par jour,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
 
 if(nrow(table_matchs)>0){
-#####
- table_resultats_matchsA=table_matchs %>% 
-   filter(cd_statut=="A") %>% 
-   rename("EquipeA"="pays","scoreA"="Score") %>%
-   select(id_match,EquipeA,scoreA)
- 
- table_resultats_matchsB=table_matchs %>% 
-   filter(cd_statut=="B") %>% 
-   rename("EquipeB"="pays","scoreB"="Score") %>%
-   select(id_match,EquipeB,scoreB)
- 
- table_resultats_matchs = table_resultats_matchsA %>% 
-   left_join(table_resultats_matchsB)
- 
- table_resultats_pronostics_podium = table_resultats_pronostics %>% 
-   separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%
-   group_by(pseudo) %>% 
-   mutate(points_cum=cumsum(points)) %>% 
-   mutate(points_cum_plot=as.factor(as.character(points_cum))) %>% 
-   mutate(points_plot=as.factor(as.character(points))) %>% 
-   left_join(table_resultats_matchs ) %>% 
-   left_join(table_evenements) %>% 
-   select(-c(id_tour,Heure,Equipe.A, Equipe.B))
-   
-
-###### points par match ######
-
-barplot2=list()
-for (i in unique(table_resultats_pronostics_podium$id_match)){
-
-  fig = list.files(path=rep_fig,pattern=i)
-
-  if(length(fig>1)){}else{
+  #####
+  table_resultats_matchsA=table_matchs %>% 
+    filter(cd_statut=="A") %>% 
+    rename("EquipeA"="pays","scoreA"="Score") %>%
+    select(id_match,EquipeA,scoreA)
+  
+  table_resultats_matchsB=table_matchs %>% 
+    filter(cd_statut=="B") %>% 
+    rename("EquipeB"="pays","scoreB"="Score") %>%
+    select(id_match,EquipeB,scoreB)
+  
+  table_resultats_matchs = table_resultats_matchsA %>% 
+    left_join(table_resultats_matchsB,by = "id_match")
+  
+  table_resultats_pronostics_podium = table_resultats_pronostics %>% 
+    separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%
+    group_by(pseudo) %>% 
+    mutate(points_cum=cumsum(points)) %>% 
+    mutate(points_cum_plot=as.factor(as.character(points_cum))) %>% 
+    mutate(points_plot=as.factor(as.character(points))) %>% 
+    left_join(table_resultats_matchs,by = "id_match" ) %>% 
+    left_join(table_evenements,by = "id_match") %>% 
+    select(-c(id_tour,Heure,Equipe.A, Equipe.B))
+  
+  
+  ###### points par match ######
+  
+  barplot2=list()
+  for (i in unique(table_resultats_pronostics_podium$id_match)){
     
-  tab=table_resultats_pronostics_podium %>% 
-    filter(id_match==i)
-  
-  
-  EquipeA=unique(tab$EquipeA)
-  EquipeB=unique(tab$EquipeB)
-  scoreA=unique(tab$scoreA)
-  scoreB=unique(tab$scoreB)
-  date=format(as.Date(unique(tab$cd_date)),"%d/%m/%Y")
-  
-  tab$titre=paste(date, "\n",EquipeA," - ",EquipeB,"\n",scoreA, " - ", scoreB,sep="")
-  breaks=unique(tab$points) 
-  
-  barplot2[[i]] = ggplot(tab,aes(x=points,y=reorder(Hmisc::capitalize(pseudo),points)))+
-    geom_segment(aes(yend=reorder(Hmisc::capitalize(pseudo),points_cum)),xend=0,col="gray50")+
-    geom_point(size=3,aes(col=points_plot))+
-    ylab("")+
-    xlab("")+
-    labs(col="Points")+
-    #scale_fill_viridis(option="plasma",discrete = T,direction=-1)+
-    scale_colour_brewer(palette="Paired",direction=-1)+
-    scale_x_continuous(breaks=breaks)+
-    facet_wrap(~titre)+
-    theme_pubclean()+
-    theme(axis.text=element_text(face="bold"),
-          strip.background = element_rect(fill="gray88", colour="indianred3",size=1),
-          legend.position='none',
-          strip.text=element_text(size=12,face="bold.italic",colour = "blue4"),
-          axis.ticks.y=element_blank(),
-          axis.title.y = element_text(size=20,face="bold"))
-  
-  print(barplot2[[i]])
-  
- 
-  ggsave(file=paste(rep_fig,i,"_graph_match.svg"),plot=barplot2[[i]])
+    fig = list.files(path=rep_fig,pattern=i)
+    
+    if(length(fig>1)){}else{
+      
+      tab=table_resultats_pronostics_podium %>% 
+        filter(id_match==i)
+      
+      
+      EquipeA=unique(tab$EquipeA)
+      EquipeB=unique(tab$EquipeB)
+      scoreA=unique(tab$scoreA)
+      scoreB=unique(tab$scoreB)
+      date=format(as.Date(unique(tab$cd_date)),"%d/%m/%Y")
+      
+      tab$titre=paste(date, "\n",EquipeA," - ",EquipeB,"\n",scoreA, " - ", scoreB,sep="")
+      breaks=unique(tab$points) 
+      
+      barplot2[[i]] = ggplot(tab,aes(x=points,y=reorder(Hmisc::capitalize(pseudo),points)))+
+        geom_segment(aes(yend=reorder(Hmisc::capitalize(pseudo),points_cum)),xend=0,col="gray50")+
+        geom_point(size=3,aes(col=points_plot))+
+        ylab("")+
+        xlab("")+
+        labs(col="Points")+
+        #scale_fill_viridis(option="plasma",discrete = T,direction=-1)+
+        scale_colour_brewer(palette="Paired",direction=-1)+
+        scale_x_continuous(breaks=breaks)+
+        facet_wrap(~titre)+
+        theme_pubclean()+
+        theme(axis.text=element_text(face="bold"),
+              strip.background = element_rect(fill="gray88", colour="indianred3",size=1),
+              legend.position='none',
+              strip.text=element_text(size=12,face="bold.italic",colour = "blue4"),
+              axis.ticks.y=element_blank(),
+              axis.title.y = element_text(size=20,face="bold"))
+      
+      print(barplot2[[i]])
+      
+      
+      ggsave(file=paste(rep_fig,i,".svg",sep=""),plot=barplot2[[i]],height =10,width=10)
+    }
+    
   }
   
-}
- 
-b=unique(table_resultats_pronostics_podium$id_match)
-z=sprintf("%s.svg",b)
-# s2<-if(interactive()) slickR(obj=paste(rep_fig,z,sep=""), width = '70%')
-slickR(
-  obj = paste(rep_fig,z,sep=""),
-  slideId = c('ex2'),
-  # slickOpts = list(
-  #   initialSlide = 1,
-  #   slidesToShow = 4,
-  #   slidesToScroll = 4,
-  #   focusOnSelect = T,
-  #   dots = T
-  # ),
-  width = '70%'
-  # height=150
-)
-# saveWidget(s2, file=paste0(rep_fig,"graph_match.html"))
+  b=unique(table_resultats_pronostics_podium$id_match)
+  z=sprintf("%s.svg",b)
+  # s2<-if(interactive()) slickR(obj=paste(rep_fig,z,sep=""), width = '70%')
+  slickR(
+    obj = paste(rep_fig,z,sep=""),
+    slideId = c('ex2'),
+    # slickOpts = list(
+    #   initialSlide = 1,
+    #   slidesToShow = 4,
+    #   slidesToScroll = 4,
+    #   focusOnSelect = T,
+    #   dots = T
+    # ),
+    # height = '100%',
+    width = 800
+    )
+  # saveWidget(s2, file=paste0(rep_fig,"graph_match.html"))
 }else{ 
   knitr::include_graphics("img/refus.jpg")
-  }
+}
+
 ```
 
 
