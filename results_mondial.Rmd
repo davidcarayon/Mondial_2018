@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE)
 library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(ggplot2) ;library(googleVis) ;
 library(ggflags) ; library(ggthemes) ; library(scales) ; library(formattable) ; library(kableExtra) ; library(lubridate) ; library(timevis)
 load("data/sorties_tables/sortie.Rdata")
+table_buteurs<-read.csv2("data/table_buteurs.csv")
 # load("data/Database_Mondial_2018.Rdata")
 ```
 
@@ -18,8 +19,35 @@ load("data/sorties_tables/sortie.Rdata")
 
 ```{r,tableau resultat score,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
 today<-today()
-if(sum(table_evenements$cd_date %in% (today-1))>0){
-  
+a<-1
+if(sum(table_evenements$cd_date == (today-a))>0){
+  matchs<-table_evenements$id_match[table_evenements$cd_date==(today-a)]
+  # bind_rows(
+  table_matchs %>% 
+    filter(id_match %in% matchs) %>% 
+    select(-cd_result,-Score_penalty,-id_tour) ->matchs_veilles
+  #############################
+  matchs_veilles<-bind_cols(matchs_veilles %>% 
+                              filter(cd_statut=="A") %>% 
+                              rename("Equipe.A"="pays",
+                                     "Score.A"="Score") %>% 
+                              select(-id_match,-cd_statut),
+                            matchs_veilles %>% 
+                              filter(cd_statut=="B") %>% 
+                              rename("Equipe.B"="pays",
+                                     "Score.B"="Score") %>% 
+                              select(-id_match,-cd_statut) %>% 
+                              select(Score.B,Equipe.B)
+  )
+  matchs_veilles %>% 
+    mutate(
+      Score.A = color_tile("white", "green")(Score.A),
+      Score.B = color_tile("white", "green")(Score.B)) %>% 
+    rename("Score A"="Score.A","Score B"="Score.B","Equipe B"="Equipe.B","Equipe A"="Equipe.A") %>% 
+    kable(escape = F) %>%
+      # row_spec(0, angle = -45) %>% 
+    kable_styling("striped", full_width = F)
+  #############################""
 }else{
   knitr::include_graphics("img/refus.jpg")
 }
@@ -34,20 +62,55 @@ if(sum(table_evenements$cd_date %in% (today-1))>0){
 today<-today()
 table_matchs_jour<-table_evenements[table_evenements$cd_date==today,]
 if(nrow(table_matchs_jour)>0){
-table_matchs_jour %>%
-  unite(Date_Heure,c("cd_date","Heure")) %>%
-  mutate(start=as_datetime(Date_Heure),
-         end=as_datetime(Date_Heure)+hours(1)+minutes(30)) %>%
-  unite(content,c("Equipe.A","Equipe.B"),sep=" - ")->data
-##########################
-#############################################
-timevis(data,showZoom = FALSE,
-  options = list(editable = FALSE),
-  height = 100
-   # style = c(NA, "color: red;")
-)}else{
+  table_matchs_jour %>%
+    unite(Date_Heure,c("cd_date","Heure")) %>%
+    mutate(start=as_datetime(Date_Heure),
+           end=as_datetime(Date_Heure)+hours(1)+minutes(30)) %>%
+    unite(content,c("Equipe.A","Equipe.B"),sep=" - ")->data
+  ##########################
+  #############################################
+  timevis(data,showZoom = FALSE,
+          options = list(editable = FALSE),
+          height = 100
+          # style = c(NA, "color: red;")
+  )}else{
     knitr::include_graphics("img/refus.jpg")
   }
+```
+
+<br>
+
+## Buteurs du Mondial 2018
+
+
+
+```{r,graph wordcloud buteurs ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+table_buteurs<-table_buteurs %>% 
+  mutate(Equipe=as.character(Equipe)) %>% 
+  left_join(table_pays %>% select(id_pays,pays),by=c("Equipe"="pays")) %>% 
+  group_by(id_joueur,id_pays,Equipe) %>% 
+  summarise(n=as.numeric(n())) %>% 
+  ungroup() %>% 
+  mutate(id_joueur=as.character(id_joueur)) %>% 
+  left_join(table_joueurs %>%  select(id_joueur,nom_complet),by="id_joueur") 
+
+########################################
+bind_cols(word=table_joueurs$nom_complet,freq=rep(0.01,nrow(table_joueurs))) %>% as.data.frame()->dataword
+########################################
+dataword<-dataword %>%  left_join(table_buteurs %>% select(n, nom_complet,id_pays),by=c("word"="nom_complet")) %>%
+  mutate(freq=case_when(!is.na(n)~n,
+                        is.na(n)~freq))
+########################################
+########################################
+dataword %>% 
+  filter(freq>0.5) %>%  
+  e_color_range(freq,id_pays) %>% 
+  e_charts() %>% 
+  e_cloud(word, freq, color=id_pays, shape = "circle", sizeRange = c(15, 30)) %>% 
+  e_theme("dark") #%>% 
+  # e_title("Buteurs du Mondial 2018")
+########################################
+########################################
 ```
 
 <br>
@@ -110,7 +173,7 @@ timevis(data,showZoom = FALSE,
 <!-- ## Tableau final -->
 
 <!-- ```{r, graphique tableau final,results='asis', cache=TRUE, warning=FALSE,message=FALSE} -->
-<!-- Org <- gvisOrgChart(Regions,  -->
+<!-- Org <- gvisOrgChart(Regions, -->
 <!--                     options=list(width=600, height=250, -->
 <!--                                  size='large', allowCollapse=TRUE)) -->
 <!-- # plot(Org) -->

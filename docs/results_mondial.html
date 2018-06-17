@@ -25,12 +25,42 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <script src="site_libs/htmlwidgets-1.2/htmlwidgets.js"></script>
 <link href="site_libs/vis-4.16.1/vis.min.css" rel="stylesheet" />
 <script src="site_libs/vis-4.16.1/vis.min.js"></script>
 <link href="site_libs/timeline-0.4/timevis.css" rel="stylesheet" />
 <script src="site_libs/timevis-binding-0.4/timevis.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/echarts4r-4.0.4//plugins/leaflet/leaflet.css" rel="stylesheet" />
+<script src="site_libs/echarts4r-4.0.4/echarts.min.js"></script>
+<script src="site_libs/echarts4r-4.0.4/echarts-gl.min.js"></script>
+<script src="site_libs/echarts4r-4.0.4/ecStat.min.js"></script>
+<script src="site_libs/echarts4r-4.0.4/dataTool.min.js"></script>
+<script src="site_libs/echarts4r-4.0.4/world.js"></script>
+<script src="site_libs/echarts4r-4.0.4//plugins/echarts-wordcloud.min.js"></script>
+<script src="site_libs/echarts4r-4.0.4//plugins/echarts-liquidfill.min.js"></script>
+<script src="site_libs/echarts4r-4.0.4//plugins/echarts-graph-modularity.min.js"></script>
+<script src="site_libs/echarts4r-4.0.4//plugins/leaflet/leaflet.js"></script>
+<script src="site_libs/echarts4r-4.0.4//plugins/leaflet/echarts-leaflet.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/dark.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/vintage.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/westeros.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/essos.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/wonderland.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/walden.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/chalk.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/infographic.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/macarons.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/roma.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/shine.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/purple-passion.js"></script>
+<script src="site_libs/echarts4r-4.0.4//themes/halloween.js"></script>
+<script src="site_libs/echarts4r-binding-0.0.3.9000/echarts4r.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 
 
@@ -84,6 +114,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -331,18 +364,45 @@ div.tocify {
 <p><br></p>
 <div id="resultats-de-la-veille" class="section level2">
 <h2>Résultats de la veille</h2>
-<p><img src="img/refus.jpg" width="112" style="display: block; margin: auto;" /></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Equipe A
+</th>
+<th style="text-align:left;">
+Score A
+</th>
+<th style="text-align:left;">
+Score B
+</th>
+<th style="text-align:left;">
+Equipe B
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
 <p><br></p>
 </div>
 <div id="matchs-du-jour" class="section level2">
 <h2>Matchs du jour</h2>
-<div id="htmlwidget-ef63c8e753fb91c67faf" class="timevis html-widget" style="width:672px;height:100px;">
+<div id="htmlwidget-d5ee0807f545d23b5ff7" class="timevis html-widget" style="width:672px;height:100px;">
 <div class="btn-group zoom-menu">
 <button type="button" class="btn btn-default btn-lg zoom-in" title="Zoom in">+</button>
 <button type="button" class="btn btn-default btn-lg zoom-out" title="Zoom out">-</button>
 </div>
 </div>
-<script type="application/json" data-for="htmlwidget-ef63c8e753fb91c67faf">{"x":{"items":[{"id_match":"M2-POUL-A2","id_tour":"POUL","Date_Heure":"2018-06-15_14H 0M 0S","content":"Egypte - Uruguay","ville":"Ekaterinbourg","start":"2018-06-15 14:00:00","end":"2018-06-15 15:30:00"},{"id_match":"M3-POUL-B1","id_tour":"POUL","Date_Heure":"2018-06-15_17H 0M 0S","content":"Maroc - Iran","ville":"Saint Petersbourg","start":"2018-06-15 17:00:00","end":"2018-06-15 18:30:00"},{"id_match":"M4-POUL-B2","id_tour":"POUL","Date_Heure":"2018-06-15_20H 0M 0S","content":"Portugal - Espagne","ville":"Sotchi","start":"2018-06-15 20:00:00","end":"2018-06-15 21:30:00"}],"groups":null,"showZoom":false,"zoomFactor":0.5,"fit":true,"options":{"editable":false},"height":100,"api":[]},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-d5ee0807f545d23b5ff7">{"x":{"items":[{"id_match":"M9-POUL-E1","id_tour":"POUL","Date_Heure":"2018-06-17_14H 0M 0S","content":"Costa Rica - Serbie","ville":"Samara","start":"2018-06-17 14:00:00","end":"2018-06-17 15:30:00"},{"id_match":"M10-POUL-F1","id_tour":"POUL","Date_Heure":"2018-06-17_17H 0M 0S","content":"Allemagne - Mexique","ville":"Moscou-Luzhniki","start":"2018-06-17 17:00:00","end":"2018-06-17 18:30:00"},{"id_match":"M11-POUL-E2","id_tour":"POUL","Date_Heure":"2018-06-17_20H 0M 0S","content":"Bresil - Suisse","ville":"Rostov","start":"2018-06-17 20:00:00","end":"2018-06-17 21:30:00"}],"groups":null,"showZoom":false,"zoomFactor":0.5,"fit":true,"options":{"editable":false},"height":100,"api":[]},"evals":[],"jsHooks":[]}</script>
+<p><br></p>
+</div>
+<div id="buteurs-du-mondial-2018" class="section level2">
+<h2>Buteurs du Mondial 2018</h2>
+<div id="htmlwidget-5aaf40fb3de13527d623" style="width:100%;height:500px;" class="echarts4r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5aaf40fb3de13527d623">{"x":{"theme":"dark","mapping":[],"settings":{"crosstalk_key":null,"crosstalk_group":null},"opts":{"series":[{"type":"wordCloud","data":[{"value":1,"name":"Sergio Aguero","textStyle":{"normal":{"color":"#BF444C"}}},{"value":1,"name":"Mile Jedinak","textStyle":{"normal":{"color":"#C24C51"}}},{"value":1,"name":"Luka Modric","textStyle":{"normal":{"color":"#C55456"}}},{"value":1,"name":"Nacho Fernandez","textStyle":{"normal":{"color":"#C95C5B"}}},{"value":2,"name":"Diego Costa","textStyle":{"normal":{"color":"#CC6560"}}},{"value":1,"name":"Paul Pogba","textStyle":{"normal":{"color":"#CF6D66"}}},{"value":1,"name":"Antoine Griezmann","textStyle":{"normal":{"color":"#D3756B"}}},{"value":1,"name":"Alfred Finnbogason","textStyle":{"normal":{"color":"#D67D70"}}},{"value":1,"name":"Aziz Bouhaddouz","textStyle":{"normal":{"color":"#DA8976"}}},{"value":3,"name":"Cristiano Ronaldo","textStyle":{"normal":{"color":"#DE977D"}}},{"value":2,"name":"Denis Cheryshev","textStyle":{"normal":{"color":"#E2A683"}}},{"value":1,"name":"Yuri Gazinskiy","textStyle":{"normal":{"color":"#E6B48A"}}},{"value":1,"name":"Alexandr Golovin","textStyle":{"normal":{"color":"#EAC391"}}},{"value":1,"name":"Artem Dzyuba","textStyle":{"normal":{"color":"#EED198"}}},{"value":1,"name":"Aleksandar Kolarov","textStyle":{"normal":{"color":"#F2E09F"}}},{"value":1,"name":"Jose Gimenez","textStyle":{"normal":{"color":"#F6EFA6"}}}],"shape":"circle","sizeRange":[15,30]}]},"data":{"word":["Sergio Aguero","Mile Jedinak","Luka Modric","Nacho Fernandez","Diego Costa","Paul Pogba","Antoine Griezmann","Alfred Finnbogason","Aziz Bouhaddouz","Cristiano Ronaldo","Denis Cheryshev","Yuri Gazinskiy","Alexandr Golovin","Artem Dzyuba","Aleksandar Kolarov","Jose Gimenez"],"freq":[1,1,1,1,2,1,1,1,1,3,2,1,1,1,1,1],"n":[1,1,1,1,2,1,1,1,1,3,2,1,1,1,1,1],"id_pays":["#BF444C","#C24C51","#C55456","#C95C5B","#CC6560","#CF6D66","#D3756B","#D67D70","#DA8976","#DE977D","#E2A683","#E6B48A","#EAC391","#EED198","#F2E09F","#F6EFA6"]},"dispose":true},"evals":[],"jsHooks":[]}</script>
 <p><br></p>
 <!-- ## Classement des poules -->
 <!-- <br> -->
@@ -392,13 +452,13 @@ div.tocify {
 <!-- <br> -->
 <!-- ## Tableau final -->
 <!-- ```{r, graphique tableau final,results='asis', cache=TRUE, warning=FALSE,message=FALSE} -->
-<!-- Org <- gvisOrgChart(Regions,  -->
+<!-- Org <- gvisOrgChart(Regions, -->
 <!--                     options=list(width=600, height=250, -->
 <!--                                  size='large', allowCollapse=TRUE)) -->
 <!-- # plot(Org) -->
 <!-- print(Org,"chart") -->
 <!-- ``` -->
-<p>Mise à jour : 2018-06-15</p>
+<p>Mise à jour : 2018-06-17</p>
 </div>
 
 <hr>

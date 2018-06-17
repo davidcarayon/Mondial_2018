@@ -92,7 +92,7 @@ table_participants %>%
 
 
 
-```{r,carrousel pronstics par jour,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+```{r,carrousel pronostics par jour,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
 
 if(nrow(table_matchs)>0){
   #####
