@@ -18,7 +18,9 @@ rep_fig = "img/figures/"
 
 ## Combien de points avez-vous obtenu ?
 
+<!-- ### Classement des pronostiqueurs -->
 
+### Par matchs
 
 ```{r,carrousel pronostics par jour,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
 
