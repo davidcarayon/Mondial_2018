@@ -15,78 +15,6 @@ rep_fig = "img/figures/"
 
 <br>
 
-## Avez-vous fait le bon choix ?
-
-
-Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera championne du monde.
-<br>
-
-### Equipes candidates au titre de Championne du monde
-
-
-On vous dévoile les premiers résultats de l'enquête.  
-
-* Sur le camembert, vous pouvez voir la répartition des pays que vous avez choisis comme gagnant pour le mondial.  
-* Le diagramme en barre représente selon les tournois précédents le classement des équipes pré-sélectionnées.  
-
-L'équipe de France a été citée 13 fois. Y-a-t-il du chauvinisme ?  
-Depuis 1978, on peut voir que le Pérou n'a jamais atteint le dernier carré final de la compétition, tandis que l'Allemagne reste une valeur sûre.
-
-<br>
-
-```{r,graph retro,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
-
-##################################################
-unaccent <- function(text){
-  text <- gsub("['`^~\"]", " ", text)
-  text <- iconv(text, to="ASCII//TRANSLIT//IGNORE")
-  text <- gsub("['`^~\"]", "", text)
-  return(text)
-}
-table_participants %>% group_by(champion) %>% summarise(Nbr=n()) %>% ungroup()->data_pie
-classement_fifa<-classement_fifa %>%  
-  rename("2022"="X2022",
-         "2018"="X2018",
-         "2014"="X2014",
-         "2010"="X2010" ,
-         "2006"="X2006","2002"="X2002",
-         "1998"="X1998","1994"="X1994","1990"="X1990","1986"="X1986","1982"="X1982",
-         "1978"="X1978")
-classement_fifa$Equipe<-unaccent(as.character(classement_fifa$Equipe))
-
-table_participants %>%   
-  group_by(champion) %>% 
-  summarise(Nbr=n()) %>% 
-  ungroup() %>% 
-  left_join(table_pays,by=c("champion"="pays")) %>% 
-  mutate(Classement=as.integer(Classement)) %>% 
-  left_join(classement_fifa,"Classement") %>% 
-  select(Equipe,Classement,Nbr,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% gather(Year,Value,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% 
-  mutate(Value=factor(ifelse(Value>0,5-Value,0),ordered = TRUE)) %>% 
-  spread(Equipe,Value) %>%
-  mutate(Year=factor(Year,levels=seq(1978,2022,4))) %>% 
-  arrange(Year) %>% 
-  e_charts(Year,width="100%") %>% 
-  e_bar(Allemagne) %>% 
-  e_bar(Angleterre) %>% 
-  e_bar(Argentine) %>% 
-  e_bar(Belgique) %>% 
-  e_bar(Bresil) %>% 
-  e_bar(Espagne) %>% 
-  e_bar(France) %>% 
-  e_bar(Perou) %>% 
-  e_bar(Portugal) %>% 
-  e_data(data_pie, champion) %>% 
-  e_pie(Nbr, rm.x = FALSE, rm.y = FALSE, center = c("85%", "50%"), radius = c(0, 30)) %>% 
-  e_tooltip(trigger = "item") %>% 
-  e_title("Rétrospective selon les Mondiaux","des équipes sélectionnées par les pronostiqueurs\n et occurences",right="right") %>% 
-  e_theme("infographic") %>% 
-  e_legend(bottom = 0) %>% # move legend to the bottom
-  e_x_axis(name="Année de\ncoupe\ndu monde",axisLabel = list(interval = 0, rotate = 45)) %>% 
-  e_y_axis(name="Classement dans\n le dernier carré\n(4=Champion, ..., 1=4eme)",show=TRUE,axisLabel = list(interval = 0)) 
-```
-
-<br>
 
 ## Combien de points avez-vous obtenu ?
 
@@ -190,6 +118,83 @@ if(nrow(table_matchs)>0){
 }
 
 ```
+
+<br>
+
+
+## Avez-vous fait le bon choix ?
+
+
+Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera championne du monde.
+<br>
+
+### Equipes candidates au titre de Championne du monde
+
+
+On vous dévoile les premiers résultats de l'enquête.  
+
+* Sur le camembert, vous pouvez voir la répartition des pays que vous avez choisis comme gagnant pour le mondial.  
+* Le diagramme en barre représente selon les tournois précédents le classement des équipes pré-sélectionnées.  
+
+L'équipe de France a été citée 13 fois. Y-a-t-il du chauvinisme ?  
+Depuis 1978, on peut voir que le Pérou n'a jamais atteint le dernier carré final de la compétition, tandis que l'Allemagne reste une valeur sûre.
+
+<br>
+
+```{r,graph retro,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+
+##################################################
+unaccent <- function(text){
+  text <- gsub("['`^~\"]", " ", text)
+  text <- iconv(text, to="ASCII//TRANSLIT//IGNORE")
+  text <- gsub("['`^~\"]", "", text)
+  return(text)
+}
+table_participants %>% group_by(champion) %>% summarise(Nbr=n()) %>% ungroup()->data_pie
+classement_fifa<-classement_fifa %>%  
+  rename("2022"="X2022",
+         "2018"="X2018",
+         "2014"="X2014",
+         "2010"="X2010" ,
+         "2006"="X2006","2002"="X2002",
+         "1998"="X1998","1994"="X1994","1990"="X1990","1986"="X1986","1982"="X1982",
+         "1978"="X1978")
+classement_fifa$Equipe<-unaccent(as.character(classement_fifa$Equipe))
+
+table_participants %>%   
+  group_by(champion) %>% 
+  summarise(Nbr=n()) %>% 
+  ungroup() %>% 
+  left_join(table_pays,by=c("champion"="pays")) %>% 
+  mutate(Classement=as.integer(Classement)) %>% 
+  left_join(classement_fifa,"Classement") %>% 
+  select(Equipe,Classement,Nbr,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% gather(Year,Value,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% 
+  mutate(Value=factor(ifelse(Value>0,5-Value,0),ordered = TRUE)) %>% 
+  spread(Equipe,Value) %>%
+  mutate(Year=factor(Year,levels=seq(1978,2022,4))) %>% 
+  arrange(Year) %>% 
+  e_charts(Year,width="100%") %>% 
+  e_bar(Allemagne) %>% 
+  e_bar(Angleterre) %>% 
+  e_bar(Argentine) %>% 
+  e_bar(Belgique) %>% 
+  e_bar(Bresil) %>% 
+  e_bar(Espagne) %>% 
+  e_bar(France) %>% 
+  e_bar(Perou) %>% 
+  e_bar(Portugal) %>% 
+  e_data(data_pie, champion) %>% 
+  e_pie(Nbr, rm.x = FALSE, rm.y = FALSE, center = c("85%", "50%"), radius = c(0, 30)) %>% 
+  e_tooltip(trigger = "item") %>% 
+  e_title("Rétrospective selon les Mondiaux","des équipes sélectionnées par les pronostiqueurs\n et occurences",right="right") %>% 
+  e_theme("infographic") %>% 
+  e_legend(bottom = 0) %>% # move legend to the bottom
+  e_x_axis(name="Année de\ncoupe\ndu monde",axisLabel = list(interval = 0, rotate = 45)) %>% 
+  e_y_axis(name="Classement dans\n le dernier carré\n(4=Champion, ..., 1=4eme)",show=TRUE,axisLabel = list(interval = 0)) 
+```
+
+<br>
+
 
 
 
