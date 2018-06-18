@@ -80,7 +80,7 @@ p2<-pronostics %>%
         axis.title.y = element_text(size=15),
         plot.margin = unit(c(1,1,1,3), "cm"))
 # Create plotly graph
-ggplotly(p2, height =900, width =1200) %>%
+ggplotly(p2, height =900, width =750) %>%
   animation_opts(frame = 1000*length(unique(pronostics$datetime)),
                  easing = "linear",
                  redraw = FALSE)
