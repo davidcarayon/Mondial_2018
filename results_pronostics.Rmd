@@ -6,7 +6,7 @@ toc_float: false
 
 ```{r setup, include=FALSE,message=FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE)
-library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(lubridate) ; suppressPackageStartupMessages(library(googleVis)) ; library(ggpubr) ; library(echarts4r) ; library(gganimate) ; library(ggpubr) ; library(tweenr) ; library(viridis) ; library(magick) ; library(animation) ; library(slickR) ; library(svglite) ; library(htmlwidgets) ; library(plotly)
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(lubridate) ; suppressPackageStartupMessages(library(googleVis)) ; library(ggpubr) ; library(echarts4r) ; library(gganimate) ; library(ggpubr) ; library(tweenr) ; library(viridis) ; library(magick) ; library(animation) ; library(slickR) ; library(svglite) ; library(htmlwidgets) ; library(plotly)  ; library(formattable) ; library(kableExtra) ;
 #########################################
 load("data/sorties_tables/sortie.Rdata")
 classement_fifa<-read.csv2("data/ClassementFifa.csv")
@@ -19,12 +19,12 @@ rep_fig = "img/figures/"
 ## Quel est votre classement ?
 
 <br>
-
-### Classement des pronostiqueurs
-
-<br>
-
-```{r,Classement pronostiqueurs,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+  
+#### Pronostiqueurs(s) de la journée précédente
+  
+  <br>
+  
+```{r,pronostiqueurs de la journée,echo=FALSE,warning=FALSE,message=FALSE}
 table_resultats_pronostics %>%
   separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%
   left_join(table_evenements %>%
@@ -52,6 +52,78 @@ pronostics %>%
   as.data.frame() %>%
   distinct() ->pronostics
 ######################################################
+pronostics %>% 
+  # mutate(pseudo=tolower(pseudo)) %>% 
+  filter(datetime>=unique(sort(datetime))[length(unique(sort(datetime)))-1])%>% 
+  group_by(pseudo)%>% 
+  summarise(Diff=diff(PtsCum)) %>% 
+  arrange(desc(Diff)) %>%
+  filter(Diff %in% max(Diff)) %>%
+  ungroup() -> Classement_pronostiqueurs
+################################################
+# yo<-Classement_pronostiqueurs_ori[Classement_pronostiqueurs_ori$pseudo %in% Classement_pronostiqueurs$pseudo,]
+# if(nrow(yo)>1){
+#   yo<-yo %>% arrange(desc(MisEnLumiere)) #%>% slice(1)
+#   Classement_pronostiqueurs %>% filter(Classement_pronostiqueurs$pseudo==yo$pseudo,] %>% 
+#      mutate(
+#       Score.A = color_tile("white", "green")(Score.A),
+#       Score.B = color_tile("white", "green")(Score.B)) %>% 
+#     rename("Score A"="Score.A","Score B"="Score.B","Equipe B"="Equipe.B","Equipe A"="Equipe.A") %>% 
+#     kable(escape = F) %>%
+#       # row_spec(0, angle = -45) %>% 
+#     kable_styling("striped", full_width = F)
+# }else{
+#   Classement_pronostiqueurs_ori$MisEnLumiere[Classement_pronostiqueurs_ori$pseudo %in% Classement_pronostiqueurs$pseudo] <- Classement_pronostiqueurs_ori$MisEnLumiere[Classement_pronostiqueurs_ori$pseudo %in% Classement_pronostiqueurs$pseudo]+1
+#   print(Classement_pronostiqueurs)
+# }
+######
+# formattable(Classement_pronostiqueurs,  Diff= color_bar("lightblue"))
+Classement_pronostiqueurs %>%
+  # rename("Bonus de points"="Diff") %>%
+  mutate(
+    Diff= cell_spec(Diff,background = "red", color = "white", align = "center")) %>%
+  rename("Points gagnés"="Diff") %>%
+  kable(escape = F) %>%
+  kable_styling("striped", full_width = F,font_size = 25,position= "float_right")
+```
+
+![Marquinhos](https://media3.giphy.com/media/l1J9Ngpd4xUTHv6aA/giphy-downsized.gif?cid=e1bb72ff5b2912ca4949497649813b65)
+
+
+<br>
+  
+### Classement des pronostiqueurs
+  
+  <br>
+  
+```{r,Classement pronostiqueurs,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+# table_resultats_pronostics %>%
+#   separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%
+#   left_join(table_evenements %>%
+#               mutate(cd_date=as.character(cd_date),
+#                      Heure=as.character(Heure)) %>%
+#               dplyr::select(id_match,cd_date,Heure),by="id_match") %>%
+#   # unite(datetime,c("cd_date","Heure")) %>%
+#   mutate(datetime=ymd(cd_date)) %>%
+#   mutate(datetime=ymd(cd_date)) %>%
+#   arrange(datetime)->pronostics
+# 
+# pronostics %>%
+#   dplyr::select(pseudo,datetime,points) %>%
+#   mutate(pseudo=Hmisc::capitalize(pseudo)) %>%
+#   group_by(pseudo,datetime) %>%
+#   mutate(points=sum(points)) %>%
+#   ungroup() %>%
+#   distinct() %>%
+#   arrange(pseudo) %>%
+#   group_by(pseudo) %>%
+#   mutate(PtsCum = cumsum(points)) %>%
+#   arrange(pseudo) %>%
+#   dplyr::select(pseudo,datetime,PtsCum) %>%
+#   ungroup() %>%
+#   as.data.frame() %>%
+#   distinct() ->pronostics
+# ######################################################
 pronostics %>%
   filter(datetime==max(datetime)) %>%
   arrange((PtsCum)) %>%
@@ -87,6 +159,7 @@ ggplotly(p2, height =900, width =750) %>%
 ```
 
 <br>
+
 
 ### Par match
 
