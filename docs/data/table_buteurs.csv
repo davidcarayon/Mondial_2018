@@ -1,23 +1,33 @@
-ID;Equipe;id_joueur;Buteurs;Min;CSC
-M1-POUL-A1;Russie;16414;Gazinskiy;12;FALSE
-M1-POUL-A1;Russie;16411;Cherichev;43;FALSE
-M1-POUL-A1;Russie;16421;Dzyuba;71;FALSE
-M1-POUL-A1;Russie;16411;Cheryshev;91;FALSE
-M1-POUL-A1;Russie;16415;Golovin;94;FALSE
-M2-POUL-A2;Uruguay;8856;Gimenez;90;FALSE
-M3-POUL-B1;Iran;62720;Bouhaddouz;95;TRUE
-M4-POUL-B2;Portugal;18122;Ronaldo;4;FALSE
-M4-POUL-B2;Portugal;18122;Ronaldo;44;FALSE
-M4-POUL-B2;Portugal;18122;Ronaldo;88;FALSE
-M4-POUL-B2;Espagne;17522;Costa;24;FALSE
-M4-POUL-B2;Espagne;17522;Costa;55;FALSE
-M4-POUL-B2;Espagne;1757;Fernandez;58;FALSE
-M5-POUL-C1;France;16521;Griezmann;56;FALSE
-M5-POUL-C1;France;16517;Pogba;80;FALSE
-M5-POUL-C1;Australie;188913;Jedinak;62;FALSE
-M6-POUL-D1;Argentine;64219;Aguero;19;FALSE
-M6-POUL-D1;Islande;16720;Finnbogason;23;FALSE
-M7-POUL-C2;Danemark;15122;Yurary Poulsen;59;FALSE
-M8-POUL-D2;Croatie;63413;Etebo;32;TRUE
-M8-POUL-D2;Croatie;18716;Modric;71;FALSE
-M9-POUL-E1;Serbie;42565;Kolarov;71;FALSE
+ID;Equipe;id_joueur;Buteurs;Min;CSC;Penalty;Partie
+M1-POUL-A1;Russie;16414;Gazinskiy;12;FALSE;FALSE;head
+M1-POUL-A1;Russie;16411;Cherichev;43;FALSE;FALSE;left foot
+M1-POUL-A1;Russie;16421;Dzyuba;71;FALSE;FALSE;head
+M1-POUL-A1;Russie;16411;Cheryshev;91;FALSE;FALSE;left foot
+M1-POUL-A1;Russie;16415;Golovin;94;FALSE;FALSE;right foot
+M2-POUL-A2;Uruguay;8856;Gimenez;90;FALSE;FALSE;head
+M3-POUL-B1;Iran;62720;Bouhaddouz;95;TRUE;FALSE;head
+M4-POUL-B2;Portugal;18122;Ronaldo;4;FALSE;TRUE;right foot
+M4-POUL-B2;Portugal;18122;Ronaldo;44;FALSE;FALSE;left foot
+M4-POUL-B2;Portugal;18122;Ronaldo;88;FALSE;FALSE;right foot
+M4-POUL-B2;Espagne;17522;Costa;24;FALSE;FALSE;right foot
+M4-POUL-B2;Espagne;17522;Costa;55;FALSE;FALSE;right foot
+M4-POUL-B2;Espagne;1757;Fernandez;58;FALSE;FALSE;right foot
+M5-POUL-C1;France;16521;Griezmann;56;FALSE;TRUE;left foot
+M5-POUL-C1;France;18894;Behich;80;TRUE;FALSE;left foot
+M5-POUL-C1;Australie;188913;Jedinak;62;FALSE;TRUE;right foot
+M6-POUL-D1;Argentine;64219;Aguero;19;FALSE;FALSE;left foot
+M6-POUL-D1;Islande;16720;Finnbogason;23;FALSE;FALSE;right foot
+M7-POUL-C2;Danemark;15122;Yurary Poulsen;59;FALSE;FALSE;left foot
+M8-POUL-D2;Croatie;63413;Etebo;32;TRUE;FALSE;left foot
+M8-POUL-D2;Croatie;18716;Modric;71;FALSE;TRUE;right foot
+M9-POUL-E1;Serbie;42565;Kolarov;71;FALSE;FALSE;left foot
+M10-POUL-F1;Mexique;63521;Lozano;35;FALSE;FALSE;right foot
+M11-POUL-E2;Bresil;62615;Coutinho;20;FALSE;FALSE;right foot
+M11-POUL-E2;Suisse;15219;Zuber;50;FALSE;FALSE;head
+M12-POUL-F2;Suede;1725;Granqvist;65;FALSE;TRUE;right foot
+M13-POUL-G1;Belgique;64417;Mertens;47;FALSE;FALSE;right foot
+M13-POUL-G1;Belgique;64423;Lukaku;69;FALSE;FALSE;head
+M13-POUL-G1;Belgique;64423;Lukaku;75;FALSE;FALSE;left foot
+M14-POUL-G2;Tunisie;63917;Sassi;35;FALSE;TRUE;right foot
+M14-POUL-G2;Angleterre;17020;Kane;11;FALSE;FALSE;right foot
+M14-POUL-G2;Angleterre;17020;Kane;91;FALSE;FALSE;head

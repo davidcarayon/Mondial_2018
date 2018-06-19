@@ -104,9 +104,9 @@ dataword<-dataword %>%  left_join(table_buteurs %>% select(n, nom_complet,id_pay
 ########################################
 dataword %>% 
   filter(freq>0.5) %>%  
-  e_color_range(freq,id_pays) %>% 
+  e_color_range(freq,color) %>% 
   e_charts() %>% 
-  e_cloud(word, freq, color=id_pays, shape = "circle", sizeRange = c(15, 30)) %>% 
+  e_cloud(word, freq, color, shape = "circle", sizeRange = c(10, 30)) %>% 
   e_theme("dark") #%>% 
   # e_title("Buteurs du Mondial 2018")
 ########################################
