@@ -20,7 +20,7 @@ rep_fig = "img/figures/"
 
 <br>
   
-#### Pronostiqueurs(s) de la journée précédente
+### Pronostiqueurs(s) de la journée précédente
   
   <br>
   
