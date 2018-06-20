@@ -87,7 +87,8 @@ Classement_pronostiqueurs %>%
   kable_styling("striped", full_width = F,font_size = 25,position= "float_right")
 ```
 
-![Marquinhos](https://media3.giphy.com/media/l1J9Ngpd4xUTHv6aA/giphy-downsized.gif?cid=e1bb72ff5b2912ca4949497649813b65)
+![Pepe](https://media1.giphy.com/media/42VdQEIJ2GnHa/200.gif?cid=e1bb72ff5b2a02826f542f666f970428)
+<!-- ![Marquinhos](https://media3.giphy.com/media/l1J9Ngpd4xUTHv6aA/giphy-downsized.gif?cid=e1bb72ff5b2912ca4949497649813b65) -->
 
 
 <br>

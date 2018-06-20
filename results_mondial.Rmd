@@ -55,14 +55,14 @@ if(sum(table_evenements$cd_date == (today-a))>0){
 
 <br>
 
-## Joueur de la veille
+<!-- ## Joueur de la veille -->
 
-Harry Kane (Angleterre)
+<!-- Harry Kane (Angleterre) -->
 
-![Harry+kane](https://media0.giphy.com/media/t75ANdru6RWBJ6nwC0/giphy.gif?cid=e1bb72ff5b28d1c5634357386f05e1ca)  
-<div style='font-size:50%'>([Source link](https://youtu.be/hOctLZf1kkE), accessed juin 03, 2018)</div>  
+<!-- ![Harry+kane](https://media0.giphy.com/media/t75ANdru6RWBJ6nwC0/giphy.gif?cid=e1bb72ff5b28d1c5634357386f05e1ca)   -->
+<!-- <div style='font-size:50%'>([Source link](https://youtu.be/hOctLZf1kkE), accessed juin 03, 2018)</div>   -->
 
-<br>
+<!-- <br> -->
 
 ## Matchs du jour
 
@@ -122,59 +122,60 @@ dataword %>%
 
 <br>
 
-<!-- ## Classement des poules -->
+## Classement des poules
 
-<!-- <br> -->
+<br>
 
-<!-- ```{r,graph poules ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"} -->
-<!-- ggplot(table_resultats_poules, aes(x=toupper(cd_flag), y=Pts, country=cd_flag)) + -->
-<!--   geom_bar(stat = "Identity", position = "identity",fill="white",width=0.02)+ -->
-<!--   geom_flag(size=I(10))+ -->
-<!--   facet_wrap(~Groupe,scales="free_x",ncol=4)+ -->
-<!--   scale_y_continuous("Points",limits=c(0,10),breaks= pretty_breaks())+ #limits=c(0,10) -->
-<!--   xlab(label="")+ -->
-<!--   theme_dark()+ -->
-<!--   theme(strip.text.x = element_text(face="bold",size=12), -->
-<!--         strip.background = element_rect(colour="white")) -->
-<!-- ``` -->
+```{r,graph poules ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+ggplot(table_resultats_poules, aes(x=toupper(cd_flag), y=Pts, country=cd_flag)) +
+  geom_bar(stat = "Identity", position = "identity",fill="white",width=0.02)+
+  geom_flag(size=I(10))+
+  facet_wrap(~Groupe,scales="free_x",ncol=4)+
+  scale_y_continuous("Points",limits=c(0,10),breaks= pretty_breaks())+ #limits=c(0,10)
+  xlab(label="")+
+  theme_dark()+
+  theme(strip.text.x = element_text(face="bold",size=12),
+        strip.background = element_rect(colour="white"))
+```
 
-<!-- <br> -->
+<br>
 
-<!-- ```{r,table poules ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"} -->
-<!-- table_resultats_poules_table<-table_resultats_poules %>% -->
-<!--   rename("bp."="buts_mis","bc."="buts_pris","diff"="diff_buts") -->
+```{r,table poules ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+table_resultats_poules_table<-table_resultats_poules %>%
+  rename("bp."="buts_mis","bc."="buts_pris","diff"="diff_buts") %>% 
+  arrange(Groupe,desc(Pts),desc(diff))
 
-<!-- ########################################## -->
+##########################################
 
-<!-- table_resultats_poules_table %>% -->
-<!--   mutate( -->
-<!--     Pts = color_tile("white", "orange")(Pts), -->
-<!--     diff = ifelse(diff <= 0, -->
-<!--                   cell_spec(diff, color = "red", bold = T), -->
-<!--                   cell_spec(diff, color = "green", italic = T)), -->
-<!--     bp. = color_bar("lightgreen")(bp.), -->
-<!--     bc.= color_bar("red")(bc.) -->
-<!--   ) %>% -->
-<!--   select(pays, everything()) %>% -->
-<!--   select(-Groupe) %>% -->
-<!--   mutate(cd_flag=toupper(cd_flag)) %>% -->
-<!--   kable(escape = F) %>% -->
-<!--   kable_styling("striped", full_width = F) %>% -->
-<!--   group_rows("Poule A", 1, 4, label_row_css = "background-color: #666; color: #fff;") %>% -->
-<!--   group_rows("Poule B", 5, 8, label_row_css = "background-color: #666; color: #fff;") %>% -->
-<!--   group_rows("Poule C", 9, 12, label_row_css = "background-color: #666; color: #fff;") %>% -->
-<!--   group_rows("Poule D", 13, 16, label_row_css = "background-color: #666; color: #fff;") %>% -->
-<!--   group_rows("Poule E", 17, 20, label_row_css = "background-color: #666; color: #fff;") %>% -->
-<!--   group_rows("Poule F", 21, 24, label_row_css = "background-color: #666; color: #fff;") %>% -->
-<!--   group_rows("Poule G", 25, 28, label_row_css = "background-color: #666; color: #fff;") %>% -->
-<!--   group_rows("Poule H", 29, 32, label_row_css = "background-color: #666; color: #fff;") %>% -->
-<!--   kable_styling("hover", full_width = F) %>% -->
-<!--   column_spec(1, width = "4cm") %>% -->
-<!--   column_spec(c(8,9), width = "2cm") %>% -->
-<!--   row_spec(1:nrow(table_resultats_poules_table), bold = F, color = "black",font_size = 15) -->
-<!-- ``` -->
+table_resultats_poules_table %>%
+  mutate(
+    Pts = color_tile("white", "orange")(Pts),
+    diff = ifelse(diff <= 0,
+                  cell_spec(diff, color = "red", bold = T),
+                  cell_spec(diff, color = "green", italic = T)),
+    bp. = color_bar("lightgreen")(bp.),
+    bc.= color_bar("red")(bc.)
+  ) %>%
+  select(pays, everything()) %>%
+  select(-Groupe) %>%
+  mutate(cd_flag=toupper(cd_flag)) %>%
+  kable(escape = F) %>%
+  kable_styling("striped", full_width = F) %>%
+  group_rows("Poule A", 1, 4, label_row_css = "background-color: #666; color: #fff;") %>%
+  group_rows("Poule B", 5, 8, label_row_css = "background-color: #666; color: #fff;") %>%
+  group_rows("Poule C", 9, 12, label_row_css = "background-color: #666; color: #fff;") %>%
+  group_rows("Poule D", 13, 16, label_row_css = "background-color: #666; color: #fff;") %>%
+  group_rows("Poule E", 17, 20, label_row_css = "background-color: #666; color: #fff;") %>%
+  group_rows("Poule F", 21, 24, label_row_css = "background-color: #666; color: #fff;") %>%
+  group_rows("Poule G", 25, 28, label_row_css = "background-color: #666; color: #fff;") %>%
+  group_rows("Poule H", 29, 32, label_row_css = "background-color: #666; color: #fff;") %>%
+  kable_styling("hover", full_width = F) %>%
+  column_spec(1, width = "4cm") %>%
+  column_spec(c(8,9), width = "2cm") %>%
+  row_spec(1:nrow(table_resultats_poules_table), bold = F, color = "black",font_size = 15)
+```
 
-<!-- <br> -->
+<br>
 
 
 <!-- ## Tableau final -->
