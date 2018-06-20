@@ -164,6 +164,8 @@ ggplotly(p2, height =900, width =750) %>%
 
 ### Par match
 
+On propose un focus sur seulement les matchs de la dernière journée du tournoi.
+
 ```{r,carrousel pronostics par jour,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
 
 if(nrow(table_matchs)>0){
@@ -242,19 +244,32 @@ if(nrow(table_matchs)>0){
     
   }
   
-  b=unique(table_resultats_pronostics_podium$id_match)
-  z=sprintf("%s.png",b)
+  b<-unique(table_resultats_pronostics_podium$id_match)
+  z<-sprintf("%s.png",b)
+  
+table_resultats_pronostics_podium %>% 
+  ungroup() %>% 
+  select(id_match) %>% 
+  distinct() %>% 
+  left_join(table_evenements,by="id_match") %>% 
+  select(cd_date) %>% pull() %>% max()->date_max
+table_evenements %>% 
+  filter(cd_date %in% date_max) %>% 
+  select(id_match) %>% pull()->id_match_sel
+
+  
+  z_sel<-sprintf("%s.png",id_match_sel)
   # s2<-if(interactive()) slickR(obj=paste(rep_fig,z,sep=""), width = '70%')
   slickR(
-    obj = paste(rep_fig,z,sep=""),
+    obj = paste(rep_fig,z_sel,sep=""),
     slideId = c('ex2'),
-    slickOpts = list(
-      initialSlide = 1,
-      slidesToShow = 2,
-      slidesToScroll = 2,
-      focusOnSelect = T,
-      dots = T
-    ),
+    # slickOpts = list(
+    #   initialSlide = 1,
+    #   slidesToShow = 2,
+    #   slidesToScroll = 2,
+    #   focusOnSelect = T,
+    #   dots = T
+    # ),
     # height = '100%',
     width = 750
     )
