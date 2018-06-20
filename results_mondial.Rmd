@@ -126,16 +126,17 @@ dataword %>%
 
 <br>
 
-```{r,graph poules ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+```{r,graph poules ,echo=FALSE,warning=FALSE,message=FALSE, fig.align="center",fig.width=12,fig.height=8}
 ggplot(table_resultats_poules, aes(x=toupper(cd_flag), y=Pts, country=cd_flag)) +
   geom_bar(stat = "Identity", position = "identity",fill="white",width=0.02)+
-  geom_flag(size=I(10))+
+  geom_flag(size=I(15))+
   facet_wrap(~Groupe,scales="free_x",ncol=4)+
   scale_y_continuous("Points",limits=c(0,10),breaks= pretty_breaks())+ #limits=c(0,10)
   xlab(label="")+
   theme_dark()+
-  theme(strip.text.x = element_text(face="bold",size=12),
-        strip.background = element_rect(colour="white"))
+  theme(strip.text.x = element_text(face="bold",size=14),
+        strip.background = element_rect(colour="white"),
+         axis.text.y = element_text(size=14) )
 ```
 
 <br>

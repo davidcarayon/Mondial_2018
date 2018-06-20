@@ -248,15 +248,15 @@ if(nrow(table_matchs)>0){
   slickR(
     obj = paste(rep_fig,z,sep=""),
     slideId = c('ex2'),
-    # slickOpts = list(
-    #   initialSlide = 1,
-    #   slidesToShow = 4,
-    #   slidesToScroll = 4,
-    #   focusOnSelect = T,
-    #   dots = T
-    # ),
+    slickOpts = list(
+      initialSlide = 1,
+      slidesToShow = 2,
+      slidesToScroll = 2,
+      focusOnSelect = T,
+      dots = T
+    ),
     # height = '100%',
-    width = 800
+    width = 750
     )
   # saveWidget(s2, file=paste0(rep_fig,"graph_match.html"))
 }else{ 
