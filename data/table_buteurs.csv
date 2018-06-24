@@ -32,7 +32,7 @@ M14-POUL-G2;Tunisie;63917;Sassi;35;FALSE;TRUE;right foot
 M14-POUL-G2;Angleterre;17020;Kane;11;FALSE;FALSE;right foot
 M14-POUL-G2;Angleterre;17020;Kane;91;FALSE;FALSE;head
 M15-POUL-H1;Japon;64315;Kagawa;6;FALSE;FALSE;right foot
-M15-POUL-H1;Japon;;Osako;73;FALSE;FALSE;head
+M15-POUL-H1;Japon;64323;Osako;73;FALSE;FALSE;head
 M15-POUL-H1;Colombie;64016;Quintero;39;FALSE;FALSE;right foot
 M16-POUL-H2;Pologne;17315;Krychowiak;86;FALSE;FALSE;head
 M16-POUL-H2;Senegal;1735;Rangel Cionek;37;TRUE;FALSE;right foot
@@ -66,7 +66,21 @@ M27-POUL-G3;Tunisie;6397;Bronn;18;FALSE;FALSE;head
 M27-POUL-G3;Tunisie;63916;Khazri;93;FALSE;FALSE;right foot
 M28-POUL-F3;Mexique;63523;Vela;35;FALSE;TRUE;left foot
 M28-POUL-F3;Mexique;63519;Hernandez;35;FALSE;FALSE;right foot
-M28-POUL-F3;Coree du Sud;;Heung-Min;93;FALSE;FALSE;left foot
+M28-POUL-F3;Coree du Sud;63623;Son;93;FALSE;FALSE;left foot
 M29-POUL-F4;Allemagne;15919;Reus;48;FALSE;FALSE;right foot
 M29-POUL-F4;Allemagne;15917;Kroos;95;FALSE;FALSE;right foot
 M29-POUL-F4;Suede;17223;Toivonen;95;FALSE;FALSE;right foot
+M30-POUL-G4;Angleterre;1708;Stones;8;FALSE;FALSE;head
+M30-POUL-G4;Angleterre;1708;Stones;40;FALSE;FALSE;head
+M30-POUL-G4;Angleterre;17020;Kane;22;FALSE;TRUE;right foot
+M30-POUL-G4;Angleterre;17020;Kane;45;FALSE;TRUE;right foot
+M30-POUL-G4;Angleterre;17020;Kane;62;FALSE;FALSE;left foot
+M30-POUL-G4;Angleterre;17015;Lingard;36;FALSE;FALSE.ht foot
+M30-POUL-G4;Panama;12074;Baloy;78;FALSE;FALSE;right foot
+M31-POUL-H3;Senegal;95113;Mané;11;FALSE;FALSE;left foot
+M31-POUL-H3;Japon;64314;Inui;34;FALSE;FALSE;right foot
+M31-POUL-H3;Senegal;95111;Wagué;71;FALSE;FALSE;right foot
+M31-POUL-H3;Japon;64313;Honda;78;FALSE;FALSE;left foot
+M32-POUL-H4;Colombie;6406;Mina;40;FALSE;FALSE;head
+M32-POUL-H4;Colombie;64022;Falcao;70;FALSE;FALSE;right foot
+M32-POUL-H4;Colombie;64013;Cuadrado;75;FALSE;FALSE;right foot
