@@ -79,7 +79,7 @@ if(nrow(table_matchs_jour)>0){
   #############################################
   timevis(data,showZoom = FALSE,
           options = list(editable = FALSE),
-          height = 100
+          height = 100*2
           # style = c(NA, "color: red;")
   )}else{
     knitr::include_graphics("img/refus.jpg")
@@ -113,7 +113,7 @@ dataword %>%
   filter(freq>0.5) %>%  
   e_color_range(freq,color) %>% 
   e_charts() %>% 
-  e_cloud(word, freq, color, shape = "circle", sizeRange = c(5, 30)) %>% 
+  e_cloud(word, freq, color, shape = "circle", sizeRange = c(8, 30)) %>% 
   e_theme("dark") #%>% 
   # e_title("Buteurs du Mondial 2018")
 ########################################

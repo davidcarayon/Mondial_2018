@@ -31,7 +31,7 @@ M13-POUL-G1;Belgique;64423;Lukaku;75;FALSE;FALSE;left foot
 M14-POUL-G2;Tunisie;63917;Sassi;35;FALSE;TRUE;right foot
 M14-POUL-G2;Angleterre;17020;Kane;11;FALSE;FALSE;right foot
 M14-POUL-G2;Angleterre;17020;Kane;91;FALSE;FALSE;head
-M15-POUL-H1;Japon;64315;Kagawa;6;FALSE;FALSE;right foot
+M15-POUL-H1;Japon;64315;Kagawa;6;FALSE;TRUE;right foot
 M15-POUL-H1;Japon;64323;Osako;73;FALSE;FALSE;head
 M15-POUL-H1;Colombie;64016;Quintero;39;FALSE;FALSE;right foot
 M16-POUL-H2;Pologne;17315;Krychowiak;86;FALSE;FALSE;head
@@ -45,8 +45,8 @@ M18-POUL-B3;Portugal;18122;Ronaldo;73;FALSE;FALSE;head
 M19-POUL-A4;Uruguay;88523;Suarez;23;FALSE;FALSE;left foot
 M20-POUL-B4;Espagne;17522;Costa;54;FALSE;FALSE;right foot
 M21-POUL-C3;Australie;188913;Jedinak;38;FALSE;TRUE;right foot
-M21-POUL-C3;Danemark;15112;Eriksen;38;FALSE;FALSe;left foot
-M22-POUL-C4;France;16522;Mbappe;34;FALSE;TRUE;right foot
+M21-POUL-C3;Danemark;15112;Eriksen;38;FALSE;FALSE;left foot
+M22-POUL-C4;France;16522;Mbappe;34;FALSE;FALSE;right foot
 M23-POUL-D3;Croatie;18716;Modric;80;FALSE;FALSE;right foot
 M23-POUL-D3;Croatie;18723;Rebic;53;FALSE;FALSE;right foot
 M23-POUL-D3;Croatie;18718;Rakitic;91;FALSE;FALSE;right foot
@@ -75,7 +75,7 @@ M30-POUL-G4;Angleterre;1708;Stones;40;FALSE;FALSE;head
 M30-POUL-G4;Angleterre;17020;Kane;22;FALSE;TRUE;right foot
 M30-POUL-G4;Angleterre;17020;Kane;45;FALSE;TRUE;right foot
 M30-POUL-G4;Angleterre;17020;Kane;62;FALSE;FALSE;left foot
-M30-POUL-G4;Angleterre;17015;Lingard;36;FALSE;FALSE.ht foot
+M30-POUL-G4;Angleterre;17015;Lingard;36;FALSE;FALSE;right foot
 M30-POUL-G4;Panama;12074;Baloy;78;FALSE;FALSE;right foot
 M31-POUL-H3;Senegal;95113;Mané;11;FALSE;FALSE;left foot
 M31-POUL-H3;Japon;64314;Inui;34;FALSE;FALSE;right foot
