@@ -85,10 +85,10 @@ M32-POUL-H4;Colombie;6406;Mina;40;FALSE;FALSE;head
 M32-POUL-H4;Colombie;64022;Falcao;70;FALSE;FALSE;right foot
 M32-POUL-H4;Colombie;64013;Cuadrado;75;FALSE;FALSE;right foot
 M33-POUL-A5;Egypte;65418;Salah;22;FALSE;FALSE;left foot
-M33-POUL-A5;Arabie saoudite;;Al-Faraj;45;FALSE;TRUE;left foot
-M33-POUL-A5;Arabie saoudite;;Al-Dossari;95;FALSE;FALSE;right foot
+M33-POUL-A5;Arabie saoudite;63112;Al-Faraj;45;FALSE;TRUE;left foot
+M33-POUL-A5;Arabie saoudite;63111;Al Dawsari;95;FALSE;FALSE;right foot
 M33-POUL-A6;Uruguay;88523;Suarez;10;FALSE;FALSE;right foot
-M33-POUL-A6;Uruguay;16411;Cheryshev;23;FALSE;FALSE;right foot
+M33-POUL-A6;Uruguay;16411;Cheryshev;23;TRUE;FALSE;right foot
 M33-POUL-A6;Uruguay;88520;Cavani;90;FALSE;FALSE;left foot
 M34-POUL-B5;Portugal;18117;Quaresma;45;FALSE;FALSE;right foot
 M34-POUL-B5;Iran;63717;Ansarifard;93;FALSE;TRUE;right foot

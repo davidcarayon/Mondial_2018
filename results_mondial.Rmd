@@ -95,16 +95,17 @@ if(nrow(table_matchs_jour)>0){
 table_buteurs<-table_buteurs %>% 
   mutate(Equipe=as.character(Equipe)) %>% 
   left_join(table_pays %>% select(id_pays,pays),by=c("Equipe"="pays")) %>% 
-  group_by(id_joueur,id_pays,Equipe) %>% 
+  group_by(id_joueur,id_pays,Equipe,CSC) %>% 
   summarise(n=as.numeric(n())) %>% 
   ungroup() %>% 
   mutate(id_joueur=as.character(id_joueur)) %>% 
   left_join(table_joueurs %>%  select(id_joueur,nom_complet),by="id_joueur") 
 
 ########################################
-bind_cols(word=table_joueurs$nom_complet,freq=rep(0.01,nrow(table_joueurs))) %>% as.data.frame()->dataword
+bind_cols(word=table_joueurs$nom_complet,freq=rep(0.01,nrow(table_joueurs))) %>% 
+  as.data.frame()->dataword
 ########################################
-dataword<-dataword %>%  left_join(table_buteurs %>% select(n, nom_complet,id_pays),by=c("word"="nom_complet")) %>%
+dataword<-dataword %>%  left_join(table_buteurs %>% filter(CSC != TRUE) %>% select(n, nom_complet,id_pays),by=c("word"="nom_complet")) %>%
   mutate(freq=case_when(!is.na(n)~n,
                         is.na(n)~freq))
 ########################################
