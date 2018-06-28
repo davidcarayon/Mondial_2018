@@ -87,8 +87,9 @@ Classement_pronostiqueurs %>%
   kable_styling("striped", full_width = F,font_size = 25,position= "float_right")
 ```
 
-![khedira](https://media1.giphy.com/media/7sPmucMC8zHry/giphy-downsized.gif?cid=e1bb72ff5b33548e6c674b6f49c0b31d)  
 
+<!-- ![khedira](https://media1.giphy.com/media/7sPmucMC8zHry/giphy-downsized.gif?cid=e1bb72ff5b33548e6c674b6f49c0b31d)   -->
+![mendy](https://media2.giphy.com/media/EbGMxSL0ZuRTW/giphy-downsized.gif?cid=e1bb72ff5b348ac951454b2e32958df4)  
 <!-- ![thiago+silva](https://media3.giphy.com/media/10eVVC60zckXm0/giphy-downsized.gif?cid=e1bb72ff5b3201b7376a367a51c630b4) -->
 <!-- ![Busquets+spain](https://media0.giphy.com/media/OvJQI1Ub7twk0/giphy.gif?cid=e1bb72ff5b2ca00476494a542e758f8b)   -->
 <!-- ![Lukaku](https://media0.giphy.com/media/8maPpCVRIpFyTs6FMp/giphy.gif?cid=e1bb72ff5b2b4e0d313670356fb074fa)   -->
