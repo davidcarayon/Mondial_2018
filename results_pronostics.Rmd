@@ -93,7 +93,7 @@ funnel %>%
     orient  = "vertical"
   ) %>%
   e_tooltip(trigger = "item") %>%
-  e_animation(duration = 10000) %>% 
+  # e_animation(duration = 10000) %>% 
   e_theme("infographic")
 ```
 Les pays qui sont rentrés à la maison :
