@@ -11,7 +11,7 @@ library(ggflags) ; library(ggthemes) ; library(scales) ; library(formattable) ; 
 library(d3treeR) ;
 load("data/sorties_tables/sortie.Rdata")
 table_buteurs<-read.csv2("data/table_buteurs.csv")
-# load("data/Database_Mondial_2018.Rdata")
+ # load("data/Database_Mondial_2018.Rdata")
 ```
 
 <br>
