@@ -6,11 +6,169 @@ toc_float: false
 
 ```{r setup, include=FALSE,message=FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE)
-library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(lubridate) ; suppressPackageStartupMessages(library(googleVis)) ; library(ggpubr) ; library(echarts4r) ; library(gganimate) ; library(ggpubr) ; library(tweenr) ; library(viridis) ; library(magick) ; library(animation) ; library(slickR) ; library(svglite) ; library(htmlwidgets) ; library(plotly)  ; library(formattable) ; library(kableExtra) ;
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(lubridate) ; suppressPackageStartupMessages(library(googleVis)) ; library(ggpubr) ; library(echarts4r) ; library(gganimate) ; library(ggpubr) ; library(tweenr) ; library(viridis) ; library(magick) ; library(animation) ; library(slickR) ; library(svglite) ; library(htmlwidgets) ; library(plotly)  ; library(formattable) ; library(kableExtra) ; library(anicon) ;
 #########################################
 load("data/sorties_tables/sortie.Rdata")
 classement_fifa<-read.csv2("data/ClassementFifa.csv")
 rep_fig = "img/figures/"
+```
+
+<br>
+
+## Avez-vous fait le bon choix ?
+
+
+Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera championne du monde.
+<br>
+
+### Pronostiqueurs toujours en course pour le BONUS Champion
+
+Tout au long du tournoi, vous pouvez suivre le nombre de pronostiqueurs ayant encore leurs choix d'équipe championne du monde toujours en course pour le **BONUS**.
+<!-- `r anicon::nia(text="BONUS",animate="tada",color="red",fixed_width=TRUE)`. -->
+
+```{r,graph funnel,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+
+`%not_in%` = Negate(`%in%`) 
+################################
+funnel_fonction<-function(tour){
+  bind_rows(
+    table_evenements %>% 
+      filter(id_tour==tour) %>% 
+      dplyr::select(Equipe.A) %>% 
+      rename("Equipe"="Equipe.A"),
+    table_evenements %>% 
+      filter(id_tour==tour) %>% 
+      dplyr::select(Equipe.B) %>% 
+      rename("Equipe"="Equipe.B")
+  ) %>% dplyr::select(Equipe) %>% pull()->equipes
+  table_participants %>% 
+    dplyr::filter(champion %in% equipes) %>%
+    nrow() ->nbr
+  table_participants %>% 
+    dplyr::filter(champion %not_in% equipes) %>% 
+    dplyr::select(champion) %>% distinct() %>%  pull()->equipes_sortantes
+  return(list(nbr,equipes_sortantes))
+  # return(nbr)
+}
+##########################################
+nbr_huit<-nbr_QUART<-nbr_DEMI<-nbr_FINAL<-NA
+nbr_huit<-funnel_fonction(tour="HUIT")[[1]]
+nbr_QUART<-funnel_fonction(tour="QUART")[[1]]
+nbr_DEMI<-funnel_fonction(tour="DEMI")[[1]]
+nbr_FINAL<-funnel_fonction(tour="FINAL")[[1]]
+#####################################################
+if(is.na(nbr_QUART)){
+  nbr_QUART<-nbr_DEMI<-nbr_FINAL<-nbr_huit
+  stage = c("Poules", "Huitièmes")
+  value = c(44, nbr_huit)
+  
+}else{
+  if(is.na(nbr_DEMI)){
+    stage = c("Poules", "Huitièmes","Quarts")
+    value = c(44, nbr_huit,nbr_QUART)
+    nbr_DEMI<-nbr_FINAL<-nbr_QUART
+  }else{
+    if(is.na(nbr_FINAL)){
+      stage = c("Poules", "Huitièmes","Quarts","Demi")
+      value = c(44, nbr_huit,nbr_QUART,nbr_DEMI)
+      nbr_FINAL<-nbr_DEMI
+    }else{
+      stage = c("Poules", "Huitièmes","Quarts","Demi","Finale")
+      value = c(44, nbr_huit,nbr_QUART,nbr_DEMI,nbr_FINAL)
+      # stage = c("Poules", "Huitièmes","Quarts","Demi"
+    }
+  }
+}
+####################################################
+funnel <- data.frame(stage , value )
+########################################################
+funnel %>% 
+  e_charts() %>% 
+  e_funnel(value, stage) %>% 
+  e_title("Nombre de pronostiqueurs ayant leur 'champion' encore en jeu") %>% 
+  e_legend(
+    # selectedMode = "single",
+    left = "right",
+    textStyle = list(color = "#fff"),
+    orient  = "vertical"
+  ) %>%
+  e_tooltip(trigger = "item") %>%
+  e_animation(duration = 10000) %>% 
+  e_theme("infographic")
+```
+Les pays qui sont rentrés à la maison :
+
+* `r anicon::nia(text=paste(funnel_fonction(tour="HUIT")[[2]],collapse=", "),animate="passing",speed="slow",size=2)`  
+
+<!-- * en huitièmes : `r  anicon::nia(text=paste(funnel_fonction(tour="QUART")[[2]],collapse=", "),animate="passing")` -->
+<!-- * en quarts : `r anicon::nia(text=paste(funnel_fonction(tour="DEMI")[[2]],collapse=", "),animate="passing")` -->
+<!-- * en demi-finales : `r anicon::nia(text=paste(funnel_fonction(tour="FINAL")[[2]],collapse=", "),animate="passing")` -->
+
+<br>
+
+### Equipes candidates au titre de Championne du monde
+
+
+On vous dévoile les premiers résultats de l'enquête.  
+
+* Sur le camembert, vous pouvez voir la répartition des pays que vous avez choisis comme gagnant pour le mondial.  
+* Le diagramme en barre représente selon les tournois précédents le classement des équipes pré-sélectionnées.  
+
+L'équipe de France a été citée 13 fois. Y-a-t-il du chauvinisme ?  
+Depuis 1978, on peut voir que le Pérou n'a jamais atteint le dernier carré final de la compétition, tandis que l'Allemagne reste une valeur sûre.
+
+<br>
+
+```{r,graph retro,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+
+##################################################
+unaccent <- function(text){
+  text <- gsub("['`^~\"]", " ", text)
+  text <- iconv(text, to="ASCII//TRANSLIT//IGNORE")
+  text <- gsub("['`^~\"]", "", text)
+  return(text)
+}
+table_participants %>% group_by(champion) %>% summarise(Nbr=n()) %>% ungroup()->data_pie
+classement_fifa<-classement_fifa %>%  
+  rename("2022"="X2022",
+         "2018"="X2018",
+         "2014"="X2014",
+         "2010"="X2010" ,
+         "2006"="X2006","2002"="X2002",
+         "1998"="X1998","1994"="X1994","1990"="X1990","1986"="X1986","1982"="X1982",
+         "1978"="X1978")
+classement_fifa$Equipe<-unaccent(as.character(classement_fifa$Equipe))
+
+table_participants %>%   
+  group_by(champion) %>% 
+  summarise(Nbr=n()) %>% 
+  ungroup() %>% 
+  left_join(table_pays,by=c("champion"="pays")) %>% 
+  mutate(Classement=as.integer(Classement)) %>% 
+  left_join(classement_fifa,"Classement") %>% 
+  select(Equipe,Classement,Nbr,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% gather(Year,Value,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% 
+  mutate(Value=factor(ifelse(Value>0,5-Value,0),ordered = TRUE)) %>% 
+  spread(Equipe,Value) %>%
+  mutate(Year=factor(Year,levels=seq(1978,2022,4))) %>% 
+  arrange(Year) %>% 
+  e_charts(Year,width="100%") %>% 
+  e_bar(Allemagne) %>% 
+  e_bar(Angleterre) %>% 
+  e_bar(Argentine) %>% 
+  e_bar(Belgique) %>% 
+  e_bar(Bresil) %>% 
+  e_bar(Espagne) %>% 
+  e_bar(France) %>% 
+  e_bar(Perou) %>% 
+  e_bar(Portugal) %>% 
+  e_data(data_pie, champion) %>% 
+  e_pie(Nbr, rm.x = FALSE, rm.y = FALSE, center = c("85%", "50%"), radius = c(0, 30)) %>% 
+  e_tooltip(trigger = "item") %>% 
+  e_title("Rétrospective selon les Mondiaux","des équipes sélectionnées par les pronostiqueurs\n et occurences",right="right") %>% 
+  e_theme("infographic") %>% 
+  e_legend(bottom = 0) %>% # move legend to the bottom
+  e_x_axis(name="Année de\ncoupe\ndu monde",axisLabel = list(interval = 0, rotate = 45)) %>% 
+  e_y_axis(name="Classement dans\n le dernier carré\n(4=Champion, ..., 1=4eme)",show=TRUE,axisLabel = list(interval = 0)) 
 ```
 
 <br>
@@ -290,117 +448,6 @@ table_evenements %>%
 <br>
 
 
-## Avez-vous fait le bon choix ?
 
-
-Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera championne du monde.
-<br>
-
-### Equipes candidates au titre de Championne du monde
-
-
-On vous dévoile les premiers résultats de l'enquête.  
-
-* Sur le camembert, vous pouvez voir la répartition des pays que vous avez choisis comme gagnant pour le mondial.  
-* Le diagramme en barre représente selon les tournois précédents le classement des équipes pré-sélectionnées.  
-
-L'équipe de France a été citée 13 fois. Y-a-t-il du chauvinisme ?  
-Depuis 1978, on peut voir que le Pérou n'a jamais atteint le dernier carré final de la compétition, tandis que l'Allemagne reste une valeur sûre.
-
-<br>
-
-```{r,graph retro,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
-
-##################################################
-unaccent <- function(text){
-  text <- gsub("['`^~\"]", " ", text)
-  text <- iconv(text, to="ASCII//TRANSLIT//IGNORE")
-  text <- gsub("['`^~\"]", "", text)
-  return(text)
-}
-table_participants %>% group_by(champion) %>% summarise(Nbr=n()) %>% ungroup()->data_pie
-classement_fifa<-classement_fifa %>%  
-  rename("2022"="X2022",
-         "2018"="X2018",
-         "2014"="X2014",
-         "2010"="X2010" ,
-         "2006"="X2006","2002"="X2002",
-         "1998"="X1998","1994"="X1994","1990"="X1990","1986"="X1986","1982"="X1982",
-         "1978"="X1978")
-classement_fifa$Equipe<-unaccent(as.character(classement_fifa$Equipe))
-
-table_participants %>%   
-  group_by(champion) %>% 
-  summarise(Nbr=n()) %>% 
-  ungroup() %>% 
-  left_join(table_pays,by=c("champion"="pays")) %>% 
-  mutate(Classement=as.integer(Classement)) %>% 
-  left_join(classement_fifa,"Classement") %>% 
-  select(Equipe,Classement,Nbr,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% gather(Year,Value,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% 
-  mutate(Value=factor(ifelse(Value>0,5-Value,0),ordered = TRUE)) %>% 
-  spread(Equipe,Value) %>%
-  mutate(Year=factor(Year,levels=seq(1978,2022,4))) %>% 
-  arrange(Year) %>% 
-  e_charts(Year,width="100%") %>% 
-  e_bar(Allemagne) %>% 
-  e_bar(Angleterre) %>% 
-  e_bar(Argentine) %>% 
-  e_bar(Belgique) %>% 
-  e_bar(Bresil) %>% 
-  e_bar(Espagne) %>% 
-  e_bar(France) %>% 
-  e_bar(Perou) %>% 
-  e_bar(Portugal) %>% 
-  e_data(data_pie, champion) %>% 
-  e_pie(Nbr, rm.x = FALSE, rm.y = FALSE, center = c("85%", "50%"), radius = c(0, 30)) %>% 
-  e_tooltip(trigger = "item") %>% 
-  e_title("Rétrospective selon les Mondiaux","des équipes sélectionnées par les pronostiqueurs\n et occurences",right="right") %>% 
-  e_theme("infographic") %>% 
-  e_legend(bottom = 0) %>% # move legend to the bottom
-  e_x_axis(name="Année de\ncoupe\ndu monde",axisLabel = list(interval = 0, rotate = 45)) %>% 
-  e_y_axis(name="Classement dans\n le dernier carré\n(4=Champion, ..., 1=4eme)",show=TRUE,axisLabel = list(interval = 0)) 
-```
-
-<br>
-
-
-
-
-
-
-<!-- <br> -->
-
-<!-- ```{r,graph pronostics,results='asis', cache=TRUE, warning=FALSE,message=FALSE}  -->
-<!-- ###################################################### -->
-<!-- table_resultats_pronostics %>%  -->
-<!--   separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%  -->
-<!--   left_join(table_evenements %>%  -->
-<!--               mutate(cd_date=as.character(cd_date), -->
-<!--                      Heure=as.character(Heure)) %>%  -->
-<!--               select(id_match,cd_date,Heure),by="id_match") %>%  -->
-<!--   # unite(datetime,c("cd_date","Heure")) %>% -->
-<!--   mutate(datetime=ymd(cd_date)) %>%  -->
-<!--    mutate(datetime=ymd(cd_date)) %>%  -->
-<!--   arrange(datetime)->pronostics -->
-
-<!-- pronostics %>%  -->
-<!--   select(pseudo,datetime,points) %>%  -->
-<!--   group_by(pseudo,datetime) %>%  -->
-<!--   mutate(points=sum(points)) %>%  -->
-<!--   ungroup() %>%   distinct() %>%  -->
-<!--   arrange(pseudo) %>%  -->
-<!--   group_by(pseudo) %>%  -->
-<!--   mutate(PtsCum = cumsum(points)) %>%  -->
-<!--   arrange(pseudo) %>%  -->
-<!--   select(pseudo,datetime,PtsCum) %>%   -->
-<!--   ungroup() %>%   -->
-<!--   as.data.frame() %>%  -->
-<!--   distinct() ->pronostics -->
-
-<!-- M<-gvisMotionChart(pronostics, idvar='pseudo', timevar='datetime',options=list(showYMetricPicker=F,showXMetricPicker=F,showAdvancedPanel=F))   -->
-<!-- print(M,"chart") -->
-<!-- ``` -->
-
-<!-- <br> -->
 
 

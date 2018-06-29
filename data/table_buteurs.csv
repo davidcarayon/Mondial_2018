@@ -109,9 +109,9 @@ M42-POUL-F5;Suede;1725;Granqvist;62;FALSE;TRUE;right foot
 M41-POUL-F5;Coree du Sud;63623;Son;96;FALSE;FALSE;left foot
 M41-POUL-F5;Coree du Sud;6368;Kim;92;FALSE;FALSE;left foot
 M44-POUL-E6;Suisse;15213;Dzemaili;31;FALSE;FALSE;right foot
-M44-POUL-E6Suisse;15220;Drmic;88;FALSE;FALSE;right foot
-M44-POUL-E6;Costa Rica;135111;Kendall;56;FLASE;FALSE;head
-M44-POUL-E6;Costa Rica;1523;Sommer;93;TRUE;TRUE;head
+M44-POUL-E6;Suisse;15220;Drmic;88;FALSE;FALSE;right foot
+M44-POUL-E6;Costa Rica;135111;Kendall;56;FALSE;FALSE;head
+M44-POUL-E6;Costa Rica;1523;Sommer;93;TRUE;FALSE;head
 M43-POUL-E5;Bresil;62618;Paulinho;36;FALSE;FALSE;right foot
 M43-POUL-E5;Bresil;62611;Silva;68;FALSE;FALSE;head
 M45-POUL-H5;Pologne;1734;Bednarek;59;FALSE;FALSE;right foot
