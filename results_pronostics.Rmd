@@ -245,8 +245,7 @@ Classement_pronostiqueurs %>%
   kable_styling("striped", full_width = F,font_size = 25,position= "float_right")
 ```
 
-
-[dembele+ousmane](https://media3.giphy.com/media/qsWWHpKvsGDEA/giphy-downsized.gif?cid=e1bb72ff5b3b2816693961786f1faa4c)
+![dembele+ousmane+](https://media2.giphy.com/media/qsWWHpKvsGDEA/giphy-downsized-medium.gif?cid=e1bb72ff5b3b2a20585646772ee22604)  
 <!-- ![khedira](https://media1.giphy.com/media/7sPmucMC8zHry/giphy-downsized.gif?cid=e1bb72ff5b33548e6c674b6f49c0b31d)   -->
 <!-- ![mendy](https://media2.giphy.com/media/EbGMxSL0ZuRTW/giphy-downsized.gif?cid=e1bb72ff5b348ac951454b2e32958df4)   -->
 <!-- ![thiago+silva](https://media2.giphy.com/media/SKT3N37H9KtFPdCKkz/giphy-downsized.gif?cid=e1bb72ff5b35e0c2574538795100d784)   -->
