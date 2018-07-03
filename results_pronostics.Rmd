@@ -98,11 +98,10 @@ funnel %>%
 ```
 Les pays qui sont rentrés à la maison :
 
-* `r anicon::nia(text=paste(funnel_fonction(tour="HUIT")[[2]],collapse=", "),animate="passing",speed="slow",size=2)`  
-
-<!-- * en huitièmes : `r  anicon::nia(text=paste(funnel_fonction(tour="QUART")[[2]],collapse=", "),animate="passing")` -->
-<!-- * en quarts : `r anicon::nia(text=paste(funnel_fonction(tour="DEMI")[[2]],collapse=", "),animate="passing")` -->
-<!-- * en demi-finales : `r anicon::nia(text=paste(funnel_fonction(tour="FINAL")[[2]],collapse=", "),animate="passing")` -->
+`r anicon::nia(text=paste(funnel_fonction(tour="HUIT")[[2]],collapse=", "),animate="passing",speed="slow",size=2)`  
+`r  anicon::nia(text=paste(funnel_fonction(tour="QUART")[[2]],collapse=", "),animate="passing",speed="slow",size=2)`
+<!-- * en quarts : `r anicon::nia(text=paste(funnel_fonction(tour="DEMI")[[2]],collapse=", "),animate="passing",speed="slow",size=2)` -->
+<!-- * en demi-finales : `r anicon::nia(text=paste(funnel_fonction(tour="FINAL")[[2]],collapse=", "),animate="passing",speed="slow",size=2)` -->
 
 <br>
 
