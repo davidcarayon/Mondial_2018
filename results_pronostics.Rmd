@@ -6,7 +6,7 @@ toc_float: false
 
 ```{r setup, include=FALSE,message=FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning = FALSE)
-library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(lubridate) ; suppressPackageStartupMessages(library(googleVis)) ; library(ggpubr) ; library(echarts4r) ; library(gganimate) ; library(ggpubr) ; library(tweenr) ; library(viridis) ; library(magick) ; library(animation) ; library(slickR) ; library(svglite) ; library(htmlwidgets) ; library(plotly)  ; library(formattable) ; library(kableExtra) ; library(anicon) ;
+library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) ; library(echarts4r) ; library(magrittr) ; library(data.tree) ; library(flexdashboard) ; library(lubridate) ; suppressPackageStartupMessages(library(googleVis)) ; library(ggpubr) ; library(echarts4r) ; library(gganimate) ; library(ggpubr) ; library(tweenr) ; library(viridis) ; library(magick) ; library(animation) ; library(slickR) ; library(svglite) ; library(htmlwidgets) ; library(plotly)  ; library(formattable) ; library(kableExtra) ; library(anicon) ; library(rAmCharts) ; library(pipeR) ;
 #########################################
 load("data/sorties_tables/sortie.Rdata")
 classement_fifa<-read.csv2("data/ClassementFifa.csv")
@@ -81,20 +81,35 @@ if(is.na(nbr_QUART)){
 }
 ####################################################
 funnel <- data.frame(stage , value )
+names(funnel)<-c("description","value")
 ########################################################
-funnel %>% 
-  e_charts() %>% 
-  e_funnel(value, stage) %>% 
-  e_title("Nombre de pronostiqueurs ayant leur 'champion' encore en jeu") %>% 
-  e_legend(
-    # selectedMode = "single",
-    left = "right",
-    textStyle = list(color = "#fff"),
-    orient  = "vertical"
-  ) %>%
-  e_tooltip(trigger = "item") %>%
-  # e_animation(duration = 10000) %>% 
-  e_theme("infographic")
+# funnel %>% 
+#   e_charts() %>% 
+#   e_funnel(value, description) %>% 
+#   e_title("Nombre de pronostiqueurs ayant leur 'champion' encore en jeu") %>% 
+#   e_legend(
+#     # selectedMode = "single",
+#     left = "right",
+#     textStyle = list(color = "#fff"),
+#     orient  = "vertical"
+#   ) %>%
+#   e_tooltip(trigger = "item") %>%
+#   # e_animation(duration = 10000) %>% 
+#   e_theme("infographic")
+
+amFunnelChart(dataProvider = funnel, startX = -500,
+              depth3D = 50, angle = 60, 
+              outlineColor = '#FFFFFF',
+              outLineThickness =5, 
+              titleField = 'description',
+              valueField = 'value',
+              labelPosition = 'right', marginLeft = 100,
+              marginRight = 300, startDuration = 5, theme = "light",
+              rotate=180) %>>%
+  amOptions( main = "Nombre de participants ayant leur champion encore en jeu",
+             mainColor = "#68838B", mainSize = 20, creditsPosition = "top-right") %>>% 
+  setLegend(position = "bottom", useMarkerColorForLabels = TRUE) %>>%
+  plot() 
 ```
 Les pays qui sont rentrés à la maison :
 

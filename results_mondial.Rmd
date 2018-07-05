@@ -10,7 +10,7 @@ library(ggthemes) ; library(circlepackeR) ; library(Hmisc) ; library(tidyverse) 
 library(ggflags) ; library(ggthemes) ; library(scales) ; library(formattable) ; library(kableExtra) ; library(lubridate) ; library(timevis) ;library(treemap) ;
 library(d3treeR) ;
 load("data/sorties_tables/sortie.Rdata")
-table_buteurs<-read.csv2("data/table_buteurs.csv")
+table_buteurs<-read.csv2("data/table_buteurs.csv",stringsAsFactors = FALSE)
  # load("data/Database_Mondial_2018.Rdata")
 ```
 
@@ -93,7 +93,7 @@ if(nrow(table_matchs_jour)>0){
 
 
 ```{r,graph wordcloud buteurs ,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
-table_buteurs<-table_buteurs %>% 
+table_buteurs1<-table_buteurs %>% 
   mutate(Equipe=as.character(Equipe)) %>% 
   left_join(table_pays %>% select(id_pays,pays),by=c("Equipe"="pays")) %>% 
   group_by(id_joueur,id_pays,Equipe,CSC) %>% 
@@ -106,7 +106,7 @@ table_buteurs<-table_buteurs %>%
 bind_cols(word=table_joueurs$nom_complet,freq=rep(0.01,nrow(table_joueurs))) %>% 
   as.data.frame()->dataword
 ########################################
-dataword<-dataword %>%  left_join(table_buteurs %>% filter(CSC != TRUE) %>% select(n, nom_complet,id_pays),by=c("word"="nom_complet")) %>%
+dataword<-dataword %>%  left_join(table_buteurs1 %>% filter(CSC != TRUE) %>% select(n, nom_complet,id_pays),by=c("word"="nom_complet")) %>%
   mutate(freq=case_when(!is.na(n)~n,
                         is.na(n)~freq))
 ########################################
@@ -124,32 +124,52 @@ dataword %>%
 
 <br>
 
-<!-- ```{r,graph repartition buts,echo=FALSE,warning=FALSE,message=FALSE,fig.align="center",fig.width=12,fig.height=8} -->
-<!-- table_buteurs<-read.csv2("data/table_buteurs.csv") -->
-<!-- table_buteurs$CSC[table_buteurs$CSC %in% TRUE]<-"CSC" -->
-<!-- table_buteurs$CSC[table_buteurs$CSC %in% FALSE]<-"" -->
-<!-- table_buteurs$Penalty[table_buteurs$Penalty %in% TRUE]<-"Penalty" -->
-<!-- table_buteurs$Penalty[table_buteurs$Penalty %in% FALSE]<-"" -->
-<!-- table_buteurs<-table_buteurs %>%  -->
-<!--   mutate(id_joueur=as.character(id_joueur)) %>%  -->
-<!--   left_join(table_joueurs,by="id_joueur")  -->
-<!-- table_buteurs %>%  -->
-<!--   group_by(CSC,Penalty,poste,Partie,nom_complet) %>%  -->
-<!--   summarise(n=n()) %>%  -->
-<!--   ungroup() %>%  -->
-<!--   as.data.frame() ->data_treemap -->
-<!-- ############################################################### -->
-<!-- p=treemap(data_treemap, -->
-<!--           index=c("CSC","Penalty","poste","Partie","nom_complet"), -->
-<!--           vSize="n", -->
-<!--           vColor= "Partie", #This is a categorical variable, -->
-<!--           palette="Set1", -->
-<!--           type="categorical", #Type sets the organization and color scheme of your treemap -->
-<!--           fontsize.title = 20 #Change the font size of the title -->
-<!-- )             -->
-<!-- # make it interactive ("rootname" becomes the title of the plot): -->
-<!-- d3tree2( p , rootname = "Goals repartition" ) -->
-<!-- ``` -->
+## Les buts en détail
+
+Au total, nous avons **`r nrow(table_buteurs)`** buts (dont `r table_buteurs %>% filter(Penalty==TRUE) %>% nrow()` sur pénalty et `r table_buteurs %>% filter(CSC==TRUE) %>% nrow()` buts contre son camp (CSC)).  
+Le treemap permet de visualiser la distribution des buts selon le poste, la partie du corps et le nom du joueur.
+
+Information sur le poste du buteur :
+
+* ATT : attaquant
+* MIL : milieu
+* DEF : défenseur
+* GAR : gardien
+
+Information sur le code couleur :
+
+* vert : pied droit
+* bleu : pied gauche
+* rouge : tête
+
+
+```{r,graph repartition buts,echo=FALSE,warning=FALSE,message=FALSE,fig.width=6,fig.height=6}
+# table_buteurs<-read.csv2("data/table_buteurs.csv")
+table_buteurs$CSC[table_buteurs$CSC %in% TRUE]<-"CSC"
+table_buteurs$CSC[table_buteurs$CSC %in% FALSE]<-""
+table_buteurs$Penalty[table_buteurs$Penalty %in% TRUE]<-"Penalty"
+table_buteurs$Penalty[table_buteurs$Penalty %in% FALSE]<-""
+table_buteurs<-table_buteurs %>%
+  mutate(id_joueur=as.character(id_joueur)) %>%
+  left_join(table_joueurs,by="id_joueur")
+table_buteurs %>%
+  group_by(CSC,Penalty,poste,Partie,nom_complet) %>%
+  summarise(n=n()) %>%
+  ungroup() %>%
+  as.data.frame() ->data_treemap
+###############################################################
+treemap(data_treemap,
+          index=c("CSC","Penalty","poste","Partie","nom_complet"),
+          vSize="n",
+          vColor= "Partie", #This is a categorical variable,
+          palette="Set1",
+          type="categorical", #Type sets the organization and color scheme of your treemap
+          fontsize.title = 20, #Change the font size of the title
+          draw=FALSE
+) %>% 
+# make it interactive ("rootname" becomes the title of the plot):
+d3tree2( rootname = "Goals repartition",width="100%" )
+```
 
 <br>
 
