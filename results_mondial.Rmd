@@ -11,7 +11,7 @@ library(ggflags) ; library(ggthemes) ; library(scales) ; library(formattable) ; 
 library(d3treeR) ;
 load("data/sorties_tables/sortie.Rdata")
 table_buteurs<-read.csv2("data/table_buteurs.csv",stringsAsFactors = FALSE)
- # load("data/Database_Mondial_2018.Rdata")
+# load("data/Database_Mondial_2018.Rdata")
 ```
 
 <br>
@@ -46,7 +46,7 @@ if(sum(table_evenements$cd_date == (today-a))>0){
       Score.B = color_tile("white", "green")(Score.B)) %>% 
     rename("Score A"="Score.A","Score B"="Score.B","Equipe B"="Equipe.B","Equipe A"="Equipe.A") %>% 
     kable(escape = F) %>%
-      # row_spec(0, angle = -45) %>% 
+    # row_spec(0, angle = -45) %>% 
     kable_styling("striped", full_width = F)
   #############################""
 }else{
@@ -117,7 +117,7 @@ dataword %>%
   e_charts() %>% 
   e_cloud(word, freq, color, shape = "circle", sizeRange = c(8, 30)) %>% 
   e_theme("dark") #%>% 
-  # e_title("Buteurs du Mondial 2018")
+# e_title("Buteurs du Mondial 2018")
 ########################################
 ########################################
 ```
@@ -143,7 +143,7 @@ Information sur le code couleur :
 * rouge : tête
 
 
-```{r,graph repartition buts,echo=FALSE,warning=FALSE,message=FALSE,fig.width=6,fig.height=6}
+```{r,graph repartition buts,echo=FALSE,warning=FALSE,message=FALSE,fig.width=12,fig.height=8}
 # table_buteurs<-read.csv2("data/table_buteurs.csv")
 table_buteurs$CSC[table_buteurs$CSC %in% TRUE]<-"CSC"
 table_buteurs$CSC[table_buteurs$CSC %in% FALSE]<-""
@@ -164,11 +164,20 @@ treemap(data_treemap,
           vColor= "Partie", #This is a categorical variable,
           palette="Set1",
           type="categorical", #Type sets the organization and color scheme of your treemap
-          fontsize.title = 20, #Change the font size of the title
-          draw=FALSE
-) %>% 
+          # fontsize.title = 20, #Change the font size of the title
+          draw=TRUE,
+        title="Goals repartition",position.legend = "bottom"
+) 
 # make it interactive ("rootname" becomes the title of the plot):
-d3tree2( rootname = "Goals repartition",width="100%" )
+# d3tree2( treemap(data_treemap,
+#                  index=c("CSC","Penalty","poste","Partie","nom_complet"),
+#                  vSize="n",
+#                  vColor= "Partie", #This is a categorical variable,
+#                  palette="Set1",
+#                  type="categorical", #Type sets the organization and color scheme of your treemap
+#                  # fontsize.title = 20, #Change the font size of the title
+#                  draw=FALSE
+# ),rootname = "Goals repartition",width="100%" )
 ```
 
 <br>
@@ -187,7 +196,7 @@ ggplot(table_resultats_poules, aes(x=toupper(cd_flag), y=Pts, country=cd_flag)) 
   theme_dark()+
   theme(strip.text.x = element_text(face="bold",size=14),
         strip.background = element_rect(colour="white"),
-         axis.text.y = element_text(size=14) )
+        axis.text.y = element_text(size=14) )
 ```
 
 <br>
