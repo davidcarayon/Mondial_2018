@@ -1,7 +1,0 @@
-dependencies:
-  - name: amcharts
-    version: 3.21.13
-    src: htmlwidgets/lib
-    script:
-      - amcharts.js
-      
