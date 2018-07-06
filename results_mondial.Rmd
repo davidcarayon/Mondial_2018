@@ -89,6 +89,30 @@ if(nrow(table_matchs_jour)>0){
 
 <br>
 
+<!-- ## Phase éliminatoire  -->
+
+<!-- ```{r,graphique tableau final,results='asis', cache=TRUE, warning=FALSE,message=FALSE,fig.align = "center",fig.width=8,fig.height=8}  -->
+<!-- bind_rows( -->
+<!-- table_evenements %>%  -->
+<!--   filter(id_tour!="POUL" & id_tour!="TROIS") %>%  -->
+<!--   unite(equipe_phase,c("id_tour","Equipe.A")) %>%  -->
+<!--   select(equipe_phase) , -->
+<!-- table_evenements %>%  -->
+<!--   filter(id_tour!="POUL" & id_tour!="TROIS") %>%  -->
+<!--   unite(equipe_phase,c("id_tour","Equipe.B")) %>%  -->
+<!--   select(equipe_phase) -->
+<!-- ) %>%  -->
+<!--   separate(equipe_phase,c("id_tour","Equipe"),sep="_",remove = FALSE) ->phase_eliminatoire -->
+<!-- phase_eliminatoire<-rbind(phase_eliminatoire %>%   -->
+<!--   mutate(id_match=rep(c(equipe_phase[c(24,9,12,27,10,11,25,26,13,28,14,29,15,30)],"Champion"),2)), -->
+<!-- c("Champion",NA,NA,NA)) -->
+<!-- gvisOrgChart(phase_eliminatoire,  idvar = "equipe_phase", parentvar = "id_match",options=list(width="100px", height="400px",size="small",colors="['#a6cee3', '#b2df8a', '#fb9a99']"))->graph -->
+<!-- print(graph,"chart") -->
+<!-- ``` -->
+
+
+<!-- <br> -->
+
 ## Buteurs du Mondial 2018
 
 
