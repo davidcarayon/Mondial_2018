@@ -114,8 +114,8 @@ amFunnelChart(dataProvider = funnel, startX = -500,
 Les pays qui sont rentrés à la maison :
 
 <!-- `r anicon::nia(text=paste(funnel_fonction(tour="HUIT")[[2]],collapse=", "),animate="passing",speed="slow",size=2)`   -->
-* `r  anicon::nia(text=paste(funnel_fonction(tour="QUART")[[2]],collapse=", "),animate="passing",speed="slow",size=2)`
-<!-- * en quarts : `r anicon::nia(text=paste(funnel_fonction(tour="DEMI")[[2]],collapse=", "),animate="passing",speed="slow",size=2)` -->
+<!-- * `r  anicon::nia(text=paste(funnel_fonction(tour="QUART")[[2]],collapse=", "),animate="passing",speed="slow",size=2)` -->
+* `r anicon::nia(text=paste(funnel_fonction(tour="DEMI")[[2]],collapse=", "),animate="passing",speed="slow",size=2)`
 <!-- * en demi-finales : `r anicon::nia(text=paste(funnel_fonction(tour="FINAL")[[2]],collapse=", "),animate="passing",speed="slow",size=2)` -->
 
 <br>
@@ -259,8 +259,10 @@ Classement_pronostiqueurs %>%
   kable_styling("striped", full_width = F,font_size = 25,position= "float_right")
 ```
 
-![neymar+](https://media0.giphy.com/media/sDUtsdsrEuad2/giphy.gif?cid=e1bb72ff5b3c7881347843392ea60df3)  
 
+![Alisson+Becker](https://media3.giphy.com/media/xUOxfoAs1aZNja273W/giphy.gif?cid=e1bb72ff5b43103c703044626bdc3c68)  
+
+<!-- ![neymar+](https://media0.giphy.com/media/sDUtsdsrEuad2/giphy.gif?cid=e1bb72ff5b3c7881347843392ea60df3)   -->
 <!-- ![dembele+ousmane+](https://media2.giphy.com/media/qsWWHpKvsGDEA/giphy-downsized-medium.gif?cid=e1bb72ff5b3b2a20585646772ee22604)   -->
 <!-- ![khedira](https://media1.giphy.com/media/7sPmucMC8zHry/giphy-downsized.gif?cid=e1bb72ff5b33548e6c674b6f49c0b31d)   -->
 <!-- ![mendy](https://media2.giphy.com/media/EbGMxSL0ZuRTW/giphy-downsized.gif?cid=e1bb72ff5b348ac951454b2e32958df4)   -->
