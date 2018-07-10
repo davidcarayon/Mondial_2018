@@ -56,12 +56,6 @@ if(sum(table_evenements$cd_date == (today-a))>0){
 
 <br>
 
-<!-- ## Joueur de la veille -->
-
-<!-- Harry Kane (Angleterre) -->
-
-<!-- ![Harry+kane](https://media0.giphy.com/media/t75ANdru6RWBJ6nwC0/giphy.gif?cid=e1bb72ff5b28d1c5634357386f05e1ca)   -->
-<!-- <div style='font-size:50%'>([Source link](https://youtu.be/hOctLZf1kkE), accessed juin 03, 2018)</div>   -->
 
 <!-- <br> -->
 

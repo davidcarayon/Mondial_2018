@@ -17,6 +17,34 @@ rep_fig = "img/figures/"
 
 ## Avez-vous fait le bon choix ?
 
+<br>
+
+### Probabilité estimée pour le match de ce soir
+
+```{r graph pronostic,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center",fig.width=12,fig.height=3}
+table_pronostics %>% 
+  filter(id_match=="M61-DEMI-1") %>% 
+  group_by(pays) %>% 
+  summarise(n=n()) %>% 
+  mutate(n=n/sum(n)) %>% 
+  as.data.frame()->pourcentage_table
+ ###########################################
+pourcentage_table$pays[is.na(pourcentage_table$pays)]<-"non renseigné"
+pourcentage_table$pays<-factor(pourcentage_table$pays,levels=c("France","non renseigné","Belgique"))
+##################################
+pourcentage_table %>% 
+  ggplot(aes(x=1,y=n*100,fill = pays))+
+  geom_bar(stat="identity",position = position_fill(reverse = TRUE),width = 1) +
+ geom_text(aes(x = 1, y =cumsum(n[c(2,3,1)])- (0.5 * n[c(2,3,1)]),
+                                             label = paste0(c("France","non renseigné","Belgique"),"\n",round(n[c(2,3,1)]*100,0),"%")), size=10,angle=90)+
+  coord_flip()+
+  scale_fill_manual(values=c("France"="blue","non renseigné"="white","Belgique"="red"))+
+  theme_void()+
+  theme(legend.position = "none")
+```
+
+<br>
+
 
 Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera championne du monde.
 <br>
