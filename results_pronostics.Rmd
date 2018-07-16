@@ -15,33 +15,26 @@ rep_fig = "img/figures/"
 
 <br>
 
-## Avez-vous fait le bon choix ?
+Les résultats du jeu des pronostics seront dévoilés ce Vendredi au pot.
 
 <br>
 
-<!-- ### Probabilité estimée pour le match de ce soir -->
+**"La patience est une vertu qui porte toujours sa récompense avec elle."**
+Axel Oxenstiern
 
-<!-- ```{r graph pronostic,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center",fig.width=12,fig.height=3} -->
-<!-- table_pronostics %>%  -->
-<!--   filter(id_match=="M62-DEMI-2") %>%  -->
-<!--   group_by(pays) %>%  -->
-<!--   summarise(n=n()) %>%  -->
-<!--   mutate(n=n/sum(n)) %>%  -->
-<!--   as.data.frame()->pourcentage_table -->
-<!--  ########################################### -->
-<!-- pourcentage_table$pays[is.na(pourcentage_table$pays)]<-"non renseigné" -->
-<!-- pourcentage_table$pays<-factor(pourcentage_table$pays,levels=c("Angleterre","non renseigné","Croatie")) -->
-<!-- ################################## -->
-<!-- pourcentage_table %>%  -->
-<!--   ggplot(aes(x=1,y=n*100,fill = pays))+ -->
-<!--   geom_bar(stat="identity",position = position_fill(reverse = TRUE),width = 1) + -->
-<!--  geom_text(aes(x = 1, y =cumsum(n[c(1,3,2)])- (0.5 * n[c(1,3,2)]), -->
-<!--                                              label = paste0(c("Angleterre","non renseigné","Croatie"),"\n",round(n[c(1,3,2)]*100,0),"%")), size=10,angle=90)+ -->
-<!--   coord_flip()+ -->
-<!--   scale_fill_manual(values=c("Angleterre"="lightblue","non renseigné"="white","Croatie"="lightsalmon1"))+ -->
-<!--   theme_void()+ -->
-<!--   theme(legend.position = "none") -->
-<!-- ``` -->
+<br>
+
+
+![patience](https://media3.giphy.com/media/tXL4FHPSnVJ0A/giphy-downsized.gif?cid=e1bb72ff5b4c444d4334367755ac1f19)  
+![patience](https://media1.giphy.com/media/ZXKZWB13D6gFO/giphy-downsized.gif?cid=e1bb72ff5b4c444d4334367755ac1f19)  
+
+
+
+<br>
+
+
+
+## Avez-vous fait le bon choix ?
 
 <br>
 
@@ -52,449 +45,382 @@ Lors de votre inscription, on vous a demandé l'équipe qui selon vous sera cham
 ### Pronostiqueurs toujours en course pour le BONUS Champion
 
 Tout au long du tournoi, vous pouvez suivre le nombre de pronostiqueurs ayant encore leurs choix d'équipe championne du monde toujours en course pour le **BONUS**.
-<!-- `r anicon::nia(text="BONUS",animate="tada",color="red",fixed_width=TRUE)`. -->
 
 ```{r,graph funnel,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
-
-`%not_in%` = Negate(`%in%`) 
-################################
+#
+`%not_in%` = Negate(`%in%`)
+ ################################
 funnel_fonction<-function(tour){
   bind_rows(
-    table_evenements %>% 
-      filter(id_tour==tour) %>% 
-      dplyr::select(Equipe.A) %>% 
+    table_evenements %>%
+      filter(id_tour==tour) %>%
+      dplyr::select(Equipe.A) %>%
       rename("Equipe"="Equipe.A"),
-    table_evenements %>% 
-      filter(id_tour==tour) %>% 
-      dplyr::select(Equipe.B) %>% 
+    table_evenements %>%
+      filter(id_tour==tour) %>%
+      dplyr::select(Equipe.B) %>%
       rename("Equipe"="Equipe.B")
   ) %>% dplyr::select(Equipe) %>% pull()->equipes
-  table_participants %>% 
+  table_participants %>%
     dplyr::filter(champion %in% equipes) %>%
     nrow() ->nbr
-  table_participants %>% 
-    dplyr::filter(champion %not_in% equipes) %>% 
+  table_participants %>%
+    dplyr::filter(champion %not_in% equipes) %>%
     dplyr::select(champion) %>% distinct() %>%  pull()->equipes_sortantes
   return(list(nbr,equipes_sortantes))
-  # return(nbr)
 }
-##########################################
-nbr_huit<-nbr_QUART<-nbr_DEMI<-nbr_FINAL<-NA
-nbr_huit<-funnel_fonction(tour="HUIT")[[1]]
-nbr_QUART<-funnel_fonction(tour="QUART")[[1]]
-nbr_DEMI<-funnel_fonction(tour="DEMI")[[1]]
-nbr_FINAL<-funnel_fonction(tour="FINAL")[[1]]
-#####################################################
-if(is.na(nbr_QUART)){
-  nbr_QUART<-nbr_DEMI<-nbr_FINAL<-nbr_huit
-  stage = c("Poules", "Huitièmes")
-  value = c(44, nbr_huit)
-  
-}else{
-  if(is.na(nbr_DEMI)){
-    stage = c("Poules", "Huitièmes","Quarts")
-    value = c(44, nbr_huit,nbr_QUART)
-    nbr_DEMI<-nbr_FINAL<-nbr_QUART
-  }else{
-    if(is.na(nbr_FINAL)){
-      stage = c("Poules", "Huitièmes","Quarts","Demi")
-      value = c(44, nbr_huit,nbr_QUART,nbr_DEMI)
-      nbr_FINAL<-nbr_DEMI
-    }else{
-      stage = c("Poules", "Huitièmes","Quarts","Demi","Finale")
-      value = c(44, nbr_huit,nbr_QUART,nbr_DEMI,nbr_FINAL)
-      # stage = c("Poules", "Huitièmes","Quarts","Demi"
-    }
-  }
-}
-####################################################
-funnel <- data.frame(stage , value )
-names(funnel)<-c("description","value")
-########################################################
-# funnel %>% 
-#   e_charts() %>% 
-#   e_funnel(value, description) %>% 
-#   e_title("Nombre de pronostiqueurs ayant leur 'champion' encore en jeu") %>% 
-#   e_legend(
-#     # selectedMode = "single",
-#     left = "right",
-#     textStyle = list(color = "#fff"),
-#     orient  = "vertical"
-#   ) %>%
-#   e_tooltip(trigger = "item") %>%
-#   # e_animation(duration = 10000) %>% 
-#   e_theme("infographic")
+ ##########################################
+ nbr_huit<-nbr_QUART<-nbr_DEMI<-nbr_FINAL<-NA
+ nbr_huit<-funnel_fonction(tour="HUIT")[[1]]
+ nbr_QUART<-funnel_fonction(tour="QUART")[[1]]
+ nbr_DEMI<-funnel_fonction(tour="DEMI")[[1]]
+ nbr_FINAL<-funnel_fonction(tour="FINAL")[[1]]
+ #####################################################
+ if(is.na(nbr_QUART)){
+   nbr_QUART<-nbr_DEMI<-nbr_FINAL<-nbr_huit
+   stage = c("Poules", "Huitièmes")
+   value = c(44, nbr_huit)
 
-amFunnelChart(dataProvider = funnel, startX = -500,
-              depth3D = 50, angle = 60, 
-              outlineColor = '#FFFFFF',
-              outLineThickness =5, 
-              titleField = 'description',
-              valueField = 'value',
-              labelPosition = 'right', marginLeft = 100,
-              marginRight = 300, startDuration = 5, theme = "light",
-              rotate=180) %>>%
-  amOptions( main = "Nombre de participants ayant leur champion encore en jeu",
-             mainColor = "#68838B", mainSize = 20, creditsPosition = "top-right") %>>% 
-  setLegend(position = "bottom", useMarkerColorForLabels = TRUE) %>>%
-  plot() 
-```
-Les pays qui sont rentrés à la maison :
+ }else{
+   if(is.na(nbr_DEMI)){
+     stage = c("Poules", "Huitièmes","Quarts")
+     value = c(44, nbr_huit,nbr_QUART)
+     nbr_DEMI<-nbr_FINAL<-nbr_QUART
+   }else{
+     if(is.na(nbr_FINAL)){
+       stage = c("Poules", "Huitièmes","Quarts","Demi")
+       value = c(44, nbr_huit,nbr_QUART,nbr_DEMI)
+       nbr_FINAL<-nbr_DEMI
+     }else{
+       stage = c("Poules", "Huitièmes","Quarts","Demi","Finale")
+       value = c(44, nbr_huit,nbr_QUART,nbr_DEMI,nbr_FINAL)
+     }
+   }
+ }
+ ####################################################
+ funnel <- data.frame(stage , value )
+ names(funnel)<-c("description","value")
+ ########################################################
 
-<!-- `r anicon::nia(text=paste(funnel_fonction(tour="HUIT")[[2]],collapse=", "),animate="passing",speed="slow",size=2)`   -->
-<!-- * `r  anicon::nia(text=paste(funnel_fonction(tour="QUART")[[2]],collapse=", "),animate="passing",speed="slow",size=2)` -->
-<!-- * `r anicon::nia(text=paste(funnel_fonction(tour="DEMI")[[2]],collapse=", "),animate="passing",speed="slow",size=2)` -->
-* `r anicon::nia(text=paste(funnel_fonction(tour="FINAL")[[2]],collapse=", "),animate="passing",speed="slow",size=1)`
-
-<br>
-
-### Equipes candidates au titre de Championne du monde
-
-
-On vous dévoile les premiers résultats de l'enquête.  
-
-* Sur le camembert, vous pouvez voir la répartition des pays que vous avez choisis comme gagnant pour le mondial.  
-* Le diagramme en barre représente selon les tournois précédents le classement des équipes pré-sélectionnées.  
-
-L'équipe de France a été citée 13 fois. Y-a-t-il du chauvinisme ?  
-Depuis 1978, on peut voir que le Pérou n'a jamais atteint le dernier carré final de la compétition, tandis que l'Allemagne reste une valeur sûre.
-
-<br>
-
-```{r,graph retro,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
-
-##################################################
-unaccent <- function(text){
-  text <- gsub("['`^~\"]", " ", text)
-  text <- iconv(text, to="ASCII//TRANSLIT//IGNORE")
-  text <- gsub("['`^~\"]", "", text)
-  return(text)
-}
-table_participants %>% group_by(champion) %>% summarise(Nbr=n()) %>% ungroup()->data_pie
-classement_fifa<-classement_fifa %>%  
-  rename("2022"="X2022",
-         "2018"="X2018",
-         "2014"="X2014",
-         "2010"="X2010" ,
-         "2006"="X2006","2002"="X2002",
-         "1998"="X1998","1994"="X1994","1990"="X1990","1986"="X1986","1982"="X1982",
-         "1978"="X1978")
-classement_fifa$Equipe<-unaccent(as.character(classement_fifa$Equipe))
-
-table_participants %>%   
-  group_by(champion) %>% 
-  summarise(Nbr=n()) %>% 
-  ungroup() %>% 
-  left_join(table_pays,by=c("champion"="pays")) %>% 
-  mutate(Classement=as.integer(Classement)) %>% 
-  left_join(classement_fifa,"Classement") %>% 
-  select(Equipe,Classement,Nbr,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% gather(Year,Value,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% 
-  mutate(Value=factor(ifelse(Value>0,5-Value,0),ordered = TRUE)) %>% 
-  spread(Equipe,Value) %>%
-  mutate(Year=factor(Year,levels=seq(1978,2022,4))) %>% 
-  arrange(Year) %>% 
-  e_charts(Year,width="100%") %>% 
-  e_bar(Allemagne) %>% 
-  e_bar(Angleterre) %>% 
-  e_bar(Argentine) %>% 
-  e_bar(Belgique) %>% 
-  e_bar(Bresil) %>% 
-  e_bar(Espagne) %>% 
-  e_bar(France) %>% 
-  e_bar(Perou) %>% 
-  e_bar(Portugal) %>% 
-  e_data(data_pie, champion) %>% 
-  e_pie(Nbr, rm.x = FALSE, rm.y = FALSE, center = c("85%", "50%"), radius = c(0, 30)) %>% 
-  e_tooltip(trigger = "item") %>% 
-  e_title("Rétrospective selon les Mondiaux","des équipes sélectionnées par les pronostiqueurs\n et occurences",right="right") %>% 
-  e_theme("infographic") %>% 
-  e_legend(bottom = 0) %>% # move legend to the bottom
-  e_x_axis(name="Année de\ncoupe\ndu monde",axisLabel = list(interval = 0, rotate = 45)) %>% 
-  e_y_axis(name="Classement dans\n le dernier carré\n(4=Champion, ..., 1=4eme)",show=TRUE,axisLabel = list(interval = 0)) 
+ amFunnelChart(dataProvider = funnel, startX = -500,
+               depth3D = 50, angle = 60,
+               outlineColor = '#FFFFFF',
+               outLineThickness =5,
+               titleField = 'description',
+               valueField = 'value',
+               labelPosition = 'right', marginLeft = 100,
+               marginRight = 300, startDuration = 5, theme = "light",
+               rotate=180) %>>%
+   amOptions( main = "Nombre de participants ayant leur champion encore en jeu",
+              mainColor = "#68838B", mainSize = 20, creditsPosition = "top-right") %>>%
+   setLegend(position = "bottom", useMarkerColorForLabels = TRUE) %>>%
+   plot()
 ```
 
-<br>
+<!-- Les pays qui sont rentrés à la maison : -->
+
+<!-- * `r anicon::nia(text=paste(funnel_fonction(tour="FINAL")[[2]],collapse=", "),animate="passing",speed="slow",size=1)` -->
+
+<!-- <br>  -->
+
+<!-- ### Equipes candidates au titre de Championne du monde -->
 
 
-## Quel est votre classement ?
+<!-- On vous dévoile les premiers résultats de l'enquête.   -->
 
-<br>
-  
-### Pronostiqueurs(s) de la journée précédente
-  
-  <br>
-  
-```{r,pronostiqueurs de la journée,echo=FALSE,warning=FALSE,message=FALSE}
-table_resultats_pronostics %>%
-  separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%
-  left_join(table_evenements %>%
-              mutate(cd_date=as.character(cd_date),
-                     Heure=as.character(Heure)) %>%
-              dplyr::select(id_match,cd_date,Heure),by="id_match") %>%
-  # unite(datetime,c("cd_date","Heure")) %>%
-  mutate(datetime=ymd(cd_date)) %>%
-  mutate(datetime=ymd(cd_date)) %>%
-  arrange(datetime)->pronostics
+<!-- * Sur le camembert, vous pouvez voir la répartition des pays que vous avez choisis comme gagnant pour le mondial.   -->
+<!-- * Le diagramme en barre représente selon les tournois précédents le classement des équipes pré-sélectionnées.   -->
 
-pronostics %>%
-  dplyr::select(pseudo,datetime,points) %>%
-  mutate(pseudo=Hmisc::capitalize(pseudo)) %>%
-  group_by(pseudo,datetime) %>%
-  mutate(points=sum(points)) %>%
-  ungroup() %>%
-  distinct() %>%
-  arrange(pseudo) %>%
-  group_by(pseudo) %>%
-  mutate(PtsCum = cumsum(points)) %>%
-  arrange(pseudo) %>%
-  dplyr::select(pseudo,datetime,PtsCum) %>%
-  ungroup() %>%
-  as.data.frame() %>%
-  distinct() ->pronostics
-######################################################
-pronostics %>% 
-  # mutate(pseudo=tolower(pseudo)) %>% 
-  filter(datetime>=unique(sort(datetime))[length(unique(sort(datetime)))-1])%>% 
-  group_by(pseudo)%>% 
-  summarise(Diff=diff(PtsCum)) %>% 
-  arrange(desc(Diff)) %>%
-  filter(Diff %in% max(Diff)) %>%
-  ungroup() -> Classement_pronostiqueurs
-################################################
-# yo<-Classement_pronostiqueurs_ori[Classement_pronostiqueurs_ori$pseudo %in% Classement_pronostiqueurs$pseudo,]
-# if(nrow(yo)>1){
-#   yo<-yo %>% arrange(desc(MisEnLumiere)) #%>% slice(1)
-#   Classement_pronostiqueurs %>% filter(Classement_pronostiqueurs$pseudo==yo$pseudo,] %>% 
-#      mutate(
-#       Score.A = color_tile("white", "green")(Score.A),
-#       Score.B = color_tile("white", "green")(Score.B)) %>% 
-#     rename("Score A"="Score.A","Score B"="Score.B","Equipe B"="Equipe.B","Equipe A"="Equipe.A") %>% 
-#     kable(escape = F) %>%
-#       # row_spec(0, angle = -45) %>% 
-#     kable_styling("striped", full_width = F)
-# }else{
-#   Classement_pronostiqueurs_ori$MisEnLumiere[Classement_pronostiqueurs_ori$pseudo %in% Classement_pronostiqueurs$pseudo] <- Classement_pronostiqueurs_ori$MisEnLumiere[Classement_pronostiqueurs_ori$pseudo %in% Classement_pronostiqueurs$pseudo]+1
-#   print(Classement_pronostiqueurs)
-# }
-######
-# formattable(Classement_pronostiqueurs,  Diff= color_bar("lightblue"))
-Classement_pronostiqueurs %>%
-  # rename("Bonus de points"="Diff") %>%
-  mutate(
-    Diff= cell_spec(Diff,background = "red", color = "white", align = "center")) %>%
-  rename("Points gagnés"="Diff") %>%
-  kable(escape = F) %>%
-  kable_styling("striped", full_width = F,font_size = 25,position= "float_right")
-```
+<!-- L'équipe de France a été citée 13 fois. Y-a-t-il du chauvinisme ?   -->
+<!-- Depuis 1978, on peut voir que le Pérou n'a jamais atteint le dernier carré final de la compétition, tandis que l'Allemagne reste une valeur sûre. -->
+
+<!-- <br> -->
+
+<!-- ```{r,graph retro,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"} -->
+
+<!-- ################################################## -->
+<!-- unaccent <- function(text){ -->
+<!--   text <- gsub("['`^~\"]", " ", text) -->
+<!--   text <- iconv(text, to="ASCII//TRANSLIT//IGNORE") -->
+<!--   text <- gsub("['`^~\"]", "", text) -->
+<!--   return(text) -->
+<!-- } -->
+<!-- table_participants %>% group_by(champion) %>% summarise(Nbr=n()) %>% ungroup()->data_pie -->
+<!-- classement_fifa<-classement_fifa %>%   -->
+<!--   rename("2022"="X2022", -->
+<!--          "2018"="X2018", -->
+<!--          "2014"="X2014", -->
+<!--          "2010"="X2010" , -->
+<!--          "2006"="X2006","2002"="X2002", -->
+<!--          "1998"="X1998","1994"="X1994","1990"="X1990","1986"="X1986","1982"="X1982", -->
+<!--          "1978"="X1978") -->
+<!-- classement_fifa$Equipe<-unaccent(as.character(classement_fifa$Equipe)) -->
+
+<!-- table_participants %>%    -->
+<!--   group_by(champion) %>%  -->
+<!--   summarise(Nbr=n()) %>%  -->
+<!--   ungroup() %>%  -->
+<!--   left_join(table_pays,by=c("champion"="pays")) %>%  -->
+<!--   mutate(Classement=as.integer(Classement)) %>%  -->
+<!--   left_join(classement_fifa,"Classement") %>%  -->
+<!--   select(Equipe,Classement,Nbr,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>% gather(Year,Value,`2022`,`2018`,`2014`,`2010`,`2006`,`2002`,`1998`,`1994`,`1990`,`1986`,`1982`,`1978`) %>%  -->
+<!--   mutate(Value=factor(ifelse(Value>0,5-Value,0),ordered = TRUE)) %>%  -->
+<!--   spread(Equipe,Value) %>% -->
+<!--   mutate(Year=factor(Year,levels=seq(1978,2022,4))) %>%  -->
+<!--   arrange(Year) %>%  -->
+<!--   e_charts(Year,width="100%") %>%  -->
+<!--   e_bar(Allemagne) %>%  -->
+<!--   e_bar(Angleterre) %>%  -->
+<!--   e_bar(Argentine) %>%  -->
+<!--   e_bar(Belgique) %>%  -->
+<!--   e_bar(Bresil) %>%  -->
+<!--   e_bar(Espagne) %>%  -->
+<!--   e_bar(France) %>%  -->
+<!--   e_bar(Perou) %>%  -->
+<!--   e_bar(Portugal) %>%  -->
+<!--   e_data(data_pie, champion) %>%  -->
+<!--   e_pie(Nbr, rm.x = FALSE, rm.y = FALSE, center = c("85%", "50%"), radius = c(0, 30)) %>%  -->
+<!--   e_tooltip(trigger = "item") %>%  -->
+<!--   e_title("Rétrospective selon les Mondiaux","des équipes sélectionnées par les pronostiqueurs\n et occurences",right="right") %>%  -->
+<!--   e_theme("infographic") %>%  -->
+<!--   e_legend(bottom = 0) %>% # move legend to the bottom -->
+<!--   e_x_axis(name="Année de\ncoupe\ndu monde",axisLabel = list(interval = 0, rotate = 45)) %>%  -->
+<!--   e_y_axis(name="Classement dans\n le dernier carré\n(4=Champion, ..., 1=4eme)",show=TRUE,axisLabel = list(interval = 0))  -->
+<!-- ``` -->
+
+<!-- <br> -->
 
 
-<!-- ![reus](https://media0.giphy.com/media/juddKSbDBJgRy/giphy.gif?cid=e1bb72ff5b4708c46d3375414de312e2)   -->
- ![pavard](https://media0.giphy.com/media/2mDmdNdJ9oD3ibyMxb/giphy.gif?cid=e1bb72ff5b47088051654c4e63ccf715)  
+<!-- ## Quel est votre classement ? -->
+
+<!-- <br> -->
+
+<!-- ### Pronostiqueurs(s) de la journée précédente -->
+
+<!--   <br> -->
+
+<!-- ```{r,pronostiqueurs de la journée,echo=FALSE,warning=FALSE,message=FALSE} -->
+<!-- table_resultats_pronostics %>% -->
+<!--   separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>% -->
+<!--   left_join(table_evenements %>% -->
+<!--               mutate(cd_date=as.character(cd_date), -->
+<!--                      Heure=as.character(Heure)) %>% -->
+<!--               dplyr::select(id_match,cd_date,Heure),by="id_match") %>% -->
+<!--   # unite(datetime,c("cd_date","Heure")) %>% -->
+<!--   mutate(datetime=ymd(cd_date)) %>% -->
+<!--   mutate(datetime=ymd(cd_date)) %>% -->
+<!--   arrange(datetime)->pronostics -->
+
+<!-- pronostics %>% -->
+<!--   dplyr::select(pseudo,datetime,points) %>% -->
+<!--   mutate(pseudo=Hmisc::capitalize(pseudo)) %>% -->
+<!--   group_by(pseudo,datetime) %>% -->
+<!--   mutate(points=sum(points)) %>% -->
+<!--   ungroup() %>% -->
+<!--   distinct() %>% -->
+<!--   arrange(pseudo) %>% -->
+<!--   group_by(pseudo) %>% -->
+<!--   mutate(PtsCum = cumsum(points)) %>% -->
+<!--   arrange(pseudo) %>% -->
+<!--   dplyr::select(pseudo,datetime,PtsCum) %>% -->
+<!--   ungroup() %>% -->
+<!--   as.data.frame() %>% -->
+<!--   distinct() ->pronostics -->
+<!-- ###################################################### -->
+<!-- pronostics %>%  -->
+<!--   # mutate(pseudo=tolower(pseudo)) %>%  -->
+<!--   filter(datetime>=unique(sort(datetime))[length(unique(sort(datetime)))-1])%>%  -->
+<!--   group_by(pseudo)%>%  -->
+<!--   summarise(Diff=diff(PtsCum)) %>%  -->
+<!--   arrange(desc(Diff)) %>% -->
+<!--   filter(Diff %in% max(Diff)) %>% -->
+<!--   ungroup() -> Classement_pronostiqueurs -->
+<!-- ################################################ -->
+<!-- ###### -->
+<!-- # formattable(Classement_pronostiqueurs,  Diff= color_bar("lightblue")) -->
+<!-- Classement_pronostiqueurs %>% -->
+<!--   # rename("Bonus de points"="Diff") %>% -->
+<!--   mutate( -->
+<!--     Diff= cell_spec(Diff,background = "red", color = "white", align = "center")) %>% -->
+<!--   rename("Points gagnés"="Diff") %>% -->
+<!--   kable(escape = F) %>% -->
+<!--   kable_styling("striped", full_width = F,font_size = 25,position= "float_right") -->
+<!-- ``` -->
 
 
-<!-- ![ngolo+kante](https://media1.giphy.com/media/FsV6VaRz2OQOnyjfF4/giphy.gif?cid=e1bb72ff5b460dae744a734c4119966f)   -->
-<!-- ![Alisson+Becker](https://media3.giphy.com/media/xUOxfoAs1aZNja273W/giphy.gif?cid=e1bb72ff5b43103c703044626bdc3c68)   -->
-<!-- ![neymar+](https://media0.giphy.com/media/sDUtsdsrEuad2/giphy.gif?cid=e1bb72ff5b3c7881347843392ea60df3)   -->
-<!-- ![dembele+ousmane+](https://media2.giphy.com/media/qsWWHpKvsGDEA/giphy-downsized-medium.gif?cid=e1bb72ff5b3b2a20585646772ee22604)   -->
-<!-- ![khedira](https://media1.giphy.com/media/7sPmucMC8zHry/giphy-downsized.gif?cid=e1bb72ff5b33548e6c674b6f49c0b31d)   -->
-<!-- ![mendy](https://media2.giphy.com/media/EbGMxSL0ZuRTW/giphy-downsized.gif?cid=e1bb72ff5b348ac951454b2e32958df4)   -->
-<!-- ![thiago+silva](https://media2.giphy.com/media/SKT3N37H9KtFPdCKkz/giphy-downsized.gif?cid=e1bb72ff5b35e0c2574538795100d784)   -->
-<!-- ![Busquets+spain](https://media0.giphy.com/media/OvJQI1Ub7twk0/giphy.gif?cid=e1bb72ff5b2ca00476494a542e758f8b)   -->
-<!-- ![Lukaku](https://media0.giphy.com/media/8maPpCVRIpFyTs6FMp/giphy.gif?cid=e1bb72ff5b2b4e0d313670356fb074fa)   -->
-<!-- ![Pepe](https://media1.giphy.com/media/42VdQEIJ2GnHa/200.gif?cid=e1bb72ff5b2a02826f542f666f970428) -->
-<!-- ![Marquinhos](https://media3.giphy.com/media/l1J9Ngpd4xUTHv6aA/giphy-downsized.gif?cid=e1bb72ff5b2912ca4949497649813b65) -->
+<!-- <!-- ![reus](https://media0.giphy.com/media/juddKSbDBJgRy/giphy.gif?cid=e1bb72ff5b4708c46d3375414de312e2)   --> -->
+<!--  ![pavard](https://media0.giphy.com/media/2mDmdNdJ9oD3ibyMxb/giphy.gif?cid=e1bb72ff5b47088051654c4e63ccf715)   -->
 
 
-<br>
-  
-### Classement des pronostiqueurs
-  
-  <br>
-  
-```{r,Classement pronostiqueurs,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
-# table_resultats_pronostics %>%
-#   separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%
-#   left_join(table_evenements %>%
-#               mutate(cd_date=as.character(cd_date),
-#                      Heure=as.character(Heure)) %>%
-#               dplyr::select(id_match,cd_date,Heure),by="id_match") %>%
-#   # unite(datetime,c("cd_date","Heure")) %>%
-#   mutate(datetime=ymd(cd_date)) %>%
-#   mutate(datetime=ymd(cd_date)) %>%
-#   arrange(datetime)->pronostics
-# 
-# pronostics %>%
-#   dplyr::select(pseudo,datetime,points) %>%
-#   mutate(pseudo=Hmisc::capitalize(pseudo)) %>%
-#   group_by(pseudo,datetime) %>%
-#   mutate(points=sum(points)) %>%
-#   ungroup() %>%
-#   distinct() %>%
-#   arrange(pseudo) %>%
-#   group_by(pseudo) %>%
-#   mutate(PtsCum = cumsum(points)) %>%
-#   arrange(pseudo) %>%
-#   dplyr::select(pseudo,datetime,PtsCum) %>%
-#   ungroup() %>%
-#   as.data.frame() %>%
-#   distinct() ->pronostics
-# ######################################################
-pronostics %>%
-  filter(datetime==max(datetime)) %>%
-  arrange((PtsCum)) %>%
-  dplyr::select(pseudo) %>% pull()->levels_pseudo
-########################################""
-
-p2<-pronostics %>% 
-  mutate(pseudo=factor(pseudo,levels=levels_pseudo),
-         `Journée`=as.character(datetime)) %>% 
-  rename("Points cumulés"="PtsCum",
-         "Pseudo"="pseudo") %>% 
-  ggplot(aes(x=`Points cumulés`,y=Pseudo,frame=`Journée`,col=`Points cumulés`))+
-  # geom_bar(col="gray50",stat = "identity")+
-  geom_point(size=3)+
-  ylab("Pseudo\n (par ordre décroissant des points cumulés)")+
-  xlab("Points cumulés")+
-  labs(col="Points")+
-  #scale_fill_viridis(option="plasma",discrete = T,direction=-1)+
-  scale_color_gradientn(colours = viridis(256, option = "C",direction=-1))+
-  theme_pubclean()+
-  theme(axis.text=element_text(face="bold",size=12),
-        strip.background = element_rect(fill="gray88", colour="indianred3",size=1),
-        legend.position='none',
-        strip.text=element_text(size=20,face="bold.italic",colour = "blue4"),
-        axis.ticks.y=element_blank(),
-        axis.title.y = element_text(size=15),
-        plot.margin = unit(c(1,1,1,3), "cm"))
-# Create plotly graph
-ggplotly(p2, height =900, width =750) %>%
-  animation_opts(frame = 50*length(unique(pronostics$datetime)),
-                 easing = "linear",
-                 redraw = FALSE)
-```
-
-<br>
+<!-- <!-- ![ngolo+kante](https://media1.giphy.com/media/FsV6VaRz2OQOnyjfF4/giphy.gif?cid=e1bb72ff5b460dae744a734c4119966f)   --> -->
+<!-- <!-- ![Alisson+Becker](https://media3.giphy.com/media/xUOxfoAs1aZNja273W/giphy.gif?cid=e1bb72ff5b43103c703044626bdc3c68)   --> -->
+<!-- <!-- ![neymar+](https://media0.giphy.com/media/sDUtsdsrEuad2/giphy.gif?cid=e1bb72ff5b3c7881347843392ea60df3)   --> -->
+<!-- <!-- ![dembele+ousmane+](https://media2.giphy.com/media/qsWWHpKvsGDEA/giphy-downsized-medium.gif?cid=e1bb72ff5b3b2a20585646772ee22604)   --> -->
+<!-- <!-- ![khedira](https://media1.giphy.com/media/7sPmucMC8zHry/giphy-downsized.gif?cid=e1bb72ff5b33548e6c674b6f49c0b31d)   --> -->
+<!-- <!-- ![mendy](https://media2.giphy.com/media/EbGMxSL0ZuRTW/giphy-downsized.gif?cid=e1bb72ff5b348ac951454b2e32958df4)   --> -->
+<!-- <!-- ![thiago+silva](https://media2.giphy.com/media/SKT3N37H9KtFPdCKkz/giphy-downsized.gif?cid=e1bb72ff5b35e0c2574538795100d784)   --> -->
+<!-- <!-- ![Busquets+spain](https://media0.giphy.com/media/OvJQI1Ub7twk0/giphy.gif?cid=e1bb72ff5b2ca00476494a542e758f8b)   --> -->
+<!-- <!-- ![Lukaku](https://media0.giphy.com/media/8maPpCVRIpFyTs6FMp/giphy.gif?cid=e1bb72ff5b2b4e0d313670356fb074fa)   --> -->
+<!-- <!-- ![Pepe](https://media1.giphy.com/media/42VdQEIJ2GnHa/200.gif?cid=e1bb72ff5b2a02826f542f666f970428) --> -->
+<!-- <!-- ![Marquinhos](https://media3.giphy.com/media/l1J9Ngpd4xUTHv6aA/giphy-downsized.gif?cid=e1bb72ff5b2912ca4949497649813b65) --> -->
 
 
-### Par match
+<!-- <br> -->
 
-On propose un focus sur seulement les matchs de la dernière journée du tournoi.
+<!-- ### Classement des pronostiqueurs -->
 
-```{r,carrousel pronostics par jour,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"}
+<!--   <br> -->
 
-if(nrow(table_matchs)>0){
-  #####
-  table_resultats_matchsA=table_matchs %>% 
-    filter(cd_statut=="A") %>% 
-    rename("EquipeA"="pays","scoreA"="Score") %>%
-    select(id_match,EquipeA,scoreA)
-  
-  table_resultats_matchsB=table_matchs %>% 
-    filter(cd_statut=="B") %>% 
-    rename("EquipeB"="pays","scoreB"="Score") %>%
-    select(id_match,EquipeB,scoreB)
-  
-  table_resultats_matchs = table_resultats_matchsA %>% 
-    left_join(table_resultats_matchsB,by = "id_match")
-  
-  table_resultats_pronostics_podium = table_resultats_pronostics %>% 
-    separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>%
-    group_by(pseudo) %>% 
-    mutate(points_cum=cumsum(points)) %>% 
-    mutate(points_cum_plot=as.factor(as.character(points_cum))) %>% 
-    mutate(points_plot=as.factor(as.character(points))) %>% 
-    left_join(table_resultats_matchs,by = "id_match" ) %>% 
-    left_join(table_evenements,by = "id_match") %>% 
-    select(-c(id_tour,Heure,Equipe.A, Equipe.B))
-  
-  
-  ###### points par match ######
-  
-  barplot2=list()
-  for (i in unique(table_resultats_pronostics_podium$id_match)){
-    
-    fig = list.files(path=rep_fig,pattern=i)
-    
-    if(length(fig>1)){}else{
-      
-      tab=table_resultats_pronostics_podium %>% 
-        filter(id_match==i)
-      
-      
-      EquipeA=unique(tab$EquipeA)
-      EquipeB=unique(tab$EquipeB)
-      scoreA=unique(tab$scoreA)
-      scoreB=unique(tab$scoreB)
-      date=format(as.Date(unique(tab$cd_date)),"%d/%m/%Y")
-      
-      tab$titre=paste(date, "\n",EquipeA," - ",EquipeB,"\n",scoreA, " - ", scoreB,sep="")
-      breaks=unique(tab$points) 
-      
-      
-      
-      barplot2[[i]] = ggplot(tab,aes(x=points,y=reorder(Hmisc::capitalize(pseudo),points)))+
-        geom_segment(aes(yend=reorder(Hmisc::capitalize(pseudo),points_cum)),xend=0,col="gray50")+
-        geom_point(size=3,aes(col=points_plot))+
-        ylab("")+
-        xlab("")+
-        labs(col="Points")+
-        scale_color_viridis(option="plasma", discrete = T, direction = -1)+
-        #scale_colour_manual(palette="Paired",direction=-1)+
-        scale_x_continuous(breaks=breaks)+
-        facet_wrap(~titre)+
-        theme_pubclean()+
-        theme(axis.text=element_text(face="bold",size=15),
-              strip.background = element_rect(fill="gray88", colour="indianred3",size=1),
-              legend.position='none',
-              strip.text=element_text(size=20,face="bold.italic",colour = "blue4"),
-              axis.ticks.y=element_blank(),
-              axis.title.y = element_text(size=20,face="bold"))
-      
-      # print(barplot2[[i]])
-      
-      
-      ggsave(file=paste(rep_fig,i,".png",sep=""),plot=barplot2[[i]],height =10,width=10)
-    }
-    
-  }
-  
-  b<-unique(table_resultats_pronostics_podium$id_match)
-  z<-sprintf("%s.png",b)
-  
-table_resultats_pronostics_podium %>% 
-  ungroup() %>% 
-  select(id_match) %>% 
-  distinct() %>% 
-  left_join(table_evenements,by="id_match") %>% 
-  select(cd_date) %>% pull() %>% max()->date_max
-table_evenements %>% 
-  filter(cd_date %in% date_max) %>% 
-  select(id_match) %>% pull()->id_match_sel
+<!-- ```{r,Classement pronostiqueurs,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"} -->
+<!-- # ###################################################### -->
+<!-- pronostics %>% -->
+<!--   filter(datetime==max(datetime)) %>% -->
+<!--   arrange((PtsCum)) %>% -->
+<!--   dplyr::select(pseudo) %>% pull()->levels_pseudo -->
+<!-- ########################################"" -->
 
-  
-  z_sel<-sprintf("%s.png",id_match_sel)
-  # s2<-if(interactive()) slickR(obj=paste(rep_fig,z,sep=""), width = '70%')
-  slickR(
-    obj = paste(rep_fig,z_sel,sep=""),
-    slideId = c('ex2'),
-    # slickOpts = list(
-    #   initialSlide = 1,
-    #   slidesToShow = 2,
-    #   slidesToScroll = 2,
-    #   focusOnSelect = T,
-    #   dots = T
-    # ),
-    # height = '100%',
-    width = 750
-    )
-  # saveWidget(s2, file=paste0(rep_fig,"graph_match.html"))
-}else{ 
-  knitr::include_graphics("img/refus.jpg")
-}
+<!-- p2<-pronostics %>%  -->
+<!--   mutate(pseudo=factor(pseudo,levels=levels_pseudo), -->
+<!--          `Journée`=as.character(datetime)) %>%  -->
+<!--   rename("Points cumulés"="PtsCum", -->
+<!--          "Pseudo"="pseudo") %>%  -->
+<!--   ggplot(aes(x=`Points cumulés`,y=Pseudo,frame=`Journée`,col=`Points cumulés`))+ -->
+<!--   # geom_bar(col="gray50",stat = "identity")+ -->
+<!--   geom_point(size=3)+ -->
+<!--   ylab("Pseudo\n (par ordre décroissant des points cumulés)")+ -->
+<!--   xlab("Points cumulés")+ -->
+<!--   labs(col="Points")+ -->
+<!--   #scale_fill_viridis(option="plasma",discrete = T,direction=-1)+ -->
+<!--   scale_color_gradientn(colours = viridis(256, option = "C",direction=-1))+ -->
+<!--   theme_pubclean()+ -->
+<!--   theme(axis.text=element_text(face="bold",size=12), -->
+<!--         strip.background = element_rect(fill="gray88", colour="indianred3",size=1), -->
+<!--         legend.position='none', -->
+<!--         strip.text=element_text(size=20,face="bold.italic",colour = "blue4"), -->
+<!--         axis.ticks.y=element_blank(), -->
+<!--         axis.title.y = element_text(size=15), -->
+<!--         plot.margin = unit(c(1,1,1,3), "cm")) -->
+<!-- # Create plotly graph -->
+<!-- ggplotly(p2, height =900, width =750) %>% -->
+<!--   animation_opts(frame = 50*length(unique(pronostics$datetime)), -->
+<!--                  easing = "linear", -->
+<!--                  redraw = FALSE) -->
+<!-- ``` -->
 
-```
+<!-- <br> -->
 
-<br>
+
+<!-- ### Par match -->
+
+<!-- On propose un focus sur seulement les matchs de la dernière journée du tournoi. -->
+
+<!-- ```{r,carrousel pronostics par jour,echo=FALSE,warning=FALSE,message=FALSE, fig.align = "center"} -->
+
+<!-- if(nrow(table_matchs)>0){ -->
+<!--   ##### -->
+<!--   table_resultats_matchsA=table_matchs %>%  -->
+<!--     filter(cd_statut=="A") %>%  -->
+<!--     rename("EquipeA"="pays","scoreA"="Score") %>% -->
+<!--     select(id_match,EquipeA,scoreA) -->
+
+<!--   table_resultats_matchsB=table_matchs %>%  -->
+<!--     filter(cd_statut=="B") %>%  -->
+<!--     rename("EquipeB"="pays","scoreB"="Score") %>% -->
+<!--     select(id_match,EquipeB,scoreB) -->
+
+<!--   table_resultats_matchs = table_resultats_matchsA %>%  -->
+<!--     left_join(table_resultats_matchsB,by = "id_match") -->
+
+<!--   table_resultats_pronostics_podium = table_resultats_pronostics %>%  -->
+<!--     separate(id_match_joueur,c("id_match","pseudo"),sep="_") %>% -->
+<!--     group_by(pseudo) %>%  -->
+<!--     mutate(points_cum=cumsum(points)) %>%  -->
+<!--     mutate(points_cum_plot=as.factor(as.character(points_cum))) %>%  -->
+<!--     mutate(points_plot=as.factor(as.character(points))) %>%  -->
+<!--     left_join(table_resultats_matchs,by = "id_match" ) %>%  -->
+<!--     left_join(table_evenements,by = "id_match") %>%  -->
+<!--     select(-c(id_tour,Heure,Equipe.A, Equipe.B)) -->
+
+
+<!--   ###### points par match ###### -->
+
+<!--   barplot2=list() -->
+<!--   for (i in unique(table_resultats_pronostics_podium$id_match)){ -->
+
+<!--     fig = list.files(path=rep_fig,pattern=i) -->
+
+<!--     if(length(fig>1)){}else{ -->
+
+<!--       tab=table_resultats_pronostics_podium %>%  -->
+<!--         filter(id_match==i) -->
+
+
+<!--       EquipeA=unique(tab$EquipeA) -->
+<!--       EquipeB=unique(tab$EquipeB) -->
+<!--       scoreA=unique(tab$scoreA) -->
+<!--       scoreB=unique(tab$scoreB) -->
+<!--       date=format(as.Date(unique(tab$cd_date)),"%d/%m/%Y") -->
+
+<!--       tab$titre=paste(date, "\n",EquipeA," - ",EquipeB,"\n",scoreA, " - ", scoreB,sep="") -->
+<!--       breaks=unique(tab$points)  -->
+
+
+
+<!--       barplot2[[i]] = ggplot(tab,aes(x=points,y=reorder(Hmisc::capitalize(pseudo),points)))+ -->
+<!--         geom_segment(aes(yend=reorder(Hmisc::capitalize(pseudo),points_cum)),xend=0,col="gray50")+ -->
+<!--         geom_point(size=3,aes(col=points_plot))+ -->
+<!--         ylab("")+ -->
+<!--         xlab("")+ -->
+<!--         labs(col="Points")+ -->
+<!--         scale_color_viridis(option="plasma", discrete = T, direction = -1)+ -->
+<!--         #scale_colour_manual(palette="Paired",direction=-1)+ -->
+<!--         scale_x_continuous(breaks=breaks)+ -->
+<!--         facet_wrap(~titre)+ -->
+<!--         theme_pubclean()+ -->
+<!--         theme(axis.text=element_text(face="bold",size=15), -->
+<!--               strip.background = element_rect(fill="gray88", colour="indianred3",size=1), -->
+<!--               legend.position='none', -->
+<!--               strip.text=element_text(size=20,face="bold.italic",colour = "blue4"), -->
+<!--               axis.ticks.y=element_blank(), -->
+<!--               axis.title.y = element_text(size=20,face="bold")) -->
+
+<!--       # print(barplot2[[i]]) -->
+
+
+<!--       ggsave(file=paste(rep_fig,i,".png",sep=""),plot=barplot2[[i]],height =10,width=10) -->
+<!--     } -->
+
+<!--   } -->
+
+<!--   b<-unique(table_resultats_pronostics_podium$id_match) -->
+<!--   z<-sprintf("%s.png",b) -->
+
+<!-- table_resultats_pronostics_podium %>%  -->
+<!--   ungroup() %>%  -->
+<!--   select(id_match) %>%  -->
+<!--   distinct() %>%  -->
+<!--   left_join(table_evenements,by="id_match") %>%  -->
+<!--   select(cd_date) %>% pull() %>% max()->date_max -->
+<!-- table_evenements %>%  -->
+<!--   filter(cd_date %in% date_max) %>%  -->
+<!--   select(id_match) %>% pull()->id_match_sel -->
+
+
+<!--   z_sel<-sprintf("%s.png",id_match_sel) -->
+<!--   # s2<-if(interactive()) slickR(obj=paste(rep_fig,z,sep=""), width = '70%') -->
+<!--   slickR( -->
+<!--     obj = paste(rep_fig,z_sel,sep=""), -->
+<!--     slideId = c('ex2'), -->
+<!--     width = 750 -->
+<!--     ) -->
+<!--   # saveWidget(s2, file=paste0(rep_fig,"graph_match.html")) -->
+<!-- }else{  -->
+<!--   knitr::include_graphics("img/refus.jpg") -->
+<!-- } -->
+
+<!-- ``` -->
+
+<!-- <br> -->
 
 
 
