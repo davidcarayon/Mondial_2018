@@ -1,0 +1,43 @@
+---
+title: "Retour d'expérience : Projet collaboratif de pronostics"
+author: "S. Boutry, D. Carayon, M. Wach, T. Leboucher et O. Joalland"
+date: "xx novembre 2018"
+output:  
+  revealjs::revealjs_presentation:
+    css: styles.css
+    theme: white
+    transition: slide
+    center: true
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2) ; library(plotly) ; library(leaflet)
+```
+
+
+# Introduction {data-background="img/dolphin.gif"}
+
+# Outils {data-background=#90EE90}
+
+## R
+
+```{r echo = TRUE}
+print("Hello world")
+
+head(iris)
+```
+
+
+## R markdown 
+
+# Workflow {data-background=#ffc7b3}
+
+## Programmation
+
+## Data viz
+
+# Retour d'expérience {data-background=#E0FFFF}
