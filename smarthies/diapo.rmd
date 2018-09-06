@@ -1,5 +1,5 @@
 ---
-title: "Retour d'expÃ©rience : Projet collaboratif de pronostics"
+title: "Retour d'expérience : Projet collaboratif de pronostics"
 author: "S. Boutry, D. Carayon, M. Wach, T. Leboucher et O. Joalland"
 date: "xx novembre 2018"
 output:  
@@ -23,21 +23,51 @@ library(ggplot2) ; library(plotly) ; library(leaflet)
 
 # Outils {data-background=#90EE90}
 
+## Open source
+- Mosaïque des packages & technologies
+
 ## R
-
-```{r echo = TRUE}
-print("Hello world")
-
-head(iris)
-```
-
+- Tidyverse : workflow de packages de data science/viz selon idéologie commune (Scéhma tidyverse whickam Cf. Smarthies dédié) 
+- rvest : screenshot/hyperlien l'équipe 
 
 ## R markdown 
+- schéma pandoc
+- Sites web
+- Mail list
+
+## Git & Github
+- Code collaboratif
+- Hébergement (Github pages)
+
+## Bash 
+- Automatisation de tâches
+
+## SGBD
+- Schéma BDD, données structurées
 
 # Workflow {data-background=#ffc7b3}
 
-## Programmation
+## Schéma global
+- Dessin tableau -> inkscape
+
+## Devenir du fichier excel
+- Frise du devenir du fichier
 
 ## Data viz
+- sac de billes, funnel, lolipop, drapeaux
 
-# Retour d'expÃ©rience {data-background=#E0FFFF}
+# Retour d'expérience {data-background=#E0FFFF}
+
+## Utilisateurs
+- Excel local *vs* Shiny
+- Choix des viz (Viz != infographie)
+
+## Equipe
+- Encoding, conflits
+- Pb technique hébergement
+- Gestion des entrées utilisateurs
+
+
+
+
+
